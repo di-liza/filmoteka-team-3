@@ -1,0 +1,10 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    color: var(--base-black);
+    line-height: 1.2;
+    position: relative;
+    // min-height: 100vh;
+}

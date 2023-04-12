@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="./icons/film-icon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <title>Filmoteka</title>
+
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Стили -->
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <include src="./partials/header.html"></include>
+
+    <main>
+      <include src="./partials/card-collection.html"></include>
+      <include src="./partials/pagination.html"></include>
+    </main>
+
+    <include src="./partials/footer.html"></include>
+
+    <!-- Модалки -->
+    <!-- <include src="./partials/"></include>
+    <include src="./partials/footer.html"></include>
+    <include src="./partials/footer.html"></include> -->
+
+    <script src="./index.js" type="module"></script>
   </body>
 </html>
