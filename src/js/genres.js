@@ -1,4 +1,4 @@
-const genresList = [
+const genresNames = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
   { id: 16, name: 'Animation' },
@@ -20,10 +20,28 @@ const genresList = [
   { id: 37, name: 'Western' },
 ];
 
-export function findGanre(genreIds) {
-  return genresList.map(genre => {
-    if (genreIds.includes(genre.id)) {
-      return genre.name;
+export function getGenres(genreIds, genres) {
+  let genresArray = [];
+  if (genreIds === undefined) {
+    genresArray = Object.values(genres).flatMap(genre => genre.name);
+    if (genresArray.length > 3) {
+      const genresArrayShort = genresNamesArray.slice(0, 2).join(', ') + ', Other';
+      return genresArrayShort;     
     }
-  });
+    return genresArray.join(', ');
+  }
+  
+  for (const genreId of genreIds) {
+    genresNames.map(genreName => {
+      if (genreName.id === genreId) {
+        genresArray.push(genreName.name);
+      }
+    });
+  }
+  if (genresArray.length > 3) {
+    const genresArrayShort = genresArray.slice(0, 2).join(', ') + ', Other';
+    return genresArrayShort;
+  }
+  return genresArray.join(', ');
 }
+
