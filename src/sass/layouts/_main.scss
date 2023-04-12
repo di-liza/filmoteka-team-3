@@ -1,0 +1,79 @@
+.movie-collection__item {
+  @include mobile {
+    font-size: 20px;
+  }
+
+  @include tablet {
+    font-size: 20px;
+  }
+
+  @include desktop {
+    font-size: 20px;
+  }
+}
+.movie-collection__poster {
+  @include mobile {
+    display: block;
+    margin-bottom: 12px;
+    width: 395px;
+    height: 574px;
+    border-radius: 5px;
+  }
+
+  @include tablet {
+    display: block;
+    margin-bottom: 12px;
+    width: 395px;
+    height: 574px;
+    border-radius: 5px;
+  }
+
+  @include desktop {
+    display: block;
+    margin-bottom: 12px;
+    width: 395px;
+    height: 574px;
+    border-radius: 5px;
+  }
+}
+
+.movie-collection__title {
+  @include mobile {
+    text-transform: uppercase;
+    color: var(--base-black);
+  }
+
+  @include tablet {
+    text-transform: uppercase;
+    color: var(--base-black);
+  }
+
+  @include desktop {
+    text-transform: uppercase;
+    color: var(--base-black);
+  }
+}
+
+.movie-collection__discription {
+  @include mobile {
+    display: flex;
+    font-weight: 500;
+    color: var(--acent-red);
+  }
+
+  @include tablet {
+    display: flex;
+    font-weight: 500;
+    color: var(--acent-red);
+  }
+
+  @include desktop {
+    display: flex;
+    font-weight: 500;
+    color: var(--acent-red);
+  }
+}
+
+.movie-collection__genre::after {
+  content: ' | ';
+}
