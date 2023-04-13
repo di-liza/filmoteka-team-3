@@ -8,12 +8,12 @@ export class GetMovie {
   query = null;
   movie_id = null;
   //   Запрос на самые популярные фильмы за месяц
-  async getTrandMovies() {
+  async getTrandMovies(page) {
     try {
       const params = {
         api_key: API_KEY,
         language: 'en-US',
-        page: this.page,
+        page: page,
       };
       const response = await axios.get(`${BASE_URL}/trending/movie/week?`, {
         params,
