@@ -22,15 +22,17 @@ const genresNames = [
 
 export function getGenres(genreIds, genres) {
   let genresArray = [];
-  if (genreIds === undefined || genreIds.length === 0) {
+  if (genreIds === undefined) {
     genresArray = Object.values(genres).flatMap(genre => genre.name);
     if (genresArray.length > 3) {
       const genresArrayShort = genresArray.slice(0, 2).join(', ') + ', Other';
-      return genresArrayShort;     
+      return genresArrayShort;
     }
     return genresArray.join(', ') + ', Other';
+  } else if (genreIds.length === 0) {
+    return 'Other';
   }
-  
+
   for (const genreId of genreIds) {
     genresNames.map(genreName => {
       if (genreName.id === genreId) {
@@ -44,5 +46,3 @@ export function getGenres(genreIds, genres) {
   }
   return genresArray.join(', ');
 }
-
-
