@@ -1,27 +1,57 @@
 <!-- Именование класов по бем, пример структуры с классами:  -->
 
 <header class="header header--fixed">
-  <div class="logo">
-    <img class="logo__image" />
-    <span class="logo__text"></span>
+  <div class="container header__container">
+    <div class="components">
+      <form class="search-form">
+        <label>
+          <input
+            class="search-form__input"
+            type="text"
+            placeholder="Movie search"
+          />
+        </label>
+        <button class="search-form__button" type="submit">
+          <svg class="search-form__icon">
+            <use href="./icons/icons-sprite.svg#icon-search-2"></use>
+          </svg>
+        </button>
+      </form>
+      <div class="error-message">
+        <p>Search result not successful. Enter the correct movie name.</p>
+      </div>
+
+      <div class="navigation__container">
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a
+                class="navigation__link navigation__link--home current"
+                href="/src/index.html"
+                >Home</a
+              >
+            </li>
+            <li class="navigation__item">
+              <a
+                class="navigation__link navigation__link--my-library"
+                href="/src/my-library.html"
+                >My Library</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <a href="/src/index.html" class="logo">
+      <svg class="logo__icon" width="32" height="32">
+        <use href="./icons/icons-sprite.svg#icon-film"></use>
+      </svg>
+      <span class="logo__text">Filmoteka</span>
+    </a>
   </div>
-  <nav class="navigation">
-    <a class="navigation__link navigation__link--home" href="#">Home</a>
-    <a class="navigation__link navigation__link--my-library" href="#"
-      >My Library</a
-    >
-  </nav>
-
-  <div class="search-form--container">
-    <form class="search-form">
-      <label>
-        <input class="search-form__input" />
-        <div class="search-form__icon"></div>
-      </label>
-      <button class="search-form__button"></button>
-    </form>
-
-    <!-- Будет скрыто до тех пор пока пользователь не введет неверный запрос -->
-    <div class="error-message"></div>
+  <!-- Будет скрыто до тех пор пока пользователь не введет неверный запрос -->
+  <div class="error-message">
+    <p>Search result not successful. Enter the correct movie name.</p>
   </div>
 </header>
