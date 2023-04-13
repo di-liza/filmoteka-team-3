@@ -1,23 +1,31 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 @font-face {
-    font-weight: normal;
-    font-family: 'Roboto', sans-serif;
-    src: local('Roboto'), url('../fonts/Roboto-Regular.woff') format('woff'),
-        url('../fonts/Roboto-Regular.woff2') format('woff2');
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.ttf');
+    src: local('Roboto Medium'), local('Roboto Medium'),
+        url('../fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
 }
 
 @font-face {
-    font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-    src: local('Roboto'), url('../fonts/Roboto-Medium.woff') format('woff'),
-        url('../fonts/Roboto-Medium.woff2') format('woff2');
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.ttf');
+    src: local('Roboto Medium'), local('Roboto Medium'),
+        url('../fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 12px;
     color: var(--base-black);
-    line-height: 1.2;
+    line-height: 1.6;
     position: relative;
     // min-height: 100vh;
 }
