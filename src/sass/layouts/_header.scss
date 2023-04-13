@@ -1,0 +1,238 @@
+.header {
+  position: relative;
+  margin: 0;
+  background-image: url(../images/abstract-background-with-red-lines-mobaile.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 460px;
+
+  @include retina {
+    background-image: url(../images/abstract-background-with-red-lines-mobaile-x2.jpg);
+  }
+
+  @include tablet {
+    height: 222px;
+    background-image: url(../images/abstract-background-with-red-lines-tablet.jpg);
+    @include retina {
+      background-image: url(../images/abstract-background-with-red-lines-tablet-x2.jpg);
+    }
+  }
+
+  @include desktop {
+    height: 316px;
+
+    background-image: url(../images/abstract-background-with-red-lines-desktop.jpg);
+    @include retina {
+      background-image: url(../images/abstract-background-with-red-lines-desktop-x2.jpg);
+    }
+  }
+}
+.header__container {
+  max-width: 280px;
+  padding: 0;
+
+  @include tablet {
+    max-width: 704px;
+  }
+  @include desktop {
+    max-width: 1216px;
+  }
+}
+.components {
+  position: relative;
+  @include tablet {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+}
+
+.search-form {
+  position: absolute;
+  margin-bottom: 8px;
+  top: 115%;
+  left: 0;
+  @include tablet {
+    position: relative;
+    display: inline-flex;
+    padding-top: 16px;
+  }
+}
+
+.search-form__input {
+  padding: 0;
+  width: 252px;
+  height: 34px;
+  border: none;
+  position: relative;
+  border-radius: 100px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14px;
+  padding-left: 14px;
+
+  @include tablet {
+    width: 165px;
+    height: 38px;
+  }
+
+  @include desktop {
+    width: 187px;
+    height: 42px;
+  }
+}
+
+.search-form__input {
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.search-form__button {
+  position: absolute;
+  background-color: initial;
+  right: 2%;
+  bottom: 16%;
+  border: none;
+
+  @include tablet {
+    bottom: 16%;
+    right: 3%;
+  }
+  @include desktop {
+    bottom: 13%;
+    right: 2%;
+  }
+}
+
+.search-form__icon {
+  fill: transparent;
+  stroke: #000000;
+  width: 16px;
+  height: 16px;
+}
+
+.navigation {
+  margin-bottom: 354px;
+  padding-top: 14px;
+
+  @include tablet {
+    padding-top: 16px;
+    margin-bottom: 105px;
+  }
+}
+.navigation__list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navigation__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  align-content: center;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+}
+
+.navigation__link--home {
+  width: 87px;
+  height: 34px;
+  border-radius: 100px;
+
+  @include tablet {
+    width: 83px;
+    height: 38px;
+  }
+  @include desktop {
+    width: 99px;
+    height: 42px;
+  }
+}
+
+.navigation__link--my-library {
+  width: 113px;
+  height: 34px;
+  border-radius: 100px;
+
+  @include tablet {
+    width: 109px;
+    height: 38px;
+  }
+  @include desktop {
+    width: 117px;
+    height: 42px;
+  }
+}
+.current {
+  background-color: #000000;
+  color: #ffffff;
+}
+.logo__icon {
+  fill: transparent;
+  stroke: #ffffff;
+
+  @include tablet {
+    width: 40px;
+    height: 40px;
+  }
+  @include desktop {
+    width: 50px;
+    height: 59px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  @include desktop {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 32px;
+  }
+}
+
+.logo__text {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.19;
+  color: #ffffff;
+
+  @include tablet {
+    font-size: 40px;
+    line-height: 1.18;
+  }
+  @include desktop {
+    font-size: 64px;
+    line-height: 1.17;
+  }
+}
+
+.error-message {
+  position: absolute;
+  left: 2%;
+  top: 200%;
+  margin-left: 4px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2;
+  max-width: 155px;
+  color: #ffffff;
+  @include tablet {
+    top: 40%;
+    left: 1%;
+  }
+  @include desktop {
+    top: 40%;
+    left: 1%;
+  }
+  display: none;
+}
