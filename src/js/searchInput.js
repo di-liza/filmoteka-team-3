@@ -13,7 +13,7 @@ function searchMovies(event) {
   event.preventDefault();
 
   getMovie.query = event.currentTarget.elements.searchQuery.value;
-  if (getMovie.query === '') {
+  if (getMovie.query.trim() === '') {
     const message = `<p>Please, enter something for searching movies.</p>`;
     errorMessage(message);
     return;
@@ -24,13 +24,13 @@ function searchMovies(event) {
 async function getFoundMovies() {
   try {
     const { results } = await getMovie.getMoviesByName();
-    if (results.totall === 0) {
+    if (results.length === 0) {
       const message = `<p>Search result not successful. Enter the correct movie name.</p>`;
       errorMessage(message);
       return;
     }
     clearMovieCollection();
-    //   resetPage();
+    resetPage();
     results.map(result => {
       createMarkupOneCard(result);
     });
@@ -44,5 +44,9 @@ function clearMovieCollection() {
 }
 
 function errorMessage(message) {
-  negativeSearchMessage.innerHTML('beforeend', message);
+  negativeSearchMessage.innerHTML = message;
+}
+
+function resetPage() {
+  getMovie.page = 1;
 }
