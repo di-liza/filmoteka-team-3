@@ -1,4 +1,17 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+@font-face {
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+    src: local('Roboto'), url('../fonts/Roboto-Regular.woff') format('woff'),
+        url('../fonts/Roboto-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    src: local('Roboto'), url('../fonts/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto-Medium.woff2') format('woff2');
+}
 
 body {
     font-family: 'Roboto', sans-serif;
