@@ -25,12 +25,12 @@ export class GetMovie {
   }
 
   //  Запрос для поиска по ключевому слову
-  async getMoviesByName() {
+  async getMoviesByName(page) {
     try {
       const params = {
         api_key: API_KEY,
         language: 'en-US',
-        page: this.page,
+        page: page,
         query: this.query,
       };
       const response = await axios.get(`${BASE_URL}/search/movie?`, {
@@ -77,7 +77,7 @@ export class GetMovie {
     }
   }
 
-  incrementPage() {
-    this.page += 1;
+  resetPage() {
+    this.page = 1;
   }
 }

@@ -1,7 +1,7 @@
 import { GetMovie } from './apiFetch';
 import { createMarkupOneCard } from './renderCardMarkup';
+import { addPaginationSearching } from './pagination';
 
-const movieCollection = document.querySelector('.movie-collection');
 const negativeSearchMessage = document.querySelector('.error-message');
 const searchForm = document.querySelector('.search-form');
 
@@ -23,30 +23,21 @@ function searchMovies(event) {
 
 async function getFoundMovies() {
   try {
-    const { results } = await getMovie.getMoviesByName();
-    if (results.length === 0) {
+    const data = await getMovie.getMoviesByName();
+    if (data.results.length === 0) {
       const message = `<p>Search result not successful. Enter the correct movie name.</p>`;
       errorMessage(message);
       return;
     }
-    clearMovieCollection();
-    resetPage();
-    results.map(result => {
-      createMarkupOneCard(result);
-    });
+
+    getMovie.resetPage();
+    createMarkupOneCard(data.results);
+    addPaginationSearching(data.total_results);
   } catch (error) {
     console.log(error, error.stack);
   }
 }
 
-function clearMovieCollection() {
-  movieCollection.innerHTML = '';
-}
-
 function errorMessage(message) {
   negativeSearchMessage.innerHTML = message;
-}
-
-function resetPage() {
-  getMovie.page = 1;
 }
