@@ -22,13 +22,13 @@ const genresNames = [
 
 export function getGenres(genreIds, genres) {
   let genresArray = [];
-  if (genreIds === undefined) {
+  if (genreIds === undefined || genreIds.length === 0) {
     genresArray = Object.values(genres).flatMap(genre => genre.name);
     if (genresArray.length > 3) {
       const genresArrayShort = genresArray.slice(0, 2).join(', ') + ', Other';
       return genresArrayShort;     
     }
-    return genresArray.join(', ');
+    return genresArray.join(', ') + ', Other';
   }
   
   for (const genreId of genreIds) {
@@ -44,4 +44,5 @@ export function getGenres(genreIds, genres) {
   }
   return genresArray.join(', ');
 }
+
 
