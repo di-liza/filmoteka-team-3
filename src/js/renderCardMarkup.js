@@ -25,11 +25,18 @@ export function createMarkupOneCard(results) {
 
   const genresList = getGenres(genre_ids);
   const movieYear = release_date.slice(0, 4);
+  let poster;
+  if (!poster_path) {
+    poster =
+      'https://static.wikia.nocookie.net/ideas/images/6/66/FoxAndroidTM2%27s_No_Poster.jpg';
+  } else {
+    poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  }
 
   const movieCard = `  
   <li class="movie-collection__item">
   <a href="#">
-    <img class="movie-collection__poster" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" />
+    <img class="movie-collection__poster" src="${poster}" alt="${title}" />
     <h2 class="movie-collection__title">${title}</h2>
     <div class="movie-collection__discription">
       <p class="movie-collection__genre">${genresList}</p>
