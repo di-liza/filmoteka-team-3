@@ -5,7 +5,7 @@ import { addPaginationSearching } from './pagination';
 const negativeSearchMessage = document.querySelector('.error-message');
 const searchForm = document.querySelector('.search-form');
 
-const getMovie = new GetMovie();
+export const getMovie = new GetMovie();
 
 searchForm.addEventListener('submit', searchMovies);
 
