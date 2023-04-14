@@ -45,11 +45,17 @@
 }
 
 .movie-collection__title {
-  margin-top: 16px;
   font-size: 20px;
   font-weight: 600;
   text-align: start;
   text-transform: uppercase;
+  margin-top: 12px;
+}
+
+@media (max-width: 767px) {
+  .movie-collection__title {
+    margin-top: 8px;
+  }
 }
 
 .movie-collection__description {
@@ -67,7 +73,6 @@
 .movie-collection__genre,
 .movie-collection__year {
   display: inline-block;
-  margin-top: 8px;
   font-size: 14px;
   font-weight: 500;
   color: var(--accent-red);
