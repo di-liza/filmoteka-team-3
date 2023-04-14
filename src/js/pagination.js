@@ -34,11 +34,11 @@ function topFunction() {
   });
 }
 
-export function addPaginationSearching(total) {
+export function addPaginationSearching(total, totalPages) {
   const pagination = new Pagination(document.getElementById('pagination'), {
     totalItems: 500,
     itemsPerPage: 10,
-    visiblePages: 5,
+    visiblePages: totalPages,
     centerAlign: true,
   });
   pagination.setTotalItems(total);
