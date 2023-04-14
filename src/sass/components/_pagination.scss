@@ -1,0 +1,200 @@
+
+.tui-pagination * {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.tui-pagination {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin: 14px 0 60px;
+    line-height: normal;
+    text-align: center;
+    font-size: 0;
+}
+
+.tui-pagination .tui-page-btn {
+    // cursor: pointer;
+    display: flex;
+    position: relative;
+    padding: 16px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    background: #ffffffcb;
+    color: #333;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    vertical-align: middle;
+    border: none;
+    width: 40px;
+    height: 40px;
+    transition: all 0.5s cubic-bezier(0, 0.45, 0, 1.15);
+}
+
+.tui-pagination .tui-prev-is-ellip,
+.tui-pagination .tui-next-is-ellip {
+    @media screen and (max-width: 425px) {
+        display: none;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 16px;
+}
+
+.tui-pagination .tui-page-btn:hover {
+    background-color: #db2020;
+    color: var(--base-white);
+}
+
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+    height: 40px;
+    width: 40px;
+    color: var(--base-white);
+    background: var(--acent-red);
+    border-color: var(--acent-red);
+    cursor: default;
+}
+
+.tui-pagination .tui-prev,
+.tui-pagination .tui-next {
+    height: 40px;
+    width: 40px;
+    background-color: #f7f7f7;
+}
+
+.tui-pagination .tui-ico-ellip::before {
+    content: '';
+    visibility: visible;
+}
+
+.tui-pagination .tui-ico-prev,
+.tui-pagination .tui-ico-next {
+    font-size: 0;
+}
+
+.tui-pagination .tui-first,
+.tui-pagination .tui-last,
+.tui-pagination .tui-is-disabled {
+    display: none;
+}
+
+.tui-pagination .tui-ico-prev::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/arrow-left.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    background-size: contain;
+    visibility: visible;
+}
+
+.tui-pagination .tui-ico-next::before {
+    content: '';
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    background-image: url('../icons/arrow-right.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    background-size: contain;
+    visibility: visible;
+}
+
+.tui-pagination .tui-page-btn .tui-prev {
+    visibility: hidden;
+}
+
+body.darkTheme {
+    background-color: rgba(22, 20, 20, 0.94);
+
+    .tui-pagination .tui-page-btn {
+        background-color: #333;
+        color: #ffff;
+    }
+
+    .tui-pagination .tui-page-btn:hover {
+        background-color: #0000;
+    }
+
+    .tui-pagination .tui-is-selected,
+    .tui-pagination strong {
+        background: var(--acent-red);
+        border-color: var(--acent-red);
+    }
+}
+
+.tui-pagination .tui-ico-first,
+.tui-pagination .tui-ico-prev,
+.tui-pagination .tui-ico-next,
+.tui-pagination .tui-ico-last,
+.tui-pagination .tui-ico-ellip {
+    vertical-align: middle;
+   background: none;
+    font-size: 0;
+    display: inline-block;
+}
+.tui-pagination .tui-page-btn {
+    padding: 0;
+}
+.tui-pagination .tui-ico-next{
+    width: 16px;
+    height: 16px;
+}
+.tui-pagination .tui-first-child.tui-is-selected {
+    border-left: none;
+}
+
+.tui-pagination .tui-ico-prev {
+    width: 16px;
+    height: 16px;
+}
+
+.tui-pagination .tui-prev{
+    margin: 0;
+}
+.tui-ico-ellip{
+    position: relative;
+    display: block;
+}
+.tui-pagination .tui-ico-ellip:before {
+    content: "...";
+    visibility: visible;
+    color: #000;
+    display: block;
+}
+.tui-pagination .tui-page-btn:hover{
+    cursor: pointer;
+}
+
+.tui-pagination {
+    width: 280px;
+    height: 40px;
+    gap: 6px;
+    
+    text-align: center;
+    margin: 14px 0 60px;
+    font-size: 0;
+    line-height: normal;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    @include tablet {
+            width: 374px;
+            gap: 0px;
+        }
+}
