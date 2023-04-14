@@ -8,7 +8,7 @@
 .movie-collection {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 @media (max-width: 991px) {
@@ -27,7 +27,7 @@
 /* Movie Card */
 .movie-collection__item {
   margin-bottom: 24px;
-  width: calc(33.33% - 16px);
+  width: calc(33.33% - 3px);
 
   @media (max-width: 991px) {
     width: calc(50% - 16px);
