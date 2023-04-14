@@ -1,9 +1,9 @@
 import './js/movieCardModal';
 import './js/searchInput';
+import './js/goTopBtn';
 // import './js/genres';
 // import './js/pagination'
 // import './js/apiFetch';
-// import './js/goTopBtn';
 import './js/loader';
 // import './js/pageTheme';
 // import './js/queueLocalStorage';
