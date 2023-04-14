@@ -43,19 +43,20 @@ export class GetMovie {
   }
 
   // Запрос для полной информации про фильм
-  async getMovieFullInfo() {
-    try {
-      const params = {
-        api_key: API_KEY,
-        language: 'en-US',
-      };
-      const response = await axios.get(`${BASE_URL}/movie/${this.movie_id}?`, {
-        params,
-      });
-      return response.results;
-    } catch (error) {
-      console.log(error);
-    }
+  async getMovieFullInfo(id) {
+    // try {
+    //   const params = {
+    //     api_key: API_KEY,
+    //     language: 'en-US',
+    //   };
+    //   const response = await axios.get(`${BASE_URL}/movie/${id}?`, {
+    //     params,
+    //   });
+    //   return response.results;
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5cb4dd4cf3f1476227d92f7c4b196044&language=en-US`).then(response => response.json())
   }
 
   // Запрос трейлера фильма
