@@ -5,10 +5,10 @@
 
 .movie-collection__button {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+    left: 10px;
 
-  padding: 10px 40px;
+  padding: 5px 15px;
   opacity: 0.8;
 
   background: rgb(165, 5, 5);
@@ -36,6 +36,10 @@
     font-size: 20px;
     line-height: 1.2;
   }
+
+  &:hover{
+    background-color: #200000;
+  }
 }
 
 .movie-collection__button:active {
@@ -46,7 +50,25 @@
   border-bottom: 5px solid #600a0a;
   border-right: 5px solid #3d0707;
 }
+// Анимашка пульсации текста кнопки
+.movie-collection__button:hover {
+  animation: pulse 1s infinite;
+}
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+// Анимашка пульсации текста кнопки
 .movie-collection__poster {
   margin-bottom: 10px;
   width: 280px;
