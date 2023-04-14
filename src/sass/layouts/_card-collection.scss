@@ -10,10 +10,11 @@
 
   padding: 10px 40px;
   opacity: 0.8;
-  background: #82ca9d;
+
+  background: rgb(165, 5, 5);
   cursor: pointer;
 
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
   border-bottom: 0px solid #eee;
 
@@ -22,6 +23,10 @@
   font-weight: 600;
   font-size: 12px;
   line-height: 1.16;
+
+  letter-spacing: 0.1em;
+  color: #fff;
+
 
   @include tablet {
     line-height: 1.33;
@@ -38,8 +43,8 @@
 }
 
 .movie-collection__button:not(:active) {
-  border-bottom: 5px solid #62aa7d;
-  border-right: 5px solid #62aa7d;
+  border-bottom: 5px solid #600a0a;
+  border-right: 5px solid #3d0707;
 }
 
 .movie-collection__poster {
