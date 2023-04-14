@@ -6,8 +6,8 @@
     border-radius: 100%;
     border: transparent;
     background-color: orange;
-    
-    
+
+
 
     @media screen and (max-width: 767px) {
         width: 40px;
@@ -17,28 +17,28 @@
         bottom: 50px;
     }
 
-   @media screen and (min-width: 768px) {
+    @media screen and (min-width: 768px) {
         width: 50px;
         height: 50px;
 
         bottom: 70px;
     }
 
-        @media screen and (min-width: 1280px) {
+    @media screen and (min-width: 1280px) {
         width: 70px;
         height: 70px;
     }
 
     z-index: 1;
     background-color: transparent;
-        transform: rotate(180deg);
-        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1); 
-    
+    transform: rotate(180deg);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 
     &:hover {
-        
-       
-        
+
+
+
         transform: translateY(-3px);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         box-shadow: 0 10px 20px orange;

@@ -9,4 +9,4 @@ function onScrollUp() {
 
 window.addEventListener('scroll', function () {
   scrollBtn.hidden = pageYOffset < document.documentElement.clientHeight;
-});
+}); 
