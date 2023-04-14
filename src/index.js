@@ -12,10 +12,12 @@ import './js/loader';
 // import './js/watchedLocalStorage';
 
 // Для добавления
+import './js/authorization/functions';
 // import '';
 // import '';
 // import '';
 // import '';
 // import '';
 
+// ЭТО НЕ ТРОГАТЬ!
 import './sass/index.scss';
