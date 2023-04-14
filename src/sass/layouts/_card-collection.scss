@@ -1,6 +1,47 @@
 .movie-collection__item {
+  position: relative;
   cursor: pointer;
 }
+
+.movie-collection__button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+
+  padding: 10px 40px;
+  opacity: 0.8;
+  background: #82ca9d;
+  cursor: pointer;
+
+  border-radius: 5px;
+  border: none;
+  border-bottom: 0px solid #eee;
+
+  transition: all 0.2s;
+
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.16;
+
+  @include tablet {
+    line-height: 1.33;
+  }
+
+  @include desktop {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.movie-collection__button:active {
+  transform: scaleX(0.9) translateY(5px);
+}
+
+.movie-collection__button:not(:active) {
+  border-bottom: 5px solid #62aa7d;
+  border-right: 5px solid #62aa7d;
+}
+
 .movie-collection__poster {
   margin-bottom: 10px;
   width: 280px;

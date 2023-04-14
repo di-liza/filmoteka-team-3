@@ -8,7 +8,7 @@
           <input
             class="search-form__input"
             type="text"
-            name="search-query"
+            name="searchQuery"
             placeholder="Movie search"
           />
         </label>
@@ -18,6 +18,7 @@
           </svg>
         </button>
       </form>
+      <div class="error-message"></div>
 
       <div class="navigation__container">
         <nav class="navigation">
@@ -40,12 +41,13 @@
         </nav>
       </div>
     </div>
-
-    <a href="/src/index.html" class="logo">
-      <svg class="logo__icon" width="32" height="32">
-        <use href="./icons/icons-sprite.svg#icon-film"></use>
-      </svg>
-      <span class="logo__text">Filmoteka</span>
-    </a>
+    <div class="logo">
+      <a href="/src/index.html" class="logo__link">
+        <svg class="logo__icon" width="32" height="32">
+          <use href="./icons/icons-sprite.svg#icon-film"></use>
+        </svg>
+        <span class="logo__text">Filmoteka</span>
+      </a>
+    </div>
   </div>
 </header>

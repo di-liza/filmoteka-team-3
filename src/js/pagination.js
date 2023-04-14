@@ -2,6 +2,7 @@ import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
 import { createMarkupOneCard } from './renderCardMarkup';
 
+import { getMovie } from './searchInput';
 import { GetMovie } from './apiFetch';
 const apiMovie = new GetMovie();
 
@@ -45,7 +46,7 @@ export function addPaginationSearching(total) {
   pagination.on('afterMove', event => {
     const currentPage = event.page;
     topFunction();
-    apiMovie
+    getMovie
       .getMoviesByName(currentPage)
       .then(({ results }) => {
         createMarkupOneCard(results);
