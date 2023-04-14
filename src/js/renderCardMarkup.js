@@ -21,8 +21,8 @@ trandMovie();
 
 // Функция для рендера разметки
 export function createMarkupOneCard(results) {
-  movieCollection.innerHTML = results.map(
-    ({ poster_path, genre_ids, title, release_date, id }) => {
+  movieCollection.innerHTML = results
+    .map(({ poster_path, genre_ids, title, release_date, id }) => {
       const genresList = getGenres(genre_ids);
       const movieYear = release_date.slice(0, 4);
       let poster;
@@ -40,6 +40,6 @@ export function createMarkupOneCard(results) {
    </div>
    <button class="movie-collection__button" type="button">Trailer</button>
 </li>`;
-    }
-  );
+    })
+    .join('');
 }

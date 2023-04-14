@@ -29,10 +29,9 @@ async function getFoundMovies() {
       errorMessage(message);
       return;
     }
-
     getMovie.resetPage();
     createMarkupOneCard(data.results);
-    addPaginationSearching(data.total_results);
+    addPaginationSearching(data.total_results, data.total_pages);
   } catch (error) {
     console.log(error, error.stack);
   }
