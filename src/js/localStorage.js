@@ -16,53 +16,53 @@ const idMovie2 = 46405;
 //******************************* Цей код тільки для розробюки ********************************* */
 
 //Тимчасова функція для випадкового id фільму
-function getRandomNumber() {
-  return Math.floor(Math.random() * 9901) + 100;
-}
+// function getRandomNumber() {
+//   return Math.floor(Math.random() * 9901) + 100;
+// }
 
-//Тестовий обʼєкт фільму
-const movie = {
-  adult: false,
-  backdrop_path: '/wybmSmviUXxlBmX44gtpow5Y9TB.jpg',
-  id: 594767,
-  title: 'Shazam! Fury of the Gods',
-  original_language: 'en',
-  original_title: 'Shazam! Fury of the Gods',
-  overview:
-    'Billy Batson and his foster siblings, who transform into superheroes by saying "Shazam!", are forced to get back into action and fight the Daughters of Atlas, who they must stop from using a weapon that could destroy the world.',
-  poster_path: '/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg',
-  media_type: 'movie',
-  genre_ids: [28, 35, 14],
-  popularity: 5827.392,
-  release_date: '2023-03-15',
-  video: false,
-  vote_average: 6.978,
-  vote_count: 747,
-};
+// //Тестовий обʼєкт фільму
+// const movie = {
+//   adult: false,
+//   backdrop_path: '/wybmSmviUXxlBmX44gtpow5Y9TB.jpg',
+//   id: 594767,
+//   title: 'Shazam! Fury of the Gods',
+//   original_language: 'en',
+//   original_title: 'Shazam! Fury of the Gods',
+//   overview:
+//     'Billy Batson and his foster siblings, who transform into superheroes by saying "Shazam!", are forced to get back into action and fight the Daughters of Atlas, who they must stop from using a weapon that could destroy the world.',
+//   poster_path: '/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg',
+//   media_type: 'movie',
+//   genre_ids: [28, 35, 14],
+//   popularity: 5827.392,
+//   release_date: '2023-03-15',
+//   video: false,
+//   vote_average: 6.978,
+//   vote_count: 747,
+// };
 
-const nav = document.querySelector('.navigation');
+// const nav = document.querySelector('.navigation');
 
-// тестові кнопки
-nav.insertAdjacentHTML(
-  'beforeend',
-  `<button type="button" class="${classBtnQueue}">queue</button>` +
-    `<button type="button" class="${classBtnWatched}">watched</button>` +
-    `<button type="button" class="${classBtnAddQueue}">addQueue</button>` +
-    `<button type="button" class="${classBtnAddWatched}">addWatched</button>` +
-    `<button type="button" class="${classBtnAddOrRemove}">
-        <span>${textButtonRemoveOrAdd(idMovie1, 'queue')}<span>
-        Queue</button>` +
-    `<button type="button" class="${classBtnAddOrRemove}">
-        <span>${textButtonRemoveOrAdd(idMovie2, 'watched')}<span>
-        Watched</button>`
-);
+// // тестові кнопки
+// nav.insertAdjacentHTML(
+//   'beforeend',
+//   `<button type="button" class="${classBtnQueue}">queue</button>` +
+//     `<button type="button" class="${classBtnWatched}">watched</button>` +
+//     `<button type="button" class="${classBtnAddQueue}">addQueue</button>` +
+//     `<button type="button" class="${classBtnAddWatched}">addWatched</button>` +
+//     `<button type="button" class="${classBtnAddOrRemove}">
+//         <span>${textButtonRemoveOrAdd(idMovie1, 'queue')}<span>
+//         Queue</button>` +
+//     `<button type="button" class="${classBtnAddOrRemove}">
+//         <span>${textButtonRemoveOrAdd(idMovie2, 'watched')}<span>
+//         Watched</button>`
+// );
 
-const addedButtons = nav.querySelectorAll('button');
+// const addedButtons = nav.querySelectorAll('button');
 
-addedButtons.forEach((button, index) => {
-  button.style.display = 'flex';
-  button.style.marginBottom = '10px';
-});
+// addedButtons.forEach((button, index) => {
+//   button.style.display = 'flex';
+//   button.style.marginBottom = '10px';
+// });
 
 //******************************* Цей код тільки для розробюки ********************************* */
 //********************************************************************************************** */
