@@ -1,4 +1,3 @@
-
 const scrollBtn = document.getElementById('scroll-up');
 
 scrollBtn.addEventListener('click', onScrollUp);
@@ -9,4 +8,4 @@ function onScrollUp() {
 
 window.addEventListener('scroll', function () {
   scrollBtn.hidden = pageYOffset < document.documentElement.clientHeight;
-}); 
+});

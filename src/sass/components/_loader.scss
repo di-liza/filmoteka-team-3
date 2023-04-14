@@ -1,0 +1,53 @@
+
+.overlay {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.673);
+    z-index: 999;
+}
+
+.spin {
+    --w: 800px;
+    --h: 800px;
+    width: calc(var(--w) / 4);
+    height: calc(var(--h) / 4);
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    margin-left: -100px;
+    border-radius: calc(var(--w) - var(--w) / 2);
+    animation: spiner 5s;
+
+    background: #2f241791;
+    color: #000;
+    border: 2px dashed #F4D03F;
+
+    animation-timing-function: linear;
+    transform: rotate(240deg);
+    animation-iteration-count: infinite;
+}
+
+@Keyframes spiner {
+
+    from {
+        transform: rotate(360deg);
+        border: 2px dashed #f45d06;
+        box-shadow: 0px 0px 10px #f45d06, 0px 0px 40px#f45d06, 0px 0px 80px #f45d06;
+        transition-delay: 0.2s;
+
+    }
+
+    to {
+        transform: rotate(0deg);
+        box-shadow: 0px 0px 10px #F4D03F, 0px 0px 40px#F4D03F, 0px 0px 80px #F4D03F;
+        transition-delay: 1s;
+
+    }
+}
+
