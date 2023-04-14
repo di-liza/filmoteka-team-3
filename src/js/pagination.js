@@ -33,12 +33,17 @@ function topFunction() {
     behavior: 'smooth',
   });
 }
-
 export function addPaginationSearching(total, totalPages) {
+  let visiblePages = null;
+  if (totalPages < 5) {
+    visiblePages = totalPages;
+  } else {
+    visiblePages = 5;
+  }
   const pagination = new Pagination(document.getElementById('pagination'), {
     totalItems: 500,
     itemsPerPage: 10,
-    visiblePages: totalPages,
+    visiblePages,
     centerAlign: true,
   });
   pagination.setTotalItems(total);

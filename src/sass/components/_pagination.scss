@@ -198,3 +198,11 @@ body.darkTheme {
             gap: 0px;
         }
 }
+.tui-pagination .tui-prev-is-ellip, .tui-pagination .tui-next-is-ellip {
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 16px;
+    /* display: flex; */
+    display: none;
+}
