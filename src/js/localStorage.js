@@ -1,27 +1,77 @@
-const classBtnHome = 'navigation__link--home';
+import { createMarkupOneCard } from './renderCardMarkup';
 
 const classBtnQueue = 'navigation__link--queue';
 const classBtnWatched = 'navigation__link--watched';
 const classBtnAddQueue = 'navigation__link--addQueue';
 const classBtnAddWatched = 'navigation__link--addWatched';
-const classBtnAddOrRemove = 'buttonQueueWatched';
 
-const textAddBTN = 'add to ';
-const textRemoveBTN = 'remove from ';
+class LocalStorage {
+  constructor() {
+    this.movie = {};
+    this.textRemoveBTN = 'remove from ';
+    this.textAddBTN = 'add to ';
+  }
 
-const idMovie1 = 64255;
-const idMovie2 = 46405;
+  // Цей метод повертає масив фільмів вказаного масива
+  getMovies(watchedOrQueue) {
+    const movies = localStorage.getItem(watchedOrQueue);
+    if (movies) {
+      createMarkupOneCard(JSON.parse(movies));
+    } else {
+      return 'Нема збережених фільмів';
+    }
+  }
+  // Цей метод шукає обраний фільм у обраном масиві та вибирає видалити чи додати фільм у масив
+  addOrRemoveFromLocalStoradge(e, id) {
+    const watchedOrQueue = e.target.texstcontent;
+    let arrMovie = localStorage.getItem(watchedOrQueue);
+    const isMovie = arrMovie.find(movie => movie.id === id);
+    if (isMovie) {
+      removeFromLocalStorage(id, watchedOrQueue);
+    } else {
+      addToLocalStorage(this.movie, watchedOrQueue);
+    }
+  }
 
-//********************************************************************************************** */
-//******************************* Цей код тільки для розробюки ********************************* */
+  // Цей метод додає фільм у вказаний масив
+  addToLocalStorage(watchedOrQueue) {
+    let arrMovie = localStorage.getItem(watchedOrQueue);
+    if (arrMovie) {
+      arrMovie = JSON.parse(arrMovie);
+      arrMovie.push(this.movie);
+    } else {
+      arrMovie = [this.movie];
+    }
+    localStorage.setItem(watchedOrQueue, JSON.stringify(arrMovie));
+  }
 
-//Тимчасова функція для випадкового id фільму
-function getRandomNumber() {
-  return Math.floor(Math.random() * 9901) + 100;
+  // Цей метод видаляє фільм по його id
+  removeFromLocalStorage(id, watchedOrQueue) {
+    let arrMovie = localStorage.getItem(watchedOrQueue);
+    arrMovie = JSON.parse(arrMovie);
+    const index = arrMovie.findIndex(movie => movie.id === id);
+    if (index !== -1) {
+      arrMovie.splice(index, 1);
+      localStorage.setItem(watchedOrQueue, JSON.stringify(arrMovie));
+    }
+  }
+  //Цей метод пише текст на кнопці чи додати чи видалити фільм з масиву
+  textButtonRemoveOrAdd(id, watchedOrQueue) {
+    let arrMovie = localStorage.getItem(watchedOrQueue);
+    arrMovie = JSON.parse(arrMovie);
+    console.log('arrMovie - ', arrMovie);
+    const isMovie = arrMovie.find(movie => movie.id === id);
+    console.log(
+      "isMovie ? 'remove' : 'add' - ",
+      isMovie ? textRemoveBTN : textAddBTN
+    );
+    return isMovie ? textRemoveBTN : textAddBTN;
+  }
 }
 
-//Тестовий обʼєкт фільму
-const movie = {
+const localStorage = new LocalStorage();
+
+localStorage.movie = {
   adult: false,
   backdrop_path: '/wybmSmviUXxlBmX44gtpow5Y9TB.jpg',
   id: 594767,
@@ -40,99 +90,45 @@ const movie = {
   vote_count: 747,
 };
 
-const nav = document.querySelector('.navigation');
-
-// тестові кнопки
-nav.insertAdjacentHTML(
-  'beforeend',
-  `<button type="button" class="${classBtnQueue}">queue</button>` +
-    `<button type="button" class="${classBtnWatched}">watched</button>` +
-    `<button type="button" class="${classBtnAddQueue}">addQueue</button>` +
-    `<button type="button" class="${classBtnAddWatched}">addWatched</button>` +
-    `<button type="button" class="${classBtnAddOrRemove}">
-        <span>${textButtonRemoveOrAdd(idMovie1, 'queue')}<span>
-        Queue</button>` +
-    `<button type="button" class="${classBtnAddOrRemove}">
-        <span>${textButtonRemoveOrAdd(idMovie2, 'watched')}<span>
-        Watched</button>`
-);
-
-const addedButtons = nav.querySelectorAll('button');
-
-addedButtons.forEach((button, index) => {
-  button.style.display = 'flex';
-  button.style.marginBottom = '10px';
-});
-
-//******************************* Цей код тільки для розробюки ********************************* */
-//********************************************************************************************** */
-
 // Знаходимо кнопки WATCHED, QUEUE та додаєм слухачів
 const btnQueue = document.querySelector(`.${classBtnQueue}`);
 const btnWatched = document.querySelector(`.${classBtnWatched}`);
 
-btnQueue.addEventListener('click', getMoviesFromLocalStorage);
-btnWatched.addEventListener('click', getMoviesFromLocalStorage);
+btnQueue.addEventListener('click', () => {
+  const movies = localStorage.getMovies('queue');
+  console.log(movies);
+});
 
-// Ця функція повертає масив обʼєктів фільмів
-function getMoviesFromLocalStorage(e) {
-  const movies = localStorage.getItem(e.target.textContent);
-  console.log(JSON.parse(movies));
-  return JSON.parse(movies);
-}
+btnWatched.addEventListener('click', () => {
+  const movies = localStorage.getMovies('watched');
+  console.log(movies);
+});
 
 // Знаходимо кнопки ADD_WATCHED, ADD_QUEUE та додаєм слухачів
 const btnAddQueue = document.querySelector(`.${classBtnAddQueue}`);
 const btnAddWatched = document.querySelector(`.${classBtnAddWatched}`);
 
-btnAddQueue.addEventListener('click', addToLocalStarage);
-btnAddWatched.addEventListener('click', addToLocalStarage);
+btnAddQueue.addEventListener('click', () => {
+  const nextMovie = movie;
+  nextMovie.id = getRandomNumber();
+  localStorage.addToLocalStorage(nextMovie, 'queue');
+});
 
-// Ця функція додає фільми до належного масиву у localStorage
-function addToLocalStarage(e) {
-  let watchedOrQueue = 'watched';
-  if (e.target.textContent.includes('ueue')) {
-    watchedOrQueue = 'queue';
-  }
-  const nextMovie = movie; // e.target.*****************
-  movie.id = getRandomNumber(); // *********************
-  let arrMovie = localStorage.getItem(watchedOrQueue);
-  if (arrMovie) {
-    arrMovie = JSON.parse(arrMovie);
-    arrMovie.push(nextMovie);
-  } else {
-    arrMovie = [nextMovie];
-  }
-  localStorage.setItem(watchedOrQueue, JSON.stringify(arrMovie));
-}
+btnAddWatched.addEventListener('click', () => {
+  const nextMovie = movie;
+  nextMovie.id = getRandomNumber();
+  localStorage.addToLocalStorage(nextMovie, 'watched');
+});
 
 const btnHome = document.querySelector(`.${classBtnHome}`);
 
-btnHome.addEventListener('click', removeFromLocalStarage);
+btnHome.addEventListener('click', () => {
+  const id = 7972;
+  const watchedOrQueue = 'queue';
+  localStorage.removeFromLocalStorage(id, watchedOrQueue);
+});
 
-function removeFromLocalStarage(e) {
-  const id = 6425; // e.taget.**********
-  const watchedOrQueue = 'queue'; // e.target.**********
-  let arrMovie = localStorage.getItem(watchedOrQueue);
-  arrMovie = JSON.parse(arrMovie);
-  console.log('arrMovie - ', arrMovie);
-  const index = arrMovie.findIndex(movie => movie.id === id);
-  console.log('index - ', index);
-  if (index !== -1) {
-    arrMovie.splice(index, 1);
-    console.log('arrMovieAfterSplice - ', arrMovie);
-    localStorage.setItem(watchedOrQueue, JSON.stringify(arrMovie));
-  }
-}
-
-function textButtonRemoveOrAdd(id, watchedOrQueue) {
-  let arrMovie = localStorage.getItem(watchedOrQueue);
-  arrMovie = JSON.parse(arrMovie);
-  console.log('arrMovie - ', arrMovie);
-  const isMovie = arrMovie.find(movie => movie.id === id);
-  console.log(
-    "isMovie ? 'remove' : 'add' - ",
-    isMovie ? textRemoveBTN : textAddBTN
-  );
-  return isMovie ? textRemoveBTN : textAddBTN;
+function getPages(watchedOrQueue) {
+  const arr = localStorage.getItem(watchedOrQueue);
+  return Math.round(arr.length / 20);
 }
