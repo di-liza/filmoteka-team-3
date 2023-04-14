@@ -38,6 +38,7 @@ export function createMarkupOneCard(results) {
      <p class="movie-collection__genre">${genresList}</p>
      <p class="movie-collection__year">${movieYear}</p>
    </div>
+   <button class="movie-collection__button" type="button">Trailer</button>
 </li>`;
     }
   );
