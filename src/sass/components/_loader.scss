@@ -33,7 +33,7 @@
     animation-iteration-count: infinite;
 }
 
-@Keyframes spiner {
+@keyframes spiner {
 
     from {
         transform: rotate(360deg);
@@ -50,4 +50,6 @@
 
     }
 }
+
+
 
