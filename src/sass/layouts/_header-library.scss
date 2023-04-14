@@ -1,0 +1,116 @@
+.header__container-library {
+  position: relative;
+}
+
+.navigation__library-container {
+  @include tablet {
+    display: flex;
+    align-items: center;
+    margin-bottom: 105px;
+    gap: 284px;
+  }
+  @include desktop {
+    margin-bottom: 151px;
+    gap: 714px;
+  }
+}
+.navigation__library {
+  padding-top: 14px;
+  margin-bottom: 300px;
+  @include tablet {
+    padding-top: 16px;
+    margin-bottom: 0;
+  }
+}
+
+.navigation__list-library {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.library-btn__container {
+  position: absolute;
+  top: 100%;
+  left: 17%;
+  @include tablet {
+    position: static;
+    padding-top: 16px;
+  }
+  @include desktop {
+  }
+}
+.library__button-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn__library-watch {
+  width: 102px;
+  height: 34px;
+  background-color: #ffffff;
+  color: #b92f2c;
+  border-radius: 100px;
+  border: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  @include tablet {
+    height: 38px;
+  }
+  @include desktop {
+    width: 120px;
+    height: 42px;
+  }
+}
+
+.btn__library-watch {
+  &:hover,
+  &:focus {
+    background-color: #b92f2c;
+    color: #ffffff;
+    box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+  }
+}
+
+.btn__library-queue {
+  width: 86px;
+  height: 34px;
+  background-color: #ffffff;
+  color: #b92f2c;
+  // box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+  border-radius: 100px;
+  border: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  @include tablet {
+    height: 38px;
+  }
+  @include desktop {
+    height: 42px;
+  }
+}
+
+.btn__library-queue {
+  &:hover,
+  &:focus {
+    background-color: #b92f2c;
+    color: #ffffff;
+    box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+  }
+}
+
+.logo__library {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  @include tablet {
+    justify-content: start;
+  }
+}

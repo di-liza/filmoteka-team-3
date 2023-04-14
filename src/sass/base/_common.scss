@@ -29,3 +29,47 @@ body {
     position: relative;
     // min-height: 100vh;
 }
+
+
+
+
+/* Стилизация ползунка scrollbar'а */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #f38383, #da6563);
+    border-radius: 10px;
+    border: 1px solid #f38383;
+    cursor: pointer;
+}
+/* Ширина scrollbar'а */
+::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+}
+
+/* Фон scrollbar'а */
+::-webkit-scrollbar-track {
+    background-color: #9c7676ed;
+}
+
+/* Стилизация ползунка scrollbar'а */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #760b0b, var(--acent-red));
+    border-radius: 10px;
+    border: transparent;
+    cursor: pointer;
+}
+
+/* Изменение внешнего вида ползунка scrollbar'а при наведении на него курсора мыши */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #cab9b9;
+}
+
+/* Стилизация кнопки прокрутки вверх и вниз */
+::-webkit-scrollbar-button {
+    background-color: #555;
+}
+
+/* Изменение внешнего вида кнопки прокрутки вверх и вниз при наведении на нее курсора мыши */
+::-webkit-scrollbar-button:hover {
+    background-color: #333;
+}

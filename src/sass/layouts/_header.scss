@@ -234,5 +234,9 @@
     top: 40%;
     left: 1%;
   }
-  display: none;
+}
+.logo__library-link{
+  display: flex;
+    gap: 16px;
+    align-items: center;
 }
