@@ -10,7 +10,7 @@ import './js/goTopBtn';
 
 // import './js/queueLocalStorage';
 // import './js/teamModal';
-// import './js/videoModal';
+import './js/videoModal';
 // import './js/watchedLocalStorage';
 
 // Для добавления
