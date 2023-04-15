@@ -163,27 +163,6 @@ export class LocalStorage {
   }
 }
 
-// const localStorage = new LocalStorage();
-
-// localStorage.movie = {
-//   adult: false,
-//   backdrop_path: '/wybmSmviUXxlBmX44gtpow5Y9TB.jpg',
-//   id: 594767,
-//   title: 'Shazam! Fury of the Gods',
-//   original_language: 'en',
-//   original_title: 'Shazam! Fury of the Gods',
-//   overview:
-//     'Billy Batson and his foster siblings, who transform into superheroes by saying "Shazam!", are forced to get back into action and fight the Daughters of Atlas, who they must stop from using a weapon that could destroy the world.',
-//   poster_path: '/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg',
-//   media_type: 'movie',
-//   genre_ids: [28, 35, 14],
-//   popularity: 5827.392,
-//   release_date: '2023-03-15',
-//   video: false,
-//   vote_average: 6.978,
-//   vote_count: 747,
-// };
-
 // // Знаходимо кнопки WATCHED, QUEUE та додаєм слухачів
 // const btnQueue = document.querySelector(`.${classBtnQueue}`);
 // const btnWatched = document.querySelector(`.${classBtnWatched}`);
