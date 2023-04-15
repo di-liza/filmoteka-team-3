@@ -1,5 +1,9 @@
-export default window.onload = function () {
-    setTimeout(function () {
-        const overlay = document.querySelector('.overlay'); overlay.style.display = 'none';
-    }, 500);
-};
+export function showLoader() {
+  const overlay = document.querySelector('.overlay');
+  overlay.classList.remove('hidden');
+}
+
+export function hideLoader() {
+  const overlay = document.querySelector('.overlay');
+  overlay.classList.add('hidden');
+}

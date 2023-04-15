@@ -1,5 +1,3 @@
-import { createMarkupOneCard } from './renderCardMarkup';
-
 const classBtnQueue = 'navigation__link--queue';
 const classBtnWatched = 'navigation__link--watched';
 const classBtnAddQueue = 'navigation__link--addQueue';
@@ -10,6 +8,7 @@ export class LocalStorage {
     this.movie = {};
     this.textRemoveBTN = 'remove from ';
     this.textAddBTN = 'add to ';
+    this.numMoviesInPages = 20;
     this.addToLocalStorage = this.addToLocalStorage.bind(this);
     this.removeFromLocalStorage = this.removeFromLocalStorage.bind(this);
     this.addOrRemoveFromLocalStoradgeWatched =
@@ -27,6 +26,19 @@ export class LocalStorage {
       return 'Нема збережених фільмів';
     }
   }
+
+  isLibraryWatched() {
+    return JSON.parse(localStorage.getItem('watched'))?.length > 0;
+  }
+
+  isLibraryQueue() {
+    return JSON.parse(localStorage.getItem('queue'))?.length > 0;
+  }
+
+  isLibrarys() {
+    return isLibraryQueue() || isLibraryWatched(); // "/src/my-library.html"
+  }
+
   // Цей метод шукає обраний фільм у обраном масиві та вибирає видалити чи додати фільм у масив
   addOrRemoveFromLocalStoradgeWatched(e) {
     const watchedOrQueue = 'watched';
@@ -96,6 +108,10 @@ export class LocalStorage {
     }
     const isMovie = arrMovie.find(movie => movie.id === this.movie.id);
     return isMovie ? this.textRemoveBTN : this.textAddBTN;
+  }
+  getPages(watchedOrQueue) {
+    const arr = JSON.parse(localStorage.getItem(watchedOrQueue));
+    return Math.round(arr?.length ?? 0 / this.numMoviesInPages);
   }
 }
 
