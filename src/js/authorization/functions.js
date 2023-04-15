@@ -36,7 +36,6 @@ const refs = {
   loginFormSwitcher: document.querySelector(
     '.authorization-modal__login-form-switcher'
   ),
-  loginFormHeader: document.querySelector('.authorization-modal__header'),
   logOffButton: document.querySelector('.authorization-modal__logoff'),
   userInformation: document.querySelector(
     '.authorization-modal__user-information'
@@ -45,18 +44,17 @@ const refs = {
 };
 
 refs.authorizationButton.addEventListener('click', authorizationModalToggle);
+// refs.authorizationModal.addEventListener('click', onBackdropClick);
 refs.authorizationModalCloseButton.addEventListener('click', onCloseModal);
-// refs.loginForm.addEventListener('submit', loginSubmitHandler);
-// refs.signupForm.addEventListener('submit', signupSubmitHandler);
+refs.loginForm.addEventListener('submit', loginSubmitHandler);
+refs.signupForm.addEventListener('submit', signupSubmitHandler);
 refs.logOffButton.addEventListener('click', logOff);
-// refs.loginFormSwitcher.addEventListener('click', loginFormHideSwitcher);
-refs.loginFormSwitcher.addEventListener('click', loginFormSwitcher);
-// refs.signupFormSwitcher.addEventListener('click', signupFormHideSwitcher);
+refs.loginFormSwitcher.addEventListener('click', loginFormHideSwitcher);
+refs.signupFormSwitcher.addEventListener('click', signupFormHideSwitcher);
 
 function authorizationModalToggle() {
   window.addEventListener('keydown', onEscButtonPressed);
   refs.authorizationModal.classList.toggle('hidden');
-  refs.authorizationModal.addEventListener('click', onBackdropClick);
 }
 
 function onEscButtonPressed(event) {
@@ -66,36 +64,22 @@ function onEscButtonPressed(event) {
   }
 }
 
-function onBackdropClick(event) {
-  event.preventDefault();
-  const backdrop = event.target;
-  if (backdrop.classList.contains('authorization-modal__backdrop')) {
-    onCloseModal();
-    console.log('backdrop');
-  }
-  refs.authorizationModal.removeEventListener('click', onBackdropClick);
-}
+// function onBackdropClick(event) {
+//   event.preventDefault();
+//   const backdrop = event.target;
+//   if (backdrop.classList.contains('authorization-modal__backdrop')) {
+//     onCloseModal();
+//   }
+// }
 
 function onCloseModal() {
   authorizationModalToggle();
   window.removeEventListener('keydown', onEscButtonPressed);
-  // refs.authorizationModal.removeEventListener('click', onBackdropClick);
 }
 
 function loginFormHideSwitcher() {
   refs.loginForm.classList.toggle('hidden');
   refs.signupForm.classList.toggle('hidden');
-}
-
-function loginFormSwitcher() {
-  if (refs.loginButton.textContent === "Login") {
-    refs.loginForm.addEventListener('submit', signupSubmitHandler);
-    refs.loginButton.textContent = "Sign Up";
-    refs.loginFormHeader.textContent = 'Please login';
-  }
-  refs.loginButton.textContent = 'Login';
-  refs.loginForm.addEventListener('submit', loginSubmitHandler);
-  refs.loginFormHeader.textContent = 'Please sign up';
 }
 
 function signupFormHideSwitcher() {
