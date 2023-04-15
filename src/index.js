@@ -12,7 +12,7 @@ import './js/loader';
 // import './js/watchedLocalStorage';
 
 // Для добавления
-import './js/authorization/functions';
+// import './js/authorization/functions';
 // import '';
 // import '';
 // import '';

@@ -1,33 +1,35 @@
 import { GetMovie } from './apiFetch';
+import { LocalStorage } from './localStorage';
 
-const getMovie = new GetMovie()
-const button = document.querySelector(".movie-collection");
+const getMovie = new GetMovie();
+const localStorage = new LocalStorage();
 
-button.addEventListener("click", (e) => {
-    const perent = e.target.closest("li");
-    // console.log(perent);
-    const {id} = perent.dataset;
-    // console.log(id);
-    openModal(id);
+const button = document.querySelector('.movie-collection');
+
+button.addEventListener('click', e => {
+  const perent = e.target.closest('li');
+  // console.log(perent);
+  const { id } = perent.dataset;
+  // console.log(id);
+  openModal(id);
 });
 async function openModal(id) {
-    try {
-        const result = await getMovie.getMovieFullInfo(id)
-        movieCardModal(result)
-        // console.log(result);
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const result = await getMovie.getMovieFullInfo(id);
+    localStorage.movie = result; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+    movieCardModal(result);
+    // console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-
-const modalEl = document.querySelector(".modal");
+const modalEl = document.querySelector('.modal');
 
 export async function movieCardModal(result) {
-
-modalEl.classList.add("modal--show");
-document.body.classList.add("stop-scrolling");
-const {
+  modalEl.classList.add('modal--show');
+  document.body.classList.add('stop-scrolling');
+  const {
     poster_path,
     genres,
     title,
@@ -38,13 +40,13 @@ const {
     overview,
     id,
   } = result;
-const genresList = genres.map(genre => genre.name).join(", ");
-let poster;
-      if (!poster_path) {
-        poster = 'https://otv.one/uploads/default_image/thumbnail.jpg';
-      } else {
-        poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
-      }
+  const genresList = genres.map(genre => genre.name).join(', ');
+  let poster;
+  if (!poster_path) {
+    poster = 'https://otv.one/uploads/default_image/thumbnail.jpg';
+  } else {
+    poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  }
   modalEl.innerHTML = `    <div class="movieCardModal__container">
   <button class="modal-btn-cross">
       <svg
@@ -99,32 +101,52 @@ let poster;
       <p class="movieCardModal__about__text">${overview}</p>
     </div>
     <div class="movieCardModal__btn--wrapper">
-      <button type="button" class="movieCardModal__btn">
-        Add to watched
+      <button type="button" class="movieCardModal__btn" data=watched>
+        <span data-text=watched>${localStorage.textButtonRemoveOrAdd(
+          'watched'
+        )}</span> watched 
       </button>
-      <button type="button" class="movieCardModal__btn">
-        Add to queue
+      <button type="button" class="movieCardModal__btn" data=queue>
+        <span data-text=queue>${localStorage.textButtonRemoveOrAdd(
+          'queue'
+        )}</span> queue
       </button>
     </div>
   </div>
 </div>`;
-  const btnClose = document.querySelector(".modal-btn-cross");
-  btnClose.addEventListener("click", () => closeModal());
+  const btnClose = document.querySelector('.modal-btn-cross');
+  btnClose.addEventListener('click', () => closeModal());
+
+  // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
+  // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+  const btnAddOrRemoveWatched = document.querySelector('[data=watched]');
+  const btnAddOrRemoveQueue = document.querySelector('[data=queue]');
+  btnAddOrRemoveWatched.addEventListener(
+    'click',
+    localStorage.addOrRemoveFromLocalStoradgeWatched
+  );
+  btnAddOrRemoveQueue.addEventListener(
+    'click',
+    localStorage.addOrRemoveFromLocalStoradgeQueue
+  );
+  // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+  // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
 }
 
 function closeModal() {
-  modalEl.classList.remove("modal--show");
-  document.body.classList.remove("stop-scrolling");
+  modalEl.classList.remove('modal--show');
+  document.body.classList.remove('stop-scrolling');
+  modalEl.innerHTML = '';
 }
 
-window.addEventListener("click", (e) => {
+window.addEventListener('click', e => {
   if (e.target === modalEl) {
     closeModal();
   }
-})
+});
 
-window.addEventListener("keydown", (e) => {
+window.addEventListener('keydown', e => {
   if (e.keyCode === 27) {
     closeModal();
   }
-})
+});
