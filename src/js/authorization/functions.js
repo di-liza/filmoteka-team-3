@@ -17,6 +17,9 @@ import {
 } from 'firebase/database';
 import Notiflix from 'notiflix';
 
+let isUserAuthenticated = false;
+let userEmail = '';
+
 const refs = {
   authorizationButton: document.querySelector('.btn__authorization'),
   authorizationModal: document.querySelector('.authorization-modal__backdrop'),
@@ -27,7 +30,17 @@ const refs = {
   signupForm: document.querySelector('.authorization-modal__signup-form'),
   loginButton: document.querySelector('.authorization-modal__login-button'),
   signupButton: document.querySelector('.authorization-modal__signup-button'),
-  logOffButton: document.querySelector('.logoff'),
+  signupFormSwitcher: document.querySelector(
+    '.authorization-modal__signup-form-switcher'
+  ),
+  loginFormSwitcher: document.querySelector(
+    '.authorization-modal__login-form-switcher'
+  ),
+  logOffButton: document.querySelector('.authorization-modal__logoff'),
+  userInformation: document.querySelector(
+    '.authorization-modal__user-information'
+  ),
+  userEmailLabel: document.querySelector('.authorization-modal__user-email'),
 };
 
 refs.authorizationButton.addEventListener('click', authorizationModalToggle);
@@ -36,6 +49,8 @@ refs.authorizationModalCloseButton.addEventListener('click', onCloseModal);
 refs.loginForm.addEventListener('submit', loginSubmitHandler);
 refs.signupForm.addEventListener('submit', signupSubmitHandler);
 refs.logOffButton.addEventListener('click', logOff);
+refs.loginFormSwitcher.addEventListener('click', loginFormHideSwitcher);
+refs.signupFormSwitcher.addEventListener('click', signupFormHideSwitcher);
 
 function authorizationModalToggle() {
   window.addEventListener('keydown', onEscButtonPressed);
@@ -62,6 +77,25 @@ function onCloseModal() {
   window.removeEventListener('keydown', onEscButtonPressed);
 }
 
+function loginFormHideSwitcher() {
+  refs.loginForm.classList.toggle('hidden');
+  refs.signupForm.classList.toggle('hidden');
+}
+
+function signupFormHideSwitcher() {
+  refs.signupForm.classList.toggle('hidden');
+  refs.loginForm.classList.toggle('hidden');
+}
+
+function isUserAuthenticatedHandler() {
+  if (isUserAuthenticated) {
+    refs.loginForm.classList.toggle('hidden');
+    refs.userInformation.classList.toggle('hidden');
+    refs.userEmailLabel.textContent = userEmail;
+  }
+  return;
+}
+
 const rawData = [
   { id: '1', name: 'Yu Soroka', number: '111-11-11' },
   { id: '2', name: 'Yurii Soroka', number: '111-11-11' },
@@ -82,7 +116,6 @@ function signupSubmitHandler(event) {
   const form = event.currentTarget;
   const login = form.elements.login.value;
   const password = form.elements.password.value;
-  console.log(form);
 
   createUserWithEmailAndPassword(auth, login, password)
     .then(userCredential => {
@@ -113,7 +146,6 @@ function loginSubmitHandler(event) {
   const form = event.currentTarget;
   const login = form.elements.login.value;
   const password = form.elements.password.value;
-  console.log(form);
 
   signInWithEmailAndPassword(auth, login, password)
     .then(userCredential => {
@@ -125,6 +157,9 @@ function loginSubmitHandler(event) {
         .then(() => {
           Notiflix.Notify.success('Авторизація успішна');
           form.reset();
+          isUserAuthenticated = true;
+          userEmail = login;
+          isUserAuthenticatedHandler();
           onCloseModal();
         })
         .catch(error => {
@@ -142,6 +177,9 @@ function logOff() {
   signOut(auth)
     .then(() => {
       Notiflix.Notify.warning('Авторизацію скасовано');
+      onCloseModal();
+      refs.loginForm.classList.toggle('hidden');
+      refs.userInformation.classList.toggle('hidden');
     })
     .catch(error => {
       Notiflix.Notify.warning(`Виникли проблеми при виході: ${error.message}`);

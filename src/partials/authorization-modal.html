@@ -6,9 +6,9 @@
             </svg> -->
       Close
     </button>
-    <button class="logoff" type="button">Log Out</button>
     <div class="authorization-modal__container">
       <form class="authorization-modal__login-form">
+        <h3>Please login</h3>
         <input
           class="authorization-modal__login-input"
           name="login"
@@ -24,15 +24,15 @@
         <button class="authorization-modal__login-button" type="submit">
           Login
         </button>
-        <!-- <button class="authorization-modal__form-switcher" type="button">Or Sign Up</button> -->
+        <button class="authorization-modal__login-form-switcher" type="button">Or Sign Up</button>
       </form>
-      <form class="authorization-modal__signup-form">
+      <form class="authorization-modal__signup-form hidden">
+        <h3>Please sign up</h3>
         <input
           class="authorization-modal__signup-input"
           name="login"
           type="text"
           placeholder="E-mail*"
-          autofocus
         />
         <input
           class="authorization-modal__signup-input"
@@ -43,7 +43,13 @@
         <button class="authorization-modal__signup-button" type="submit">
           Sign Up
         </button>
+        <button class="authorization-modal__signup-form-switcher" type="button">Or Login</button>
       </form>
+      <div class="authorization-modal__user-information hidden">
+        <p>Authenticated user is:</p>
+        <p class="authorization-modal__user-email"></p>
+        <button type="button" class="authorization-modal__logoff">Log off</button>
+      </div>
     </div>
   </div>
 </div>
