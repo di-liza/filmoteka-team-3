@@ -1,6 +1,3 @@
-// import {GetMovie} from './apiFetch'
-console.log(0122541);
-console.log('dadadad');
 const API_KEY = '5cb4dd4cf3f1476227d92f7c4b196044';
 const BASE_URL = 'https://api.themoviedb.org/3';
 let movie_id = '';
@@ -14,46 +11,44 @@ button.addEventListener('click', e => {
   movie_id = id;
   console.log(id);
   openModal(id);
-  
 });
 
 async function openModal(id) {
   try {
     const result = await getVideo(id);
-      } catch (error) {
+  } catch (error) {
     console.log(error);
   }
 }
 
-
 const modalEl = document.querySelector('.modal-video');
 
-
-const videoModal = document.querySelector('.modal-video')
-export function trailerBtn (watchBtn){
+const videoModal = document.querySelector('.modal-video');
+export function trailerBtn(watchBtn) {
   const id = watchBtn.dataset;
-    watchBtn.addEventListener('click', ()=>{
-      getVideo(id)
-    });
+  watchBtn.addEventListener('click', () => {
+    getVideo(id);
+  });
 }
 
 export async function getVideo(id) {
   const videoModal = document.querySelector('.modal-content');
   modalEl.classList.add('modal--show');
   document.body.classList.add('stop-scrolling');
-     
-  fetch (`${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}`).then(responce => {
-   
-    return responce.json();
-  }).then(video => {
-    const currentVideo = video.results          
-    videoModal.innerHTML=`<iframe
+
+  fetch(`${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}`)
+    .then(responce => {
+      return responce.json();
+    })
+    .then(video => {
+      const currentVideo = video.results;
+      videoModal.innerHTML = `<iframe
     class="modal-video"
     src="https://www.youtube.com/embed/${currentVideo[0].key}"
-    ></iframe> `
-  })
+    ></iframe> `;
+    });
   const watchBtn = document.querySelector('.movie-collection__button');
- 
+
   const btnClose = document.querySelector('.modal-close-btn');
   btnClose.addEventListener('click', () => closeModal());
 }
@@ -61,7 +56,7 @@ export async function getVideo(id) {
 function closeModal() {
   modalEl.classList.remove('modal--show');
   document.body.classList.remove('stop-scrolling');
-  }
+}
 
 window.addEventListener('click', e => {
   if (e.target === modalEl) {
