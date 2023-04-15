@@ -2,24 +2,27 @@ import { GetMovie } from './apiFetch';
 import { LocalStorage } from './localStorage';
 
 const getMovie = new GetMovie();
-const localStorage = new LocalStorage();
+const myMovieLocalStorage = new LocalStorage();
 
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
   // console.log(e);
-  if  (e.target.nodeName === 'IMG' || e.target.nodeName === 'P' || e.target.nodeName === 'H2') {
+  if (
+    e.target.nodeName === 'IMG' ||
+    e.target.nodeName === 'P' ||
+    e.target.nodeName === 'H2'
+  ) {
     const perent = e.target.closest('li');
     const { id } = perent.dataset;
     openModal(id);
-
   }
 });
 
 export async function openModal(id) {
   try {
     const result = await getMovie.getMovieFullInfo(id);
-    localStorage.movie = result; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+    myMovieLocalStorage.movie = result; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
     movieCardModal(result);
     // console.log(result);
   } catch (error) {
@@ -105,12 +108,12 @@ export async function movieCardModal(result) {
     </div>
     <div class="movieCardModal__btn--wrapper">
       <button type="button" class="movieCardModal__btn" data=watched>
-        <span data-text=watched>${localStorage.textButtonRemoveOrAdd(
+        <span data-text=watched>${myMovieLocalStorage.textButtonRemoveOrAdd(
           'watched'
         )}</span> watched 
       </button>
       <button type="button" class="movieCardModal__btn" data=queue>
-        <span data-text=queue>${localStorage.textButtonRemoveOrAdd(
+        <span data-text=queue>${myMovieLocalStorage.textButtonRemoveOrAdd(
           'queue'
         )}</span> queue
       </button>
@@ -126,11 +129,11 @@ export async function movieCardModal(result) {
   const btnAddOrRemoveQueue = document.querySelector('[data=queue]');
   btnAddOrRemoveWatched.addEventListener(
     'click',
-    localStorage.addOrRemoveFromLocalStoradgeWatched
+    myMovieLocalStorage.addOrRemoveFromLocalStoradgeWatched
   );
   btnAddOrRemoveQueue.addEventListener(
     'click',
-    localStorage.addOrRemoveFromLocalStoradgeQueue
+    myMovieLocalStorage.addOrRemoveFromLocalStoradgeQueue
   );
 
   // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
