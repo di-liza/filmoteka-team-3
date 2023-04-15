@@ -7,13 +7,16 @@ const localStorage = new LocalStorage();
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
-  const perent = e.target.closest('li');
-  // console.log(perent);
-  const { id } = perent.dataset;
-  // console.log(id);
-  openModal(id);
+  // console.log(e);
+  if  (e.target.nodeName === 'IMG' || e.target.nodeName === 'P' || e.target.nodeName === 'H2') {
+    const perent = e.target.closest('li');
+    const { id } = perent.dataset;
+    openModal(id);
+
+  }
 });
-async function openModal(id) {
+
+export async function openModal(id) {
   try {
     const result = await getMovie.getMovieFullInfo(id);
     localStorage.movie = result; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
