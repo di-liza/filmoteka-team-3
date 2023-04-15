@@ -54,6 +54,7 @@ refs.signupFormSwitcher.addEventListener('click', signupFormHideSwitcher);
 
 function authorizationModalToggle() {
   window.addEventListener('keydown', onEscButtonPressed);
+  refs.authorizationModal.addEventListener('click', onBackdropClick);
   refs.authorizationModal.classList.toggle('hidden');
 }
 
@@ -64,13 +65,14 @@ function onEscButtonPressed(event) {
   }
 }
 
-// function onBackdropClick(event) {
-//   event.preventDefault();
-//   const backdrop = event.target;
-//   if (backdrop.classList.contains('authorization-modal__backdrop')) {
-//     onCloseModal();
-//   }
-// }
+function onBackdropClick(event) {
+  event.preventDefault();
+  const backdrop = event.target;
+  if (backdrop.classList.contains('authorization-modal__backdrop')) {
+    onCloseModal();
+  }
+  refs.authorizationModal.removeEventListener('click', onBackdropClick);
+}
 
 function onCloseModal() {
   authorizationModalToggle();
@@ -95,13 +97,6 @@ function isUserAuthenticatedHandler() {
   }
   return;
 }
-
-const rawData = [
-  { id: '1', name: 'Yu Soroka', number: '111-11-11' },
-  { id: '2', name: 'Yurii Soroka', number: '111-11-11' },
-  { id: '3', name: 'Yur Soroa', number: '111-11-11' },
-  { id: '4', name: 'Yrii Soka', number: '111-11-11' },
-];
 
 // ініціалізація додатку, авторизації, та бази даних firebase
 const app = initializeApp(firebaseConfig);
@@ -160,6 +155,7 @@ function loginSubmitHandler(event) {
           isUserAuthenticated = true;
           userEmail = login;
           isUserAuthenticatedHandler();
+          // writeLocalStorageDataToDatabase();
           onCloseModal();
         })
         .catch(error => {
@@ -185,3 +181,19 @@ function logOff() {
       Notiflix.Notify.warning(`Виникли проблеми при виході: ${error.message}`);
     });
 }
+
+// function writeLocalStorageDataToDatabase() {
+//   const userId = auth.currentUser.uid;
+//   const queueArray = ref(database, `users/${userId}/queue`);
+//   const watchedArray = ref(database, `users/${userId}/watched`);
+//   const serializedState = localStorage.getItem('queue');
+//   const result =
+//     serializedState === null ? undefined : JSON.parse(serializedState);
+//   console.log(result);
+
+//   const queuePush = push(queueArray);
+//   const watchedPush = push(watchedArray);
+//   for (const movie of result) {
+//     set(queuePush, movie);
+//   }
+// }
