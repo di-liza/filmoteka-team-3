@@ -29,6 +29,7 @@
   }
 }
 .header__container {
+  position: relative;
   max-width: 280px;
   padding: 0;
 
@@ -40,7 +41,7 @@
   }
 }
 .components {
-  position: relative;
+  // position: relative;
   @include tablet {
     display: flex;
     align-items: baseline;
@@ -51,7 +52,7 @@
 .search-form {
   position: absolute;
   margin-bottom: 8px;
-  top: 115%;
+  top: 13%;
   left: 0;
   @include tablet {
     position: relative;
@@ -92,6 +93,7 @@
 }
 
 .search-form__button {
+  cursor: pointer;
   position: absolute;
   background-color: initial;
   right: 2%;
@@ -107,6 +109,11 @@
     right: 2%;
   }
 }
+.search-form__button {
+  &:active {
+    transform: matrix(0.9, 0, 0, 1, 0, 5);
+  }
+}
 
 .search-form__icon {
   fill: transparent;
@@ -116,12 +123,17 @@
 }
 
 .navigation {
-  margin-bottom: 354px;
+  margin-bottom: 300px;
   padding-top: 14px;
 
   @include tablet {
     padding-top: 16px;
     margin-bottom: 105px;
+    margin-right: 120px;
+  }
+  @include desktop {
+    margin-right: 400px;
+    margin-bottom: 151px;
   }
 }
 .navigation__list {
@@ -156,6 +168,11 @@
     height: 42px;
   }
 }
+.navigation__link--home {
+  &:active {
+    transform: matrix(0.9, 0, 0, 1, 0, 5);
+  }
+}
 
 .navigation__link--my-library {
   width: 113px;
@@ -171,10 +188,105 @@
     height: 42px;
   }
 }
+
+.navigation__link--my-library {
+  &:active {
+    transform: matrix(0.9, 0, 0, 1, 0, 5);
+  }
+}
 .current {
   background-color: #000000;
   color: #ffffff;
 }
+
+.home-btn__container {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  @include tablet {
+    position: static;
+    padding-top: 16px;
+  }
+  @include desktop {
+  }
+}
+.home__button-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+}
+
+.btn__home-logIn {
+  width: 102px;
+  height: 34px;
+  background-color: #ffffff;
+  color: #b92f2c;
+  border-radius: 100px;
+  border: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  @include tablet {
+    height: 38px;
+  }
+  @include desktop {
+    width: 120px;
+    height: 42px;
+  }
+}
+
+.btn__home-logIn {
+  &:hover,
+  &:focus {
+    background-color: #b92f2c;
+    color: #ffffff;
+    box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+  }
+}
+
+.btn__home-logIn {
+  &:active {
+    transform: matrix(0.9, 0, 0, 1, 0, 5);
+  }
+}
+
+.btn__home-reg {
+  width: 102px;
+  height: 34px;
+  background-color: #ffffff;
+  color: #b92f2c;
+  border-radius: 100px;
+  border: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  @include tablet {
+    height: 38px;
+  }
+  @include desktop {
+    width: 120px;
+    height: 42px;
+  }
+}
+
+.btn__home-reg {
+  &:hover,
+  &:focus {
+    background-color: #b92f2c;
+    color: #ffffff;
+    box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+  }
+}
+.btn__home-reg {
+  &:active {
+    transform: matrix(0.9, 0, 0, 1, 0, 5);
+  }
+}
+
 .logo__icon {
   fill: transparent;
   stroke: #ffffff;
@@ -194,10 +306,14 @@
   align-items: center;
   gap: 8px;
   @include desktop {
-    position: absolute;
-    bottom: 0;
     margin-bottom: 32px;
   }
+}
+
+.logo__library-link {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .logo__text {
@@ -222,23 +338,16 @@
   top: 200%;
   margin-left: 4px;
   font-weight: 400;
-  font-size: 10px;
-  line-height: 1.2;
+  font-size: 12px;
+  line-height: 1.18;
   max-width: 155px;
   color: #ffffff;
   @include tablet {
-    top: 40%;
+    top: 30%;
     left: 1%;
   }
   @include desktop {
-    top: 40%;
+    top: 24%;
     left: 1%;
   }
 }
-
-.logo__library-link{
-  display: flex;
-    gap: 16px;
-    align-items: center;
-}
-
