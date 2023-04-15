@@ -12,7 +12,7 @@ export class GetMovie {
   movie_id = null;
   //   Запрос на самые популярные фильмы за месяц
   async getTrandMovies(page) {
-    showLoader();
+    // showLoader();
     try {
       const params = {
         api_key: API_KEY,
@@ -22,7 +22,7 @@ export class GetMovie {
       const response = await axios.get(`${BASE_URL}/trending/movie/week?`, {
         params,
       });
-      hideLoaderDebounced();
+      // hideLoaderDebounced();
       return response.data;
     } catch (error) {
       console.log(error);
@@ -31,7 +31,7 @@ export class GetMovie {
 
   //  Запрос для поиска по ключевому слову
   async getMoviesByName(page) {
-    showLoader();
+    // showLoader();
     try {
       const params = {
         api_key: API_KEY,
@@ -42,7 +42,7 @@ export class GetMovie {
       const response = await axios.get(`${BASE_URL}/search/movie?`, {
         params,
       });
-      hideLoaderDebounced();
+      // hideLoaderDebounced();
       return response.data;
     } catch (error) {
       console.log(error);
@@ -51,7 +51,7 @@ export class GetMovie {
 
   // Запрос для полной информации про фильм
   async getMovieFullInfo(id) {
-    showLoader();
+    // showLoader();
     try {
       const params = {
         api_key: API_KEY,
@@ -60,7 +60,7 @@ export class GetMovie {
       const response = await axios.get(`${BASE_URL}/movie/${id}?`, {
         params,
       });
-      hideLoaderDebounced();
+      // hideLoaderDebounced();
       return response.data;
     } catch (error) {
       console.log(error);
