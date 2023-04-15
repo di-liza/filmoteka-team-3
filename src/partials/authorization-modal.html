@@ -1,14 +1,13 @@
 <div class="authorization-modal__backdrop hidden">
   <div class="authorization-modal">
     <button class="authorization-modal__close-button">
-      <!-- <svg class="authorization-modal__close-icon">
-                <use href="./images/icons.svg#icon-close"></use>
-            </svg> -->
-      Close
+      <svg class="authorization-modal__close-icon">
+        <use href="./icons/icons-sprite.svg#icon-close"></use>
+      </svg>
     </button>
     <div class="authorization-modal__container">
       <form class="authorization-modal__login-form">
-        <h3>Please login</h3>
+        <h3 class="authorization-modal__header">Please login</h3>
         <input
           class="authorization-modal__login-input"
           name="login"
@@ -24,9 +23,11 @@
         <button class="authorization-modal__login-button" type="submit">
           Login
         </button>
-        <button class="authorization-modal__login-form-switcher" type="button">Or Sign Up</button>
+        <button class="authorization-modal__login-form-switcher" type="button">
+          Or Sign Up
+        </button>
       </form>
-      <form class="authorization-modal__signup-form hidden">
+      <!-- <form class="authorization-modal__signup-form hidden">
         <h3>Please sign up</h3>
         <input
           class="authorization-modal__signup-input"
@@ -43,12 +44,16 @@
         <button class="authorization-modal__signup-button" type="submit">
           Sign Up
         </button>
-        <button class="authorization-modal__signup-form-switcher" type="button">Or Login</button>
-      </form>
+        <button class="authorization-modal__signup-form-switcher" type="button">
+          Or Login
+        </button>
+      </form> -->
       <div class="authorization-modal__user-information hidden">
         <p>Authenticated user is:</p>
         <p class="authorization-modal__user-email"></p>
-        <button type="button" class="authorization-modal__logoff">Log off</button>
+        <button type="button" class="authorization-modal__logoff">
+          Log off
+        </button>
       </div>
     </div>
   </div>
