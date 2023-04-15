@@ -1,6 +1,8 @@
 import { GetMovie } from './apiFetch';
 import { getGenres } from './genres';
 import { addPagination } from './pagination';
+import { getVideo } from './videoModal';
+import { trailerBtn } from './videoModal';
 
 const movieCollection = document.querySelector('.movie-collection');
 const getMovie = new GetMovie();
@@ -9,9 +11,13 @@ const getMovie = new GetMovie();
 async function trandMovie() {
   try {
     const data = await getMovie.getTrandMovies();
-    console.log(data.results);
+   
+  
     createMarkupOneCard(data.results);
+    const watchBtn = document.querySelector('.movie-collection__button');
+    trailerBtn(watchBtn);
     addPagination(data.total_results);
+ 
   } catch (error) {
     console.log(error, error.stack);
   }
@@ -38,7 +44,7 @@ export function createMarkupOneCard(results) {
      <p class="movie-collection__genre">${genresList}</p>
      <p class="movie-collection__year">${movieYear}</p>
    </div>
-   <button class="movie-collection__button" type="button"><span class="movie-collection__title">Trailer</span></button>
+   <button class="movie-collection__button" type="button" data-id="${id}"><span class="movie-collection__title">Trailer</span></button>
 </li>`;
     })
     .join('');

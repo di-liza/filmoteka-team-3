@@ -371,3 +371,62 @@
     left: 1%;
   }
 }
+
+
+.logo__library-link{
+  display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.toolbar {
+  position: absolute;
+  top: 16px;
+  right: 0;
+}
+
+.checkbox {
+  &:checked + .checkbox-label .ball {
+    transform: translateX(32px);
+  }
+}
+
+.checkbox-label {
+  position: relative;
+  background-color: var(--base-black);
+  width: 70px;
+  height: 34px;
+  border-radius: 50px;
+  border: 1px solid var(--base-white);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  & .icon-sun {
+    fill: yellow;
+  }
+
+  & .icon-moon {
+    fill: var(--base-white);
+  }
+
+  & .ball {
+    position: absolute;
+    background-color: var(--base-white);
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+
+  @include tablet {
+    height: 38px;
+  }
+
+  @include desktop {
+    height: 42px;
+  }
+}
+
