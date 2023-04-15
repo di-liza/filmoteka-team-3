@@ -129,6 +129,7 @@ export async function movieCardModal(result) {
     'click',
     localStorage.addOrRemoveFromLocalStoradgeQueue
   );
+
   // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
   // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
 }
