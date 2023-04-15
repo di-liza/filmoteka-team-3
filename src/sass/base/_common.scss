@@ -28,6 +28,14 @@ body {
     line-height: 1.6;
     position: relative;
     // min-height: 100vh;
+
+    &.dark {
+        background-color: var(--base-black);
+    }
+
+    &.dark h2 {
+        color: var(--base-white);
+    }
 }
 
 
