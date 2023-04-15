@@ -29,6 +29,7 @@ async function getFoundMovies() {
       errorMessage(message);
       return;
     }
+    clearErrorMessage();
     getMovie.resetPage();
     createMarkupOneCard(data.results);
     addPaginationSearching(data.total_results, data.total_pages);
@@ -39,4 +40,8 @@ async function getFoundMovies() {
 
 function errorMessage(message) {
   negativeSearchMessage.innerHTML = message;
+}
+
+function clearErrorMessage() {
+  negativeSearchMessage.innerHTML = '';
 }
