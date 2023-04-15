@@ -30,7 +30,7 @@
 }
 .header__container {
   position: relative;
-  max-width: 280px;
+  max-width: 302px;
   padding: 0;
 
   @include tablet {
@@ -51,7 +51,7 @@
 
 .search-form {
   position: absolute;
-  margin-bottom: 8px;
+  margin-top: 8px;
   top: 13%;
   left: 0;
   @include tablet {
@@ -59,6 +59,7 @@
     display: inline-flex;
     padding-top: 16px;
   }
+ 
 }
 
 .search-form__input {
@@ -89,6 +90,7 @@
   &:focus,
   &:active {
     outline: none;
+    border: 2px solid #f3d407;
   }
 }
 
@@ -108,12 +110,12 @@
     bottom: 13%;
     right: 2%;
   }
-}
-.search-form__button {
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
 }
+
+
 
 .search-form__icon {
   fill: transparent;
@@ -158,6 +160,7 @@
   width: 87px;
   height: 34px;
   border-radius: 100px;
+  transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
 
   @include tablet {
     width: 83px;
@@ -172,12 +175,18 @@
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
+  &:hover{
+  color: #fff;
+    background-color: #000000;
+  }
 }
 
 .navigation__link--my-library {
   width: 113px;
   height: 34px;
   border-radius: 100px;
+    transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
+    cursor: pointer;
 
   @include tablet {
     width: 109px;
@@ -187,12 +196,17 @@
     width: 117px;
     height: 42px;
   }
+  
 }
 
 .navigation__link--my-library {
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
+    &:hover {
+      color: #000000;
+      background-color: #ffffff;
+    }
 }
 .current {
   background-color: #000000;
@@ -229,6 +243,8 @@
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
   @include tablet {
     height: 38px;
   }
@@ -244,6 +260,7 @@
     background-color: #b92f2c;
     color: #ffffff;
     box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+    border: solid 1px #f4d03f;
   }
 }
 
@@ -264,6 +281,8 @@
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
+  cursor: pointer;
+    transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
   @include tablet {
     height: 38px;
   }
@@ -279,6 +298,7 @@
     background-color: #b92f2c;
     color: #ffffff;
     box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
+    border: solid 1px #f4d03f;
   }
 }
 .btn__home-reg {
