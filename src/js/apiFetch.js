@@ -59,14 +59,14 @@ export class GetMovie {
   }
 
   // Запрос трейлера фильма
-  async getMovieTrailer() {
+  async getMovieTrailer(movie_id) {
     try {
       const params = {
         api_key: API_KEY,
         language: 'en-US',
       };
       const response = await axios.get(
-        `${BASE_URL}/movie/${this.movie_id}/videos?`,
+        `${BASE_URL}/movie/${movie_id}/videos?`,
         {
           params,
         }
