@@ -142,7 +142,7 @@ export class LocalStorage {
      <p class="movie-collection__genre">${genresList}</p>
      <p class="movie-collection__year">${movieYear}</p>
    </div>
-   <button class="movie-collection__button" type="button"><span class="movie-collection__title">Trailer</span></button>
+   <button class="movie-collection__button" type="button" data-id="${id}">Trailer</button>
 </li>`;
       })
       .join('');

@@ -2,7 +2,7 @@ import { GetMovie } from './apiFetch';
 import { createMarkupOneCard, createMarkupDropList } from './renderCardMarkup';
 import { addPaginationSearching } from './pagination';
 import { openModal } from './movieCardModal';
-import { getVideo } from './videoModal';
+import { showTrailer} from './videoModal';
 import { debounce } from 'debounce';
 
 const negativeSearchMessage = document.querySelector('.error-message');
@@ -46,7 +46,7 @@ async function getDropListMovies() {
       const movieId = movieCard.dataset.id;
       getFoundMovies();
       if (event.target.nodeName === 'BUTTON') {
-        getVideo(movieId);
+        showTrailer(movieId);
       } else {
         openModal(movieId);
       }
