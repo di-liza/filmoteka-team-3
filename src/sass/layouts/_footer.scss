@@ -1,0 +1,72 @@
+.footer {
+  background: #f7f7f7;
+  padding-top: 29px;
+  padding-bottom: 29px;
+  padding-left: 42px;
+  padding-right: 42px;
+  margin: 0 auto;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.footer__text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #545454;
+  min-width: 320px;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #545454;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.footer__text-by {
+  padding-right: 4px;
+  padding-left: 10px;
+}
+
+.footer__text-dev {
+  padding-right: 10px;
+  padding-left: 4px;
+}
+
+.footer__students-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.footer__wrapper-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 12px;
+  @media screen and (min-width: 768px) {
+    padding-top: 0;
+  }
+}
