@@ -9,7 +9,7 @@ import './js/goTopBtn';
 import './js/pageTheme';
 
 // import './js/queueLocalStorage';
-// import './js/teamModal';
+import './js/teamModal';
 import './js/videoModal';
 // import './js/watchedLocalStorage';
 

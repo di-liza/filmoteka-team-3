@@ -1,0 +1,83 @@
+.team-member__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-member-modal__content {
+  width: 100px;
+  height: 100px;
+  background-color: #f7f7f7;
+}
+.glide {
+  max-width: 100%;
+  box-sizing: border-box;
+  // position: relative;
+  position: absolute;
+}
+.glide__slides {
+  width: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  touch-action: pan-Y;
+  white-space: nowrap;
+  will-change: transform;
+  height: 350px;
+  background-color: #91dddd;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+.glide__slide {
+  width: 100%;
+  width: 15px;
+  white-space: normal;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.team-member-modal__photo {
+  width: 120px;
+  // height: 480px;
+}
+
+.team-member-modal__name {
+}
+.team-member-modal__position {
+}
+.socials-list__item {
+}
+
+.socials-list__icon {
+}
+
+.socials-list__link {
+}
+
+.team-member-modal__comment {
+}
+
+.team-member-modal__close-btn {
+  // position: absolute;
+  // top: 8px;
+  // right: 8px;
+  // width: 30px;
+  // height: 30px;
+  // background: #fff;
+  // border: 1px solid rgba(0, 0, 0, 0.1);
+  // border-radius: 50%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // background-color: rgba(0, 0, 0, 0);
+}
