@@ -100,8 +100,7 @@ async function getFoundMovies() {
     clearErrorMessage();
     getMovie.resetPage();
     createMarkupOneCard(data.results);
-    addPagination(data.total_results, 'search', data.total_pages);
-    // addPaginationSearching(data.total_results, data.total_pages);
+    addPaginationSearching(data.total_results, data.total_pages);
   } catch (error) {
     console.log(error, error.stack);
   }
