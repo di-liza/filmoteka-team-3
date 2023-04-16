@@ -41,7 +41,6 @@
   }
 }
 .components {
-  // position: relative;
   @include tablet {
     display: flex;
     align-items: baseline;
@@ -55,11 +54,10 @@
   top: 13%;
   left: 0;
   @include tablet {
+    margin-top: 0;
     position: relative;
-    display: inline-flex;
     padding-top: 16px;
   }
- 
 }
 
 .search-form__input {
@@ -67,7 +65,6 @@
   width: 252px;
   height: 34px;
   border: none;
-  position: relative;
   border-radius: 100px;
   font-weight: 400;
   font-size: 14px;
@@ -83,9 +80,6 @@
     width: 187px;
     height: 42px;
   }
-}
-
-.search-form__input {
   &:hover,
   &:focus,
   &:active {
@@ -107,15 +101,13 @@
     right: 3%;
   }
   @include desktop {
-    bottom: 13%;
+    bottom: 18%;
     right: 2%;
   }
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
 }
-
-
 
 .search-form__icon {
   fill: transparent;
@@ -131,10 +123,8 @@
   @include tablet {
     padding-top: 16px;
     margin-bottom: 105px;
-    margin-right: 120px;
   }
   @include desktop {
-    margin-right: 400px;
     margin-bottom: 151px;
   }
 }
@@ -175,8 +165,8 @@
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
-  &:hover{
-  color: #fff;
+  &:hover {
+    color: #fff;
     background-color: #000000;
   }
 }
@@ -185,8 +175,8 @@
   width: 113px;
   height: 34px;
   border-radius: 100px;
-    transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
-    cursor: pointer;
+  transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
+  cursor: pointer;
 
   @include tablet {
     width: 109px;
@@ -196,17 +186,16 @@
     width: 117px;
     height: 42px;
   }
-  
 }
 
 .navigation__link--my-library {
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
-    &:hover {
-      color: #000000;
-      background-color: #ffffff;
-    }
+  &:hover {
+    color: #000000;
+    background-color: #ffffff;
+  }
 }
 .current {
   background-color: #000000;
@@ -228,71 +217,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 8px;
 }
 
-.btn__home-logIn {
-  width: 102px;
-  height: 34px;
-  background-color: #ffffff;
+.btn__authorization {
+  width: 50px;
+  height: 35px;
   color: #b92f2c;
-  border-radius: 100px;
+  border-radius: 50%;
   border: transparent;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
-  cursor: pointer;
   transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
-  @include tablet {
-    height: 38px;
-  }
-  @include desktop {
-    width: 120px;
-    height: 42px;
-  }
-}
-
-.btn__home-logIn {
-  &:hover,
-  &:focus {
-    background-color: #b92f2c;
-    color: #ffffff;
-    box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-    border: solid 1px #f4d03f;
-  }
-}
-
-.btn__home-logIn {
-  &:active {
-    transform: matrix(0.9, 0, 0, 1, 0, 5);
-  }
-}
-
-.btn__home-reg {
-  width: 102px;
-  height: 34px;
-  background-color: #ffffff;
-  color: #b92f2c;
-  border-radius: 100px;
-  border: transparent;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.17;
-  text-transform: uppercase;
   cursor: pointer;
-    transition: all 1s cubic-bezier(0, -0.15, 0.22, 1);
   @include tablet {
+    width: 50px;
     height: 38px;
   }
   @include desktop {
-    width: 120px;
+    width: 50px;
     height: 42px;
   }
 }
-
-.btn__home-reg {
+.active {
   &:hover,
   &:focus {
     background-color: #b92f2c;
@@ -301,7 +250,8 @@
     border: solid 1px #f4d03f;
   }
 }
-.btn__home-reg {
+
+.active {
   &:active {
     transform: matrix(0.9, 0, 0, 1, 0, 5);
   }
@@ -310,7 +260,6 @@
 .logo__icon {
   fill: transparent;
   stroke: #ffffff;
-
   @include tablet {
     width: 40px;
     height: 40px;
@@ -341,7 +290,6 @@
   font-size: 32px;
   line-height: 1.19;
   color: #ffffff;
-
   @include tablet {
     font-size: 40px;
     line-height: 1.18;
@@ -372,17 +320,25 @@
   }
 }
 
-
-.logo__library-link{
+.logo__library-link {
   display: flex;
-    gap: 16px;
-    align-items: center;
+  gap: 16px;
+  align-items: center;
 }
 
 .toolbar {
+  display: flex;
+  gap: 8px;
   position: absolute;
-  top: 16px;
-  right: 0;
+  top: 100%;
+  left: 0;
+  @include tablet {
+    top: 8%;
+    left: 80%;
+  }
+  @include desktop {
+    left: 88%;
+  }
 }
 
 .checkbox {
@@ -392,7 +348,6 @@
 }
 
 .checkbox-label {
-  position: relative;
   background-color: var(--base-black);
   width: 70px;
   height: 34px;
@@ -430,3 +385,11 @@
   }
 }
 
+.icon-user {
+  width: 28px;
+  height: 28px;
+  @include tablet {
+    width: 32px;
+    height: 32px;
+  }
+}
