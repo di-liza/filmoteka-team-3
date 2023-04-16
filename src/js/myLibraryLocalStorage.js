@@ -16,6 +16,7 @@ const buttonLib = {
 };
 
 myLocalStorage.results = JSON.parse(localStorage.getItem('watched'));
+myLocalStorage.selectedArray = 'watched';
 myLocalStorage.createMarkupOneCard();
 
 buttonLib.watched.style.cssText = stylePushButton;
@@ -28,6 +29,7 @@ function getMoviesWatched() {
   const movies = localStorage.getItem('watched');
   if (movies) {
     myLocalStorage.results = JSON.parse(movies);
+    myLocalStorage.selectedArray = 'watched';
     myLocalStorage.createMarkupOneCard();
   } else {
     movieCollection.innerHTML = '';
@@ -40,6 +42,7 @@ function getMoviesQueue() {
   const movies = localStorage.getItem('queue');
   if (movies) {
     myLocalStorage.results = JSON.parse(movies);
+    myLocalStorage.selectedArray = 'queue';
     myLocalStorage.createMarkupOneCard();
   } else {
     movieCollection.innerHTML = '';

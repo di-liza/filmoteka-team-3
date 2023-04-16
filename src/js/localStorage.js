@@ -7,6 +7,7 @@ const classBtnAddWatched = 'navigation__link--addWatched';
 export class LocalStorage {
   constructor() {
     this.movie = {};
+    this.selectedArray;
     this.textRemoveBTN = 'remove from ';
     this.textAddBTN = 'add to ';
     this.numMoviesInPages = 20;
@@ -89,10 +90,10 @@ export class LocalStorage {
       `span[data-text="${watchedOrQueue}"]`
     );
     queueSpan.textContent = this.textRemoveBTN;
-    // if (this.pageSelected === watchedOrQueue) {
-    //   this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-    //   this.createMarkupOneCard();
-    // }
+    if (this.selectedArray === watchedOrQueue) {
+      this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+      this.createMarkupOneCard();
+    }
   }
 
   // Цей метод видаляє фільм по його id
@@ -107,10 +108,10 @@ export class LocalStorage {
         `span[data-text="${watchedOrQueue}"]`
       );
       queueSpan.textContent = this.textAddBTN;
-      // if (this.pageSelected === watchedOrQueue) {
-      //   this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-      //   this.createMarkupOneCard();
-      // }
+      if (this.selectedArray === watchedOrQueue) {
+        this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+        this.createMarkupOneCard();
+      }
     }
   }
   //Цей метод пише текст на кнопці чи додати чи видалити фільм з масиву
@@ -134,7 +135,7 @@ export class LocalStorage {
         } else {
           poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         }
-        return `  <li class="movie-collection__item" data-id="${id}">
+        return `  <li class="movie-collection__item" data-id="${id}" data-selectedArray="${this.selectedArray}">
    <img class="movie-collection__poster" src="${poster}" alt="${title}" />
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">

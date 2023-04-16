@@ -7,10 +7,13 @@ const myMovieLocalStorage = new LocalStorage();
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
-  // console.log(e);
+  console.log(e);
   if (e.target.nodeName === 'BUTTON') return;
   const perent = e.target.closest('li');
   const { id } = perent.dataset;
+  // const { selectedarray } = perent.dataset;
+  myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
+  // console.log('selectedArray - ', perent.dataset.selectedarray);
   openModal(id);
 });
 
