@@ -13,9 +13,7 @@ async function trandMovie() {
   try {
     const data = await getMovie.getTrandMovies();
 
-    createMarkupOneCard(data.results);
-    const watchBtn = document.querySelector('.movie-collection__button');
-    trailerBtn(watchBtn);
+    createMarkupOneCard(data.results);    
     addPagination(data.total_results);
   } catch (error) {
     console.log(error, error.stack);

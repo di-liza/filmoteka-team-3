@@ -7,10 +7,13 @@ const myMovieLocalStorage = new LocalStorage();
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
-  // console.log(e);
+  console.log(e);
   if (e.target.nodeName === 'BUTTON') return;
   const perent = e.target.closest('li');
   const { id } = perent.dataset;
+  // const { selectedarray } = perent.dataset;
+  myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
+  // console.log('selectedArray - ', perent.dataset.selectedarray);
   openModal(id);
 });
 
@@ -48,14 +51,14 @@ export async function movieCardModal(result) {
   } else {
     poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   }
-  modalEl.innerHTML = `    <div class="movieCardModal__container">
+  modalEl.innerHTML = `    <div class="movieCardModal__container ${localStorage.getItem('theme')}">
   <button class="modal-btn-cross">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14"
         height="14"
         fill="currentColor"
-        class="modal-btn-cross__icon"
+        class="modal-btn-cross__icon ${localStorage.getItem('theme')}"
         viewBox="0 0 16 16"
       >
         <path

@@ -9,7 +9,7 @@ const handleCheckbox = () => {
     }
 }
 
-if (localStorage.getItem('theme', 'dark')) {
+if (localStorage.getItem('theme')) {
     document.body.classList.toggle("dark");
     checkbox.checked = true;
 }

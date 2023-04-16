@@ -7,7 +7,7 @@ const classBtnAddWatched = 'navigation__link--addWatched';
 export class LocalStorage {
   constructor() {
     this.movie = {};
-    this.pageSelected;
+    this.selectedArray;
     this.textRemoveBTN = 'remove from ';
     this.textAddBTN = 'add to ';
     this.numMoviesInPages = 20;
@@ -80,6 +80,7 @@ export class LocalStorage {
     let arrMovie = localStorage.getItem(watchedOrQueue);
     if (arrMovie) {
       arrMovie = JSON.parse(arrMovie);
+      this.movie.selectedArray = watchedOrQueue;
       arrMovie.unshift(this.movie);
     } else {
       arrMovie = [this.movie];
@@ -89,12 +90,7 @@ export class LocalStorage {
       `span[data-text="${watchedOrQueue}"]`
     );
     queueSpan.textContent = this.textRemoveBTN;
-    console.log(
-      'ADD this.pageSelected === watchedOrQueue - ',
-      this.pageSelected,
-      watchedOrQueue
-    );
-    if (this.pageSelected === watchedOrQueue) {
+    if (this.selectedArray === watchedOrQueue) {
       this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
       this.createMarkupOneCard();
     }
@@ -112,12 +108,7 @@ export class LocalStorage {
         `span[data-text="${watchedOrQueue}"]`
       );
       queueSpan.textContent = this.textAddBTN;
-      console.log(
-        'REMOVE this.pageSelected === watchedOrQueue - ',
-        this.pageSelected,
-        watchedOrQueue
-      );
-      if (this.pageSelected === watchedOrQueue) {
+      if (this.selectedArray === watchedOrQueue) {
         this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
         this.createMarkupOneCard();
       }
@@ -144,14 +135,14 @@ export class LocalStorage {
         } else {
           poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         }
-        return `  <li class="movie-collection__item" data-id="${id}">
+        return `  <li class="movie-collection__item" data-id="${id}" data-selectedArray="${this.selectedArray}">
    <img class="movie-collection__poster" src="${poster}" alt="${title}" />
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">
      <p class="movie-collection__genre">${genresList}</p>
      <p class="movie-collection__year">${movieYear}</p>
    </div>
-   <button class="movie-collection__button" type="button"><span class="movie-collection__title">Trailer</span></button>
+   <button class="movie-collection__button" type="button" data-id="${id}">Trailer</button>
 </li>`;
       })
       .join('');
