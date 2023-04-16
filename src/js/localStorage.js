@@ -7,7 +7,6 @@ const classBtnAddWatched = 'navigation__link--addWatched';
 export class LocalStorage {
   constructor() {
     this.movie = {};
-    this.pageSelected;
     this.textRemoveBTN = 'remove from ';
     this.textAddBTN = 'add to ';
     this.numMoviesInPages = 20;
@@ -80,6 +79,7 @@ export class LocalStorage {
     let arrMovie = localStorage.getItem(watchedOrQueue);
     if (arrMovie) {
       arrMovie = JSON.parse(arrMovie);
+      this.movie.selectedArray = watchedOrQueue;
       arrMovie.unshift(this.movie);
     } else {
       arrMovie = [this.movie];
@@ -89,15 +89,10 @@ export class LocalStorage {
       `span[data-text="${watchedOrQueue}"]`
     );
     queueSpan.textContent = this.textRemoveBTN;
-    console.log(
-      'ADD this.pageSelected === watchedOrQueue - ',
-      this.pageSelected,
-      watchedOrQueue
-    );
-    if (this.pageSelected === watchedOrQueue) {
-      this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-      this.createMarkupOneCard();
-    }
+    // if (this.pageSelected === watchedOrQueue) {
+    //   this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+    //   this.createMarkupOneCard();
+    // }
   }
 
   // Цей метод видаляє фільм по його id
@@ -112,15 +107,10 @@ export class LocalStorage {
         `span[data-text="${watchedOrQueue}"]`
       );
       queueSpan.textContent = this.textAddBTN;
-      console.log(
-        'REMOVE this.pageSelected === watchedOrQueue - ',
-        this.pageSelected,
-        watchedOrQueue
-      );
-      if (this.pageSelected === watchedOrQueue) {
-        this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-        this.createMarkupOneCard();
-      }
+      // if (this.pageSelected === watchedOrQueue) {
+      //   this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+      //   this.createMarkupOneCard();
+      // }
     }
   }
   //Цей метод пише текст на кнопці чи додати чи видалити фільм з масиву

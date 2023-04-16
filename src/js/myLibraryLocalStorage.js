@@ -18,15 +18,11 @@ const buttonLib = {
 myLocalStorage.results = JSON.parse(localStorage.getItem('watched'));
 myLocalStorage.createMarkupOneCard();
 
-myLocalStorage.pageSelected = 'watched';
-
 buttonLib.watched.style.cssText = stylePushButton;
 buttonLib.watched.addEventListener('click', getMoviesWatched);
 buttonLib.queue.addEventListener('click', getMoviesQueue);
 
 function getMoviesWatched() {
-  myLocalStorage.pageSelected = 'watched';
-  console.log('myLocalStorage.pageSelected - ', myLocalStorage.pageSelected);
   buttonLib.queue.style.cssText = '';
   buttonLib.watched.style.cssText = stylePushButton;
   const movies = localStorage.getItem('watched');
@@ -39,8 +35,6 @@ function getMoviesWatched() {
 }
 
 function getMoviesQueue() {
-  myLocalStorage.pageSelected = 'queue';
-  console.log('myLocalStorage.pageSelected - ', myLocalStorage.pageSelected);
   buttonLib.watched.style.cssText = '';
   buttonLib.queue.style.cssText = stylePushButton;
   const movies = localStorage.getItem('queue');
