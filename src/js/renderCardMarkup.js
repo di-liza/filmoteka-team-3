@@ -16,7 +16,8 @@ async function trandMovie() {
     createMarkupOneCard(data.results);
     const watchBtn = document.querySelector('.movie-collection__button');
     trailerBtn(watchBtn);
-    addPagination(data.total_results);
+    addPagination(data.total_results, 'getTrandMovies');
+    // addPagination(data.total_results);
   } catch (error) {
     console.log(error, error.stack);
   }
