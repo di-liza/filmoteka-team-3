@@ -36,7 +36,7 @@ export async function getVideo(id) {
   modalEl.classList.add('modal--show');
   document.body.classList.add('stop-scrolling');
 
-  fetch(`${BASE_URL}/movie/${movie_id}/videos?api_key=${API_KEY}`)
+  fetch(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`)
     .then(responce => {
       return responce.json();
     })

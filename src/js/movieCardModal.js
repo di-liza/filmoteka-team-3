@@ -8,15 +8,10 @@ const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
   // console.log(e);
-  if (
-    e.target.nodeName === 'IMG' ||
-    e.target.nodeName === 'P' ||
-    e.target.nodeName === 'H2'
-  ) {
-    const perent = e.target.closest('li');
-    const { id } = perent.dataset;
-    openModal(id);
-  }
+  if (e.target.nodeName === 'BUTTON') return;
+  const perent = e.target.closest('li');
+  const { id } = perent.dataset;
+  openModal(id);
 });
 
 export async function openModal(id) {
