@@ -1,39 +1,61 @@
+/* Mixins */
+
+@mixin mobile {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
+
 /* Movie Cards Collection */
+
 .movie-cards-collection {
   max-width: 1280px;
   margin: 0 auto;
   padding: 32px 16px;
+
+  @include desktop {
+    padding: 64px 0;
+  }
 }
 
 .movie-collection {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-}
 
-@media (max-width: 991px) {
-  .movie-collection {
+  @include tablet {
     justify-content: center;
   }
-}
 
-@media (max-width: 767px) {
-  .movie-collection {
+  @include mobile {
     flex-direction: column;
     align-items: center;
   }
 }
 
 /* Movie Card */
+
 .movie-collection__item {
   margin-bottom: 24px;
   width: calc(33.33% - 3px);
 
-  @media (max-width: 991px) {
+  @include tablet {
     width: calc(50% - 16px);
   }
 
-  @media (max-width: 767px) {
+  @include mobile {
     width: 100%;
   }
 }
@@ -50,10 +72,8 @@
   text-align: start;
   text-transform: uppercase;
   margin-top: 12px;
-}
 
-@media (max-width: 767px) {
-  .movie-collection__title {
+  @include mobile {
     margin-top: 8px;
   }
 }
