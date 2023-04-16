@@ -66,6 +66,7 @@ const videoModal = document.querySelector('.modal-video');
 
  async function getVideo(key) {
   const videoModal = document.querySelector('.modal-content');
+  const crossIcon = document.querySelector('.modal-btn-cross__icon');
   modalEl.classList.add('modal--show');
   document.body.classList.add('stop-scrolling');
 
@@ -79,6 +80,16 @@ const videoModal = document.querySelector('.modal-video');
     class="modal-video"
     src="https://www.youtube.com/embed/${key}"
     ></iframe> `;
+
+    if (localStorage.getItem('theme')) {
+      crossIcon.classList.add("dark");
+      return videoModal.classList.add("dark");
+  }
+
+  if (!localStorage.getItem('theme')) {
+    crossIcon.classList.remove("dark");
+    return videoModal.classList.remove("dark");
+  }
     };
   const watchBtn = document.querySelector('.movie-collection__button');
 
