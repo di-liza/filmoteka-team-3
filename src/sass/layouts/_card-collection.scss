@@ -1,6 +1,43 @@
+.movie-cards-collection {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @include tablet {
+    padding-top: 32px;
+    padding-bottom: 60px;
+    
+    }
+  
+
+}
+
+.movie-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+  @include tablet {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 60px;
+  }
+  @include desktop {
+    gap: 32px 16px;
+  }
+}
+
+
+
 .movie-collection__item {
   position: relative;
   cursor: pointer;
+   @include tablet {
+  width: calc((100% - 32px) / 2);
+  
+  }
+  @include desktop {
+    width: calc((100% - 32px) / 3);
+  }
 }
 
 .movie-collection__button {
