@@ -6,3 +6,4 @@ import './js/myLibraryLocalStorage';
 // import './js/loader';
 // import './js/authorization/functions';
 // import './js/authorization/firebaseConfig';
+import './js/videoModal';
