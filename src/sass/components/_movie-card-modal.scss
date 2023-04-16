@@ -176,6 +176,9 @@
     padding: 0;
     border: none;
     z-index: 600;
+    &__icon.dark {
+      stroke: var(--base-white);
+    }
     &__icon {
       z-index: 601;
       stroke: var(--base-black);
@@ -188,3 +191,7 @@
     }
   }
   
+  .dark {
+    background-color: var(--base-black);
+    color: var(--base-white);
+  }
