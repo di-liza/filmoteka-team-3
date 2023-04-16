@@ -1,5 +1,6 @@
 import './js/movieCardModal';
 import './js/myLibraryLocalStorage';
+import './js/pageTheme';
 // import './js/loader';
 // import './js/goTopBtn';
 // import './js/authorization';
