@@ -1,5 +1,3 @@
-/* Mixins */
-
 @mixin mobile {
   @media screen and (max-width: 767px) {
     @content;
@@ -34,14 +32,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  gap: 7px;
 
   @include tablet {
     justify-content: center;
+    gap: 3px;
   }
 
   @include mobile {
     flex-direction: column;
     align-items: center;
+    gap: 8px;
   }
 }
 
@@ -51,8 +52,12 @@
   margin-bottom: 24px;
   width: calc(33.33% - 3px);
 
+  @include desktop {
+    width: calc(33.33% - 16px);
+  }
+
   @include tablet {
-    width: calc(50% - 16px);
+    width: calc(50% - 8px);
   }
 
   @include mobile {
@@ -89,7 +94,6 @@
 .movie-collection__genre::after {
   content: '\00a0|\00a0';
 }
-
 
 .movie-collection__genre,
 .movie-collection__year {
