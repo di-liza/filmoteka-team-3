@@ -1,3 +1,4 @@
+import { getGenres } from './genres';
 const classBtnQueue = 'navigation__link--queue';
 const classBtnWatched = 'navigation__link--watched';
 const classBtnAddQueue = 'navigation__link--addQueue';
@@ -6,10 +7,14 @@ const classBtnAddWatched = 'navigation__link--addWatched';
 export class LocalStorage {
   constructor() {
     this.movie = {};
+    this.pageSelected;
     this.textRemoveBTN = 'remove from ';
     this.textAddBTN = 'add to ';
     this.numMoviesInPages = 20;
+    this.movieCollection = document.querySelector('.movie-collection');
+    this.results;
     this.addToLocalStorage = this.addToLocalStorage.bind(this);
+    this.createMarkupOneCard = this.createMarkupOneCard.bind(this);
     this.removeFromLocalStorage = this.removeFromLocalStorage.bind(this);
     this.addOrRemoveFromLocalStoradgeWatched =
       this.addOrRemoveFromLocalStoradgeWatched.bind(this);
@@ -21,7 +26,7 @@ export class LocalStorage {
   getMovies(watchedOrQueue) {
     const movies = localStorage.getItem(watchedOrQueue);
     if (movies) {
-      createMarkupOneCard(JSON.parse(movies));
+      this.createMarkupOneCard(JSON.parse(movies));
     } else {
       return 'Нема збережених фільмів';
     }
@@ -75,7 +80,7 @@ export class LocalStorage {
     let arrMovie = localStorage.getItem(watchedOrQueue);
     if (arrMovie) {
       arrMovie = JSON.parse(arrMovie);
-      arrMovie.push(this.movie);
+      arrMovie.unshift(this.movie);
     } else {
       arrMovie = [this.movie];
     }
@@ -84,6 +89,15 @@ export class LocalStorage {
       `span[data-text="${watchedOrQueue}"]`
     );
     queueSpan.textContent = this.textRemoveBTN;
+    console.log(
+      'ADD this.pageSelected === watchedOrQueue - ',
+      this.pageSelected,
+      watchedOrQueue
+    );
+    if (this.pageSelected === watchedOrQueue) {
+      this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+      this.createMarkupOneCard();
+    }
   }
 
   // Цей метод видаляє фільм по його id
@@ -98,6 +112,15 @@ export class LocalStorage {
         `span[data-text="${watchedOrQueue}"]`
       );
       queueSpan.textContent = this.textAddBTN;
+      console.log(
+        'REMOVE this.pageSelected === watchedOrQueue - ',
+        this.pageSelected,
+        watchedOrQueue
+      );
+      if (this.pageSelected === watchedOrQueue) {
+        this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+        this.createMarkupOneCard();
+      }
     }
   }
   //Цей метод пише текст на кнопці чи додати чи видалити фільм з масиву
@@ -109,32 +132,36 @@ export class LocalStorage {
     const isMovie = arrMovie.find(movie => movie.id === this.movie.id);
     return isMovie ? this.textRemoveBTN : this.textAddBTN;
   }
+
+  createMarkupOneCard() {
+    this.movieCollection.innerHTML = this.results
+      .map(({ poster_path, genres, title, release_date, id }) => {
+        const genresList = getGenres(genres);
+        const movieYear = release_date.slice(0, 4);
+        let poster;
+        if (!poster_path) {
+          poster = 'https://otv.one/uploads/default_image/thumbnail.jpg';
+        } else {
+          poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+        }
+        return `  <li class="movie-collection__item" data-id="${id}">
+   <img class="movie-collection__poster" src="${poster}" alt="${title}" />
+   <h2 class="movie-collection__title">${title}</h2>
+   <div class="movie-collection__discription">
+     <p class="movie-collection__genre">${genresList}</p>
+     <p class="movie-collection__year">${movieYear}</p>
+   </div>
+   <button class="movie-collection__button" type="button"><span class="movie-collection__title">Trailer</span></button>
+</li>`;
+      })
+      .join('');
+  }
+
   getPages(watchedOrQueue) {
     const arr = JSON.parse(localStorage.getItem(watchedOrQueue));
     return Math.round(arr?.length ?? 0 / this.numMoviesInPages);
   }
 }
-
-// const localStorage = new LocalStorage();
-
-// localStorage.movie = {
-//   adult: false,
-//   backdrop_path: '/wybmSmviUXxlBmX44gtpow5Y9TB.jpg',
-//   id: 594767,
-//   title: 'Shazam! Fury of the Gods',
-//   original_language: 'en',
-//   original_title: 'Shazam! Fury of the Gods',
-//   overview:
-//     'Billy Batson and his foster siblings, who transform into superheroes by saying "Shazam!", are forced to get back into action and fight the Daughters of Atlas, who they must stop from using a weapon that could destroy the world.',
-//   poster_path: '/A3ZbZsmsvNGdprRi2lKgGEeVLEH.jpg',
-//   media_type: 'movie',
-//   genre_ids: [28, 35, 14],
-//   popularity: 5827.392,
-//   release_date: '2023-03-15',
-//   video: false,
-//   vote_average: 6.978,
-//   vote_count: 747,
-// };
 
 // // Знаходимо кнопки WATCHED, QUEUE та додаєм слухачів
 // const btnQueue = document.querySelector(`.${classBtnQueue}`);
