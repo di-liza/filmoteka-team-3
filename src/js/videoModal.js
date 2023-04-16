@@ -86,11 +86,11 @@ const videoModal = document.querySelector('.modal-video');
       return videoModal.classList.add("dark");
   }
 
-  if (!localStorage.getItem('theme')) {
+    if (!localStorage.getItem('theme')) {
     crossIcon.classList.remove("dark");
     return videoModal.classList.remove("dark");
   }
-    };
+};
   const watchBtn = document.querySelector('.movie-collection__button');
 
   const btnClose = document.querySelector('.modal-close-btn');
