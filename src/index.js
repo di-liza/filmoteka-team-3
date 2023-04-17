@@ -16,7 +16,7 @@ import './js/videoModal';
 // Для добавления
 // import './js/authorization/functions';
 // import '';
-// import '';
+import './js/sliderTrends';
 // import '';
 // import '';
 // import '';

@@ -5,13 +5,33 @@ const getMovie = new GetMovie();
 const myMovieLocalStorage = new LocalStorage();
 
 const button = document.querySelector('.movie-collection');
+const sliderCards = document.querySelector('.swiper-wrapper');
+const sliderCard = document.querySelector('.swiper-slide');
+
+sliderCards?.addEventListener('click', e => {
+  console.log(e.target.nodeName);
+  if (e.target.nodeName === 'IMG') {
+    const perent = e.target.closest('div');
+    // console.log('perent:', perent);
+    const { id } = e.target.dataset;
+    console.log('id:', id);
+    myMovieLocalStorage.selectedArray = perent?.dataset.selectedarray;
+    openModal(id);
+  }
+});
 
 button.addEventListener('click', e => {
-  if (e.target.nodeName === 'BUTTON') return;
-  const perent = e.target.closest('li');
-  const { id } = perent.dataset;
-  myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
-  openModal(id);
+  if (
+    e.target.nodeName === 'LI' ||
+    e.target.nodeName === 'IMG' ||
+    e.target.nodeName === 'P' ||
+    e.target.nodeName === 'H2'
+  ) {
+    const perent = e.target.closest('li');
+    const { id } = perent.dataset;
+    // myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
+    openModal(id);
+  }
 });
 
 export async function openModal(id) {
@@ -130,7 +150,6 @@ export async function movieCardModal(result) {
     'click',
     myMovieLocalStorage.addOrRemoveFromLocalStoradgeQueue
   );
-
 }
 
 function closeModal() {
