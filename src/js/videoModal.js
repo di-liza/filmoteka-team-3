@@ -52,8 +52,7 @@ async function getVideo(key) {
   crossIcon.classList.remove("dark");
   return videoModal.classList.remove("dark");
   }
-};
-  
+};  
 
 const btnClose = document.querySelector('.modal-close-btn');
 btnClose.addEventListener('click', () => closeModal());
