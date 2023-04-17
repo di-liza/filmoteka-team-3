@@ -1,7 +1,6 @@
 const checkbox = document.querySelector('.checkbox');
 const droplist = document.querySelector('.movie-droplist');
 const slider = document.querySelector('.glide__slides');
-console.log(slider);
 
 const handleCheckbox = () => {
   document.body.classList.toggle('dark');
