@@ -14,7 +14,7 @@ const droplist = document.querySelector('.movie-droplist');
 export const getMovie = new GetMovie();
 
 searchForm?.addEventListener('submit', searchMovie);
-searchForm?.addEventListener('input', debounce(getDropListMovies, 500));
+searchForm?.addEventListener('input', debounce(getDropListMovies, 350));
 
 //Функция для создания выпадающего списка поиска
 
