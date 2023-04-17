@@ -17,11 +17,14 @@ import {
 } from 'firebase/database';
 import Notiflix from 'notiflix';
 
-let isUserAuthenticated = false;
-let userEmail = '';
+const LOGIN_STATE_KEY = 'loginState';
+let uid = '';
+
+const queueResults = [];
+const watchedResults = [];
 
 const refs = {
-  authorizationButton: document.querySelector('.btn__library-authorization'),
+  authorizationButton: document.querySelector('.btn__authorization'),
   authorizationModal: document.querySelector('.authorization-modal__backdrop'),
   authorizationModalCloseButton: document.querySelector(
     '.authorization-modal__close-button'
@@ -52,8 +55,12 @@ refs.logOffButton.addEventListener('click', logOff);
 refs.loginFormSwitcher.addEventListener('click', loginFormHideSwitcher);
 refs.signupFormSwitcher.addEventListener('click', signupFormHideSwitcher);
 
+//
+isUserAuthenticatedHandler();
+
 function authorizationModalToggle() {
   window.addEventListener('keydown', onEscButtonPressed);
+  refs.authorizationModal.addEventListener('click', onBackdropClick);
   refs.authorizationModal.classList.toggle('hidden');
 }
 
@@ -64,13 +71,14 @@ function onEscButtonPressed(event) {
   }
 }
 
-// function onBackdropClick(event) {
-//   event.preventDefault();
-//   const backdrop = event.target;
-//   if (backdrop.classList.contains('authorization-modal__backdrop')) {
-//     onCloseModal();
-//   }
-// }
+function onBackdropClick(event) {
+  event.preventDefault();
+  const backdrop = event.target;
+  if (backdrop.classList.contains('authorization-modal__backdrop')) {
+    onCloseModal();
+  }
+  refs.authorizationModal.removeEventListener('click', onBackdropClick);
+}
 
 function onCloseModal() {
   authorizationModalToggle();
@@ -88,20 +96,29 @@ function signupFormHideSwitcher() {
 }
 
 function isUserAuthenticatedHandler() {
-  if (isUserAuthenticated) {
+  const isLoginState = localStorage.getItem(LOGIN_STATE_KEY);
+  if (isLoginState) {
+    const parsedData = JSON.parse(isLoginState);
     refs.loginForm.classList.toggle('hidden');
     refs.userInformation.classList.toggle('hidden');
-    refs.userEmailLabel.textContent = userEmail;
+    refs.userEmailLabel.textContent = parsedData.userEmail;
+    uid = parsedData.userId;
   }
   return;
 }
 
-const rawData = [
-  { id: '1', name: 'Yu Soroka', number: '111-11-11' },
-  { id: '2', name: 'Yurii Soroka', number: '111-11-11' },
-  { id: '3', name: 'Yur Soroa', number: '111-11-11' },
-  { id: '4', name: 'Yrii Soka', number: '111-11-11' },
-];
+function saveLoginState(userId, userEmail) {
+  const loginState = {
+    userId,
+    userEmail,
+  };
+  const rawData = JSON.stringify(loginState);
+  localStorage.setItem(LOGIN_STATE_KEY, rawData);
+}
+
+function removeLoginState() {
+  localStorage.removeItem(LOGIN_STATE_KEY);
+}
 
 // ініціалізація додатку, авторизації, та бази даних firebase
 const app = initializeApp(firebaseConfig);
@@ -159,6 +176,7 @@ function loginSubmitHandler(event) {
           form.reset();
           isUserAuthenticated = true;
           userEmail = login;
+          saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
           onCloseModal();
         })
@@ -177,6 +195,7 @@ function logOff() {
   signOut(auth)
     .then(() => {
       Notiflix.Notify.warning('Авторизацію скасовано');
+      removeLoginState();
       onCloseModal();
       refs.loginForm.classList.toggle('hidden');
       refs.userInformation.classList.toggle('hidden');
@@ -184,4 +203,60 @@ function logOff() {
     .catch(error => {
       Notiflix.Notify.warning(`Виникли проблеми при виході: ${error.message}`);
     });
+}
+
+if (uid !== '') {
+  dataSync();
+}
+// синхронізація firebase та local storage
+function dataSync() {
+  const watchedLocalData = localStorage.getItem('watched');
+  const queueLocalData = localStorage.getItem('queue');
+  const watchedLocalArray = JSON.parse(watchedLocalData);
+  const queueLocalArray = JSON.parse(queueLocalData);
+  // console.log(watchedLocalArray);
+  // console.log(queueLocalArray);
+  readWatchedDataFromDatabase();
+  readQueueDataFromDatabase();
+  // console.log(watchedResults);
+  // console.log(queueResults);
+
+  const combainedWatchedArray = [
+    ...new Set(watchedLocalArray?.concat(watchedResults)),
+  ];
+  const combainedQueueArray = [
+    ...new Set(queueLocalArray?.concat(queueResults)),
+  ];
+  writeDataToDataStores(combainedWatchedArray, combainedQueueArray);
+  // console.log(combainedArray);
+}
+
+async function readQueueDataFromDatabase() {
+  const userId = uid;
+  const dbRef = ref(database, `users/${userId}/queue`);
+  const queueSnapshot = await get(dbRef);
+  if (queueSnapshot.exists()) {
+    for (const movie of queueSnapshot.val()) {
+      queueResults.push(movie);
+    }
+  }
+}
+
+async function readWatchedDataFromDatabase() {
+  const userId = uid;
+  const dbRef = ref(database, `users/${userId}/watched`);
+  const queueSnapshot = await get(dbRef);
+  if (queueSnapshot.exists()) {
+    for (const movie of queueSnapshot.val()) {
+      watchedResults.push(movie);
+    }
+  }
+}
+
+function writeDataToDataStores(watchedArray, queueArray) {
+  const userId = uid;
+  const watchedArrayRef = ref(database, `users/${userId}/watched`);
+  const queueArrayRef = ref(database, `users/${userId}/queue`);
+  set(watchedArrayRef, watchedArray);
+  set(queueArrayRef, queueArray);
 }
