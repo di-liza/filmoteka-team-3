@@ -31,7 +31,7 @@
 .library-btn__container {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 1%;
   @include tablet {
     position: static;
     padding-top: 16px;
@@ -42,11 +42,14 @@
 .library__button-list {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
+  @include tablet {
+    gap: 8px;
+  }
 }
 
 .btn__library-watch {
-  width: 80px;
+  width: 75px;
   height: 34px;
   background-color: #ffffff;
   color: #b92f2c;
@@ -69,7 +72,7 @@
 }
 
 .btn__library-queue {
-  width: 70px;
+  width: 68px;
   height: 34px;
   background-color: #ffffff;
   color: #b92f2c;

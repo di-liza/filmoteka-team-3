@@ -11,9 +11,10 @@
             name="searchQuery"
             placeholder="Movie search"
             autocomplete="off"
+            alt="Input to search for a movie by keyword"
           />
         </label>
-        <button class="search-form__button" type="submit">
+        <button class="search-form__button" type="submit" aria-label="Search">
           <svg class="search-form__icon">
             <use href="./icons/icons-sprite.svg#icon-search-2"></use>
           </svg>
@@ -43,7 +44,7 @@
       </div>
 
       <div class="toolbar">
-        <input type="checkbox" class="checkbox hidden" id="checkbox" />
+        <input type="checkbox" class="checkbox hidden" id="checkbox" aria-label="Change page color theme"/>
         <label for="checkbox" class="checkbox-label">
           <svg class="icon-sun" width="32" height="32">
             <use href="./icons/dark-theme.svg#icon-sun"></use>
@@ -54,7 +55,7 @@
           <span class="ball"></span>
         </label>
 
-        <button class="btn__authorization active">
+        <button class="btn__authorization active" aria-label="Autorization">
           <svg class="icon-user" width="32" height="32">
             <use href="./icons/icons-sprite.svg#icon-user"></use>
           </svg>

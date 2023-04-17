@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import { createMarkupOneCard } from './renderCardMarkup';
+import { createMarkupCards } from './renderCardMarkup';
 
 import { getMovie } from './searchInput';
 import { GetMovie } from './apiFetch';
@@ -21,7 +21,7 @@ export function addPagination(total) {
     apiMovie
       .getTrandMovies(currentPage)
       .then(({ results }) => {
-        createMarkupOneCard(results);
+        createMarkupCards(results);
       })
       .catch(error => console.log(error.stack));
   });
@@ -54,7 +54,7 @@ export function addPaginationSearching(total, totalPages) {
     getMovie
       .getMoviesByName(currentPage)
       .then(({ results }) => {
-        createMarkupOneCard(results);
+        createMarkupCards(results);
       })
       .catch(error => console.log(error.stack));
   });

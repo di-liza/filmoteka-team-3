@@ -4,19 +4,19 @@ const getMovie = new GetMovie();
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
-  const perent = e.target.closest('li');
-  const button = e.target.closest('button');
-  const { id } = button?.dataset || {};
-  console.log('id :', id);
-
-  showTrailer(id);
-
+  if (e.target.nodeName === 'BUTTON') {
+    const button = e.target.closest('button');
+    const { id } = button?.dataset || {};
+    console.log('id :', id);
+    showTrailer(id);
+  }
 });
 
 let key = '';
 export async function showTrailer(id) {
   try {
     const { results } = await getMovie.getMovieTrailer(id);
+    console.log(results);
     const trailer = results.find(item => {
       return item.type === 'Trailer';
     });
@@ -25,7 +25,7 @@ export async function showTrailer(id) {
       return;
     }
     key = trailer ? trailer.key : '';
-    getVideo(key)
+    getVideo(key);
   } catch (error) {
     console.log(error.message);
   }
@@ -44,15 +44,15 @@ async function getVideo(key) {
   ></iframe> `;
 
   if (localStorage.getItem('theme')) {
-    crossIcon.classList.add("dark");
-    return videoModal.classList.add("dark");
+    crossIcon.classList.add('dark');
+    return videoModal.classList.add('dark');
   }
 
   if (!localStorage.getItem('theme')) {
-  crossIcon.classList.remove("dark");
-  return videoModal.classList.remove("dark");
+    crossIcon.classList.remove('dark');
+    return videoModal.classList.remove('dark');
   }
-};  
+}
 
 const btnClose = document.querySelector('.modal-close-btn');
 btnClose.addEventListener('click', () => closeModal());
