@@ -4,12 +4,12 @@ const getMovie = new GetMovie();
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
-  const perent = e.target.closest('li');
-  const button = e.target.closest('button');
-  const { id } = button?.dataset || {};
-  console.log('id :', id);
-
-  showTrailer(id);
+  if (e.target.nodeName === 'BUTTON') {
+    const button = e.target.closest('button');
+    const { id } = button?.dataset || {};
+    console.log('id :', id);
+    showTrailer(id);
+  }
 });
 
 let key = '';

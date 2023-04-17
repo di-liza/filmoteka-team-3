@@ -85,6 +85,21 @@ export class GetMovie {
       Notify.failure(error.message);
     }
   }
+  async getTrandMoviesWeek(page) {
+    try {
+      const params = {
+        api_key: API_KEY,
+        language: 'en-US',
+        page: page,
+      };
+      const response = await axios.get(`${BASE_URL}/trending/movie/week?`, {
+        params,
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   resetPage() {
     this.page = 1;
