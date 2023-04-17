@@ -122,6 +122,8 @@ export async function movieCardModal(result) {
 
   // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
   // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+
+  // Знаходимо кнопки ADD_WATCHED, ADD_QUEUE та додаєм слухачів
   const btnAddOrRemoveWatched = document.querySelector('[data=watched]');
   const btnAddOrRemoveQueue = document.querySelector('[data=queue]');
   btnAddOrRemoveWatched.addEventListener(

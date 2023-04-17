@@ -31,9 +31,10 @@ function getMoviesWatched() {
     myLocalStorage.results = JSON.parse(movies);
     myLocalStorage.selectedArray = 'watched';
     myLocalStorage.createMarkupOneCard();
+    movieCollection.style.pointerEvents = 'auto';
   } else {
-    movieCollection.classList.replace('movie-collection', 'no-click');
     movieCollection.innerHTML = myLocalStorage.plug;
+    movieCollection.style.pointerEvents = 'none';
   }
 }
 
@@ -45,7 +46,9 @@ function getMoviesQueue() {
     myLocalStorage.results = JSON.parse(movies);
     myLocalStorage.selectedArray = 'queue';
     myLocalStorage.createMarkupOneCard();
+    movieCollection.style.pointerEvents = 'auto';
   } else {
     movieCollection.innerHTML = myLocalStorage.plug;
+    movieCollection.style.pointerEvents = 'none';
   }
 }
