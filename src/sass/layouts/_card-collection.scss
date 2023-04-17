@@ -31,6 +31,7 @@
 .movie-collection__item {
   position: relative;
   cursor: pointer;
+  border-radius: 5px;
    @include tablet {
   width: calc((100% - 32px) / 2);
   
@@ -38,7 +39,32 @@
   @include desktop {
     width: calc((100% - 32px) / 3);
   }
+  &:focus {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
 }
+
+.movie-collection__item:active{
+  transform: scale(0.95) ;
+  // border: 5px solid;
+  // border-color: #757575;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.16), 
+        15px 15px 15px rgba(0, 0, 0, 0.16),
+        15px -15px 15px rgba(0, 0, 0, 0.16),
+        -15px 15px 15px rgba(0, 0, 0, 0.16);
+
+
+  // translateY(10px) translateX(3px)
+}
+
+.movie-collection__item:hover{
+  &:hover {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
+}
+
 
 .movie-collection__button {
   position: absolute;
