@@ -243,7 +243,6 @@ function dataSync() {
       }
       const watchedArrayRef = ref(database, `users/${uid}/watched`);
       movies ? watchedLocalArray?.concat(movies) : null;
-      console.log(watchedLocalArray);
       set(watchedArrayRef, watchedLocalArray);
     } catch (error) {
       Notiflix.Notify.failure(`Помилка ${error.message}`);
@@ -257,7 +256,6 @@ function dataSync() {
       }
       const queueArrayRef = ref(database, `users/${uid}/queue`);
       movies ? queueLocalArray?.concat(movies) : null;
-      console.log(queueLocalArray);
       set(queueArrayRef, queueLocalArray);
     } catch (error) {
       Notiflix.Notify.failure(`Помилка ${error.message}`);
