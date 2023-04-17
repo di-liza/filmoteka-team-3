@@ -29,7 +29,7 @@ button.addEventListener('click', e => {
   ) {
     const perent = e.target.closest('li');
     const { id } = perent.dataset;
-    // myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
+    myMovieLocalStorage.selectedArray = perent?.dataset.selectedarray;
     openModal(id);
   }
 });

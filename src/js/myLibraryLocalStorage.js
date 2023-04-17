@@ -1,4 +1,3 @@
-import { getGenres } from './genres';
 import { LocalStorage } from './localStorage';
 
 const myLocalStorage = new LocalStorage();
@@ -15,40 +14,36 @@ const buttonLib = {
 
 getMoviesWatched();
 
-// myLocalStorage.results = JSON.parse(localStorage.getItem('watched'));
-// myLocalStorage.selectedArray = 'watched';
-// myLocalStorage.createMarkupOneCard();
-
 buttonLib.watched.style.cssText = stylePushButton;
 buttonLib.watched.addEventListener('click', getMoviesWatched);
 buttonLib.queue.addEventListener('click', getMoviesQueue);
 
 function getMoviesWatched() {
-  buttonLib.queue.style.cssText = '';
-  buttonLib.watched.style.cssText = stylePushButton;
-  const movies = localStorage.getItem('watched');
-  if (myLocalStorage.isLibraryWatched()) {
-    myLocalStorage.results = JSON.parse(movies);
-    myLocalStorage.selectedArray = 'watched';
-    myLocalStorage.createMarkupOneCard();
-    movieCollection.style.pointerEvents = 'auto';
-  } else {
-    movieCollection.innerHTML = myLocalStorage.plug;
-    movieCollection.style.pointerEvents = 'none';
-  }
+  getMovies('watched');
 }
 
 function getMoviesQueue() {
-  buttonLib.watched.style.cssText = '';
-  buttonLib.queue.style.cssText = stylePushButton;
-  const movies = localStorage.getItem('queue');
-  if (myLocalStorage.isLibraryQueue()) {
+  getMovies('queue');
+}
+
+function getMovies(watchedOrQueue) {
+  let isLibrary;
+  if (watchedOrQueue === 'queue') {
+    isLibrary = myLocalStorage.isLibraryQueue();
+    buttonLib.watched.style.cssText = '';
+    buttonLib.queue.style.cssText = stylePushButton;
+  } else {
+    isLibrary = myLocalStorage.isLibraryWatched();
+    buttonLib.queue.style.cssText = '';
+    buttonLib.watched.style.cssText = stylePushButton;
+  }
+  const movies = localStorage.getItem(watchedOrQueue);
+  if (isLibrary) {
     myLocalStorage.results = JSON.parse(movies);
-    myLocalStorage.selectedArray = 'queue';
-    myLocalStorage.createMarkupOneCard();
+    myLocalStorage.selectedArray = watchedOrQueue;
+    myLocalStorage.createMarkupCards();
     movieCollection.style.pointerEvents = 'auto';
   } else {
-    movieCollection.innerHTML = myLocalStorage.plug;
-    movieCollection.style.pointerEvents = 'none';
+    myLocalStorage.markupPlug();
   }
 }
