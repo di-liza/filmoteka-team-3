@@ -2,7 +2,7 @@ import { GetMovie } from './apiFetch';
 import { createMarkupOneCard, createMarkupDropList } from './renderCardMarkup';
 import { addPaginationSearching } from './pagination';
 import { openModal } from './movieCardModal';
-import { showTrailer} from './videoModal';
+import { showTrailer } from './videoModal';
 import { debounce } from 'debounce';
 
 const negativeSearchMessage = document.querySelector('.error-message');
@@ -12,8 +12,8 @@ const droplist = document.querySelector('.movie-droplist');
 
 export const getMovie = new GetMovie();
 
-searchForm.addEventListener('submit', searchMovie);
-searchForm.addEventListener('input', debounce(getDropListMovies, 500));
+searchForm?.addEventListener('submit', searchMovie);
+searchForm?.addEventListener('input', debounce(getDropListMovies, 500));
 
 //Функция для создания выпадающего списка поиска
 

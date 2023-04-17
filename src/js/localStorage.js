@@ -1,4 +1,5 @@
 import { getGenres } from './genres';
+import { createMarkupOneCard } from './renderCardMarkup';
 const classBtnQueue = 'navigation__link--queue';
 const classBtnWatched = 'navigation__link--watched';
 const classBtnAddQueue = 'navigation__link--addQueue';
@@ -13,6 +14,7 @@ export class LocalStorage {
     this.numMoviesInPages = 20;
     this.movieCollection = document.querySelector('.movie-collection');
     this.results;
+    this.plug = `<li class="plug"><img class="plug_poster" src="https://otv.one/uploads/default_image/thumbnail.jpg" alt="plug" /></li>`; //pointer-events: none;
     this.addToLocalStorage = this.addToLocalStorage.bind(this);
     this.createMarkupOneCard = this.createMarkupOneCard.bind(this);
     this.removeFromLocalStorage = this.removeFromLocalStorage.bind(this);
@@ -110,7 +112,11 @@ export class LocalStorage {
       queueSpan.textContent = this.textAddBTN;
       if (this.selectedArray === watchedOrQueue) {
         this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-        this.createMarkupOneCard();
+        if (JSON.parse(localStorage.getItem(watchedOrQueue))?.length > 0) {
+          this.createMarkupOneCard();
+        } else {
+          this.movieCollection.innerHTML = this.plug;
+        }
       }
     }
   }
