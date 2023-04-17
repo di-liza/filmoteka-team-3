@@ -11,7 +11,7 @@ export class GetMovie {
   page = 1;
   query = null;
   movie_id = null;
-  //   Запрос на самые популярные фильмы за месяц
+
   async getTrandMovies(page) {
     showLoader();
     try {
@@ -30,7 +30,6 @@ export class GetMovie {
     }
   }
 
-  //  Запрос для поиска по ключевому слову
   async getMoviesByName(page) {
     showLoader();
     try {
@@ -50,7 +49,6 @@ export class GetMovie {
     }
   }
 
-  // Запрос для полной информации про фильм
   async getMovieFullInfo(id) {
     showLoader();
     try {
@@ -68,7 +66,6 @@ export class GetMovie {
     }
   }
 
-  // Запрос трейлера фильма
   async getMovieTrailer(movie_id) {
     showLoader();
     try {
