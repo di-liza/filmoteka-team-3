@@ -1,200 +1,205 @@
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    transition: width 2s;
-  }
-  
-  .modal--show {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .stop-scrolling {
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .movieCardModal {
-    position: relative;
-  }
-  
-  
-  .movieCardModal__container {
-    overflow-x: auto;
-  
-    position: relative;
-    margin: auto;
-    background-color: var(--base-white);
-    font-weight: 500;
-    font-size: 12px;
-    line-height: calc(16 / 12);
-    color: var(--base-black);
-    max-height: 100vh;
-    width: 280px;
-    padding: 48px 20px 40px 20px;
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: width 2s;
+}
 
-    @include tablet {
-      display: flex;
-      margin: auto;
-      width: 704px;
-      height: 552px;
-      padding: 40px 72px 64px 36px;
-    }
-    @include desktop {
-      display: flex;
-      width: 806px;
-      height: 558px;
-      padding: 40px 12px;
-    }
-  }
-  .movieCardModal__image--el {
-    margin-right: auto;
-    margin-left: auto;
-    display: block;
-  
-    max-width: 240px;
-    height: 356px;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    @include tablet {
-      max-width: 264px;
-      height: 373.55px;
-    }
-    @include desktop {
-      max-width: 375px;
-      height: 478px;
-    }
-  }
-  .movieCardModal__image {
-    @include tablet {
-      margin-right: 68px;
-    }
-    @include desktop {
-      margin-right: 16px;
-    }
-  }
-  .movieCardModal__information {
-    text-align: start;
-  }
-  
-  .movieCardModal__title {
-    font-size: 20px;
-    line-height: 1.15;
-    margin-bottom: 20px;
-    @include desktop {
-      font-size: 30px;
-      line-height: 1.17;
-    }
-  }
-  
-  .movieCardModal__item {
+.modal--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+.movieCardModal {
+  position: relative;
+}
+
+
+.movieCardModal__container {
+  overflow-x: auto;
+
+  position: relative;
+  margin: auto;
+  background-color: var(--base-white);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: calc(16 / 12);
+  color: var(--base-black);
+  max-height: 100vh;
+  width: 280px;
+  padding: 48px 20px 40px 20px;
+
+  @include tablet {
     display: flex;
-    margin-bottom: 10px;
+    margin: auto;
+    width: 704px;
+    padding: 40px 72px 64px 36px;
   }
-  .movieCardModal__details {
-    color: var(--modal-category-text-color);
-    min-width: 108px;
+  @include desktop {
+    display: flex;
+    width: 806px;
+    padding: 40px 12px;
   }
-  
-  .movieCardModal__info--uper {
-    text-transform: uppercase;
+}
+.movieCardModal__image--el {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+
+  max-width: 240px;
+  height: 356px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  @include tablet {
+    max-width: 264px;
+    height: 373.55px;
+    margin-bottom: 0;
+  }
+  @include desktop {
+    max-width: 375px;
+    height: 478px;
+  }
+}
+.movieCardModal__image {
+  max-width: 240px;
+  height: 356px;
+  @include tablet {
+    margin-right: 68px;
+    max-width: 264px;
+    height: 373.55px;
+  }
+  @include desktop {
+    margin-right: 16px;
+    max-width: 375px;
+    height: 478px;
+  }
+}
+.movieCardModal__information {
+  text-align: start;
+}
+
+.movieCardModal__title {
+  font-size: 20px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  @include desktop {
+    font-size: 30px;
     line-height: 1.17;
   }
-  
-  .movieCardModal__rating--orange {
-    padding-left: 10px;
-    padding-right: 10px;
-    color: var(--base-white);
+}
+
+.movieCardModal__item {
+  display: flex;
+  margin-bottom: 10px;
+}
+.movieCardModal__details {
+  color: var(--modal-category-text-color);
+  min-width: 108px;
+}
+
+.movieCardModal__info--uper {
+  text-transform: uppercase;
+  line-height: 1.17;
+}
+
+.movieCardModal__rating--orange {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: var(--base-white);
+  background-color: var(--acent-red);
+
+  border-radius: 5px;
+}
+.movieCardModal__rating--divider {
+  margin-right: 3px;
+}
+
+.movieCardModal__about__title {
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.movieCardModal__about__text {
+  line-height: 1.67;
+  margin-bottom: 21px;
+  @include tablet {
+    width: 264px;
+  }
+  @include desktop {
+    width: 391px;
+  }
+}
+.movieCardModal__btn--wrapper {
+  display: flex;
+  gap: 6px;
+}
+.movieCardModal__btn {
+  font-size: 12px;
+  line-height: 1.17;
+  padding: 8px 7px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 100px;
+  color: var(--acent-red);
+  background-color: var(--base-white);
+  cursor: pointer;
+  border: 1px solid var(--base-black);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
     background-color: var(--acent-red);
-  
-    border-radius: 5px;
+    color: var(--base-white);
+    border: 1px solid var(--acent-red);
   }
-  .movieCardModal__rating--divider {
-    margin-right: 3px;
+  @include tablet {
+    padding: 12px 18px;
   }
-  
-  .movieCardModal__about__title {
-    text-transform: uppercase;
-    margin-top: 20px;
-    margin-bottom: 8px;
+  @include desktop {
+    padding: 14px 32px;
   }
-  .movieCardModal__about__text {
-    line-height: 1.67;
-    margin-bottom: 21px;
-    @include tablet {
-      width: 264px;
-    }
-    @include desktop {
-      width: 391px;
-    }
+}
+
+.modal-btn-cross {
+  cursor: pointer;
+  font-family: inherit;
+  position: absolute;
+  background-color: initial;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  z-index: 600;
+  &__icon.dark {
+    stroke: var(--base-white);
+    background: transparent;
   }
-  .movieCardModal__btn--wrapper {
-    display: flex;
-    gap: 6px;
-  }
-  .movieCardModal__btn {
-    font-size: 12px;
-    line-height: 1.17;
-    padding: 8px 7px;
-    text-align: center;
-    text-transform: uppercase;
-    border-radius: 100px;
-    color: var(--acent-red);
-    background-color: var(--base-white);
-    cursor: pointer;
-    border: 1px solid var(--base-black);
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &__icon {
+    z-index: 601;
+    stroke: var(--base-black);
+    width: 14px;
+    height: 14px;
     &:hover,
     &:focus {
-      background-color: var(--acent-red);
-      color: var(--base-white);
-      border: 1px solid var(--acent-red);
-    }
-    @include tablet {
-      padding: 12px 18px;
-    }
-    @include desktop {
-      padding: 14px 32px;
+      stroke: var(--acent-red);
     }
   }
-  
-  .modal-btn-cross {
-    cursor: pointer;
-    font-family: inherit;
-    position: absolute;
-    background-color: initial;
-    top: 16px;
-    right: 16px;
-    padding: 0;
-    border: none;
-    z-index: 600;
-    &__icon.dark {
-      stroke: var(--base-white);
-      background: transparent;
-    }
-    &__icon {
-      z-index: 601;
-      stroke: var(--base-black);
-      width: 14px;
-      height: 14px;
-      &:hover,
-      &:focus {
-        stroke: var(--acent-red);
-      }
-    }
-  }
-  
-  .dark {
-    background: #000000;
-    background: -webkit-linear-gradient(to top, #434343, #000000);
-    background: linear-gradient(to top, #434343, #000000);
-    color: var(--base-white);
-  }
+}
+
+.dark {
+  background: #000000;
+  background: -webkit-linear-gradient(to top, #434343, #000000);
+  background: linear-gradient(to top, #434343, #000000);
+  color: var(--base-white);
+}
