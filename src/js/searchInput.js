@@ -1,9 +1,10 @@
 import { GetMovie } from './apiFetch';
-import { createMarkupOneCard, createMarkupDropList } from './renderCardMarkup';
+import { createMarkupCards, createMarkupDropList } from './renderCardMarkup';
 import { addPaginationSearching } from './pagination';
 import { openModal } from './movieCardModal';
-import { showTrailer} from './videoModal';
+import { showTrailer } from './videoModal';
 import { debounce } from 'debounce';
+import { Notify } from 'notiflix';
 
 const negativeSearchMessage = document.querySelector('.error-message');
 const searchForm = document.querySelector('.search-form');
@@ -12,8 +13,8 @@ const droplist = document.querySelector('.movie-droplist');
 
 export const getMovie = new GetMovie();
 
-searchForm.addEventListener('submit', searchMovie);
-searchForm.addEventListener('input', debounce(getDropListMovies, 500));
+searchForm?.addEventListener('submit', searchMovie);
+searchForm?.addEventListener('input', debounce(getDropListMovies, 500));
 
 //Функция для создания выпадающего списка поиска
 
@@ -67,7 +68,7 @@ async function getDropListMovies() {
       }
     });
   } catch (error) {
-    console.log(error, error.stack);
+    Notify.failure(error.message);
   }
 }
 
@@ -99,10 +100,10 @@ async function getFoundMovies() {
     }
     clearErrorMessage();
     getMovie.resetPage();
-    createMarkupOneCard(data.results);
+    createMarkupCards(data.results);
     addPaginationSearching(data.total_results, data.total_pages);
   } catch (error) {
-    console.log(error, error.stack);
+    Notify.failure(error.message);
   }
 }
 

@@ -30,6 +30,11 @@
   color: #545454;
   min-width: 320px;
   flex-direction: column;
+
+  .footer.dark & {
+    color: var(--base-white);
+  }
+
   @media screen and (min-width: 768px) {
     width: 768px;
     display: flex;
