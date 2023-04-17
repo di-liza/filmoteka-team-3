@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { showLoader, hideLoader } from './loader';
 import { debounce } from 'debounce';
+import { Notify } from 'notiflix';
 const hideLoaderDebounced = debounce(hideLoader, 200);
 
 const API_KEY = '5cb4dd4cf3f1476227d92f7c4b196044';
@@ -25,7 +26,7 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
@@ -45,7 +46,7 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
@@ -63,7 +64,7 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
@@ -84,7 +85,7 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
