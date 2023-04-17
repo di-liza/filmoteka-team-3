@@ -32,6 +32,7 @@
   position: relative;
   cursor: pointer;
   border-radius: 5px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
    @include tablet {
   width: calc((100% - 32px) / 2);
   
@@ -53,6 +54,7 @@
   &:hover {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
       1px 4px 6px rgba(0, 0, 0, 0.16);
+    transform: scale(1.03);
   }
 }
 
