@@ -242,7 +242,7 @@ function dataSync() {
         localStorage.setItem('watched', JSON.stringify(movies));
       }
       const watchedArrayRef = ref(database, `users/${uid}/watched`);
-      movies ? watchedLocalArray.concat(movies) : null;
+      movies ? watchedLocalArray?.concat(movies) : null;
       console.log(watchedLocalArray);
       set(watchedArrayRef, watchedLocalArray);
     } catch (error) {
@@ -256,7 +256,7 @@ function dataSync() {
         localStorage.setItem('queue', JSON.stringify(movies));
       }
       const queueArrayRef = ref(database, `users/${uid}/queue`);
-      movies ? queueLocalArray.concat(movies) : null;
+      movies ? queueLocalArray?.concat(movies) : null;
       console.log(queueLocalArray);
       set(queueArrayRef, queueLocalArray);
     } catch (error) {

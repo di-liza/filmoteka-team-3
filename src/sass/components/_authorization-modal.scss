@@ -24,8 +24,7 @@
   padding: 20px;
   width: 450px;
   border-radius: 4px;
-  // background-color: #49598d;
-  background-color: #ffffff;
+  background-color: var(--base-white);
   transform: translate(-50%, -50%) scale(1);
 
   transition-property: transform;
@@ -50,7 +49,7 @@
   display: block;
   padding: 0;
   margin-left: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: none;
   background: none;
   cursor: pointer;
@@ -59,15 +58,16 @@
 .authorization-modal__close-icon {
   width: 32px;
   height: 32px;
-  fill: #000000;
+  fill: var(--base-black);
 
   .authorization-modal__close-button:hover & {
-    fill: #660000;
+    fill: var(--acent-red);
   }
 }
 
 .authorization-modal__login-form,
-.authorization-modal__signup-form {
+.authorization-modal__signup-form,
+.authorization-modal__user-information {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +83,7 @@
   border: none;
   border-bottom: 1px solid rgba(157, 164, 189, 0.4);
   background: none;
-  color: #000000;
+  color: var(--base-black);
 
   transition-property: border-color;
   transition-duration: 250ms;
@@ -105,10 +105,10 @@
 
   &:focus {
     outline: none;
-    border-color: #000000;
+    border-color: var(--base-black);
 
     &::placeholder {
-      color: #000000;
+      color: var(--base-black);
     }
   }
 }
@@ -122,18 +122,19 @@
 .authorization-modal__login-button,
 .authorization-modal__signup-button,
 .authorization-modal__login-form-switcher,
-.authorization-modal__signup-form-switcher {
+.authorization-modal__signup-form-switcher,
+.authorization-modal__logoff {
   width: 102px;
   height: 34px;
-  background-color: #ffffff;
-  color: #b92f2c;
+  background-color: var(--base-white);
+  color: var(--acent-red);
   border-radius: 100px;
   border: transparent;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
   text-transform: uppercase;
-  border: 1px solid #000000;
+  border: 1px solid var(--base-black);
   @include tablet {
     height: 38px;
   }
@@ -149,9 +150,26 @@
 .authorization-modal__signup-form-switcher {
   &:hover,
   &:focus {
-    background-color: #b92f2c;
-    color: #ffffff;
+    background-color: var(--acent-red);
+    color: var(--base-white);
     box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
     border: none;
   }
+}
+
+.authorization-modal__login-form-switcher,
+.authorization-modal__signup-form-switcher {
+  background-color: green;
+  color: var(--base-white);
+  border: none;
+}
+
+.authorization-modal__user-email {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.authorization-modal__header {
+  margin-bottom: 30px;
+  font-size: 24px;
 }
