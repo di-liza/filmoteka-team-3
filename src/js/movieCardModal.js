@@ -5,21 +5,40 @@ const getMovie = new GetMovie();
 const myMovieLocalStorage = new LocalStorage();
 
 const button = document.querySelector('.movie-collection');
+const sliderCards = document.querySelector('.swiper-wrapper');
+const sliderCard = document.querySelector('.swiper-slide');
+
+sliderCards?.addEventListener('click', e => {
+  console.log(e.target.nodeName);
+  if (e.target.nodeName === 'IMG') {
+    const perent = e.target.closest('div');
+    // console.log('perent:', perent);
+    const { id } = e.target.dataset;
+    console.log('id:', id);
+    myMovieLocalStorage.selectedArray = perent?.dataset.selectedarray;
+    openModal(id);
+  }
+});
 
 button.addEventListener('click', e => {
-  if (e.target.nodeName === 'BUTTON') return;
-  const perent = e.target.closest('li');
-  const { id } = perent.dataset;
-  myMovieLocalStorage.selectedArray = perent.dataset.selectedarray; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
-  openModal(id);
+  if (
+    e.target.nodeName === 'LI' ||
+    e.target.nodeName === 'IMG' ||
+    e.target.nodeName === 'P' ||
+    e.target.nodeName === 'H2'
+  ) {
+    const perent = e.target.closest('li');
+    const { id } = perent.dataset;
+    // myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
+    openModal(id);
+  }
 });
 
 export async function openModal(id) {
   try {
     const result = await getMovie.getMovieFullInfo(id);
-    myMovieLocalStorage.movie = result; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+    myMovieLocalStorage.movie = result;
     movieCardModal(result);
-    // console.log(result);
   } catch (error) {
     console.log(error.stack);
   }
@@ -69,7 +88,7 @@ export async function movieCardModal(result) {
   <div class="movieCardModal__image">
     <img
       class="movieCardModal__image--el"
-      src="https://image.tmdb.org/t/p/w500/${poster}"
+      src="${poster}"
       alt="${title}"
     />
   </div>
@@ -120,9 +139,6 @@ export async function movieCardModal(result) {
   const btnClose = document.querySelector('.modal-btn-cross');
   btnClose.addEventListener('click', () => closeModal());
 
-  // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
-  // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
-
   // Знаходимо кнопки ADD_WATCHED, ADD_QUEUE та додаєм слухачів
   const btnAddOrRemoveWatched = document.querySelector('[data=watched]');
   const btnAddOrRemoveQueue = document.querySelector('[data=queue]');
@@ -134,9 +150,6 @@ export async function movieCardModal(result) {
     'click',
     myMovieLocalStorage.addOrRemoveFromLocalStoradgeQueue
   );
-
-  // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
-  // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
 }
 
 function closeModal() {

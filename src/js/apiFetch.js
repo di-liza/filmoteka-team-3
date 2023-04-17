@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { showLoader, hideLoader } from './loader';
 import { debounce } from 'debounce';
+import { Notify } from 'notiflix';
 const hideLoaderDebounced = debounce(hideLoader, 200);
 
 const API_KEY = '5cb4dd4cf3f1476227d92f7c4b196044';
@@ -10,7 +11,7 @@ export class GetMovie {
   page = 1;
   query = null;
   movie_id = null;
-  //   Запрос на самые популярные фильмы за месяц
+
   async getTrandMovies(page) {
     showLoader();
     try {
@@ -25,11 +26,10 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
-  //  Запрос для поиска по ключевому слову
   async getMoviesByName(page) {
     showLoader();
     try {
@@ -45,11 +45,10 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
-  // Запрос для полной информации про фильм
   async getMovieFullInfo(id) {
     showLoader();
     try {
@@ -63,11 +62,10 @@ export class GetMovie {
       hideLoaderDebounced();
       return response.data;
     } catch (error) {
-      console.log(error);
+      Notify.failure(error.message);
     }
   }
 
-  // Запрос трейлера фильма
   async getMovieTrailer(movie_id) {
     showLoader();
     try {
@@ -82,6 +80,21 @@ export class GetMovie {
         }
       );
       hideLoaderDebounced();
+      return response.data;
+    } catch (error) {
+      Notify.failure(error.message);
+    }
+  }
+  async getTrandMoviesWeek(page) {
+    try {
+      const params = {
+        api_key: API_KEY,
+        language: 'en-US',
+        page: page,
+      };
+      const response = await axios.get(`${BASE_URL}/trending/movie/week?`, {
+        params,
+      });
       return response.data;
     } catch (error) {
       console.log(error);
