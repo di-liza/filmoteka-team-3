@@ -221,12 +221,10 @@ function dataSync() {
   // console.log(watchedResults);
   // console.log(queueResults);
 
-  const combainedWatchedArray = [
-    ...new Set(watchedLocalArray?.concat(watchedResults)),
-  ];
-  const combainedQueueArray = [
-    ...new Set(queueLocalArray?.concat(queueResults)),
-  ];
+  const tempWatchedArray = watchedLocalArray?.concat(watchedResults);
+  const combainedWatchedArray = [...new Set(tempWatchedArray)];
+  const tempQueueArray = queueLocalArray?.concat(queueResults);
+  const combainedQueueArray = [...new Set(tempQueueArray)];
   writeDataToDataStores(combainedWatchedArray, combainedQueueArray);
   // console.log(combainedArray);
 }
