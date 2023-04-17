@@ -7,13 +7,10 @@ const myMovieLocalStorage = new LocalStorage();
 const button = document.querySelector('.movie-collection');
 
 button.addEventListener('click', e => {
-  console.log(e);
   if (e.target.nodeName === 'BUTTON') return;
   const perent = e.target.closest('li');
   const { id } = perent.dataset;
-  // const { selectedarray } = perent.dataset;
-  myMovieLocalStorage.selectedArray = perent.dataset.selectedarray;
-  // console.log('selectedArray - ', perent.dataset.selectedarray);
+  myMovieLocalStorage.selectedArray = perent.dataset.selectedarray; // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
   openModal(id);
 });
 
@@ -51,7 +48,9 @@ export async function movieCardModal(result) {
   } else {
     poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
   }
-  modalEl.innerHTML = `    <div class="movieCardModal__container ${localStorage.getItem('theme')}">
+  modalEl.innerHTML = `    <div class="movieCardModal__container ${localStorage.getItem(
+    'theme'
+  )}">
   <button class="modal-btn-cross">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -123,6 +122,8 @@ export async function movieCardModal(result) {
 
   // <<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>> //
   // <<<<<<<<<<<<<<<<<<<<<<Ivan>>>>>>>>>>>>>>>>>>>>>> //
+
+  // Знаходимо кнопки ADD_WATCHED, ADD_QUEUE та додаєм слухачів
   const btnAddOrRemoveWatched = document.querySelector('[data=watched]');
   const btnAddOrRemoveQueue = document.querySelector('[data=queue]');
   btnAddOrRemoveWatched.addEventListener(
