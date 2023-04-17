@@ -176,6 +176,10 @@
     padding: 0;
     border: none;
     z-index: 600;
+    &__icon.dark {
+      stroke: var(--base-white);
+      background: transparent;
+    }
     &__icon {
       z-index: 601;
       stroke: var(--base-black);
@@ -188,3 +192,9 @@
     }
   }
   
+  .dark {
+    background: #000000;
+    background: -webkit-linear-gradient(to top, #434343, #000000);
+    background: linear-gradient(to top, #434343, #000000);
+    color: var(--base-white);
+  }

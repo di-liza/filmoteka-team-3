@@ -6,11 +6,11 @@ import './js/goTopBtn';
 // import './js/pagination'
 // import './js/apiFetch';
 
-// import './js/pageTheme';
+import './js/pageTheme';
 
 // import './js/queueLocalStorage';
-// import './js/teamModal';
-// import './js/videoModal';
+import './js/teamModal';
+import './js/videoModal';
 // import './js/watchedLocalStorage';
 
 // Для добавления
