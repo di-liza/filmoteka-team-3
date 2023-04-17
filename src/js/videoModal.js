@@ -31,7 +31,6 @@ export async function showTrailer(id) {
   }
 }
 
-
 const modalEl = document.querySelector('.modal-video-container');
 
 async function getVideo(key) {
