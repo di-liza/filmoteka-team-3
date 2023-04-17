@@ -41,7 +41,7 @@ export class LocalStorage {
 
   // Визначаємо загальну наявнисть фільмів
   isLibrarys() {
-    return isLibraryQueue() || isLibraryWatched(); // "/src/my-library.html"
+    return isLibraryQueue() || isLibraryWatched();
   }
 
   // Цей метод шукає обраний фільм у масиві та вибирає видалити чи додати фільм у масив
@@ -132,7 +132,7 @@ export class LocalStorage {
           poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         }
         return `  <li class="movie-collection__item" data-id="${id}" data-selectedArray="${this.selectedArray}">
-   <img class="movie-collection__poster" src="${poster}" alt="${title}" />
+   <img class="movie-collection__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="395px" height="574px/>
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">
      <p class="movie-collection__genre">${genresList}</p>
