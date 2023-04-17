@@ -23,6 +23,12 @@
       <div class="library-btn__container">
         <ul class="library__button-list">
           <li class="library__button-item">
+            <button class="btn__library-watch active">Watched</button>
+          </li>
+          <li class="library__button-item">
+            <button class="btn__library-queue active">queue</button>
+          </li>
+          <li class="library__button-item">
             <input type="checkbox" class="checkbox hidden" id="checkbox" />
             <label for="checkbox" class="checkbox-label">
               <svg class="icon-sun" width="32" height="32">
@@ -35,17 +41,15 @@
             </label>
           </li>
           <li class="library__button-item">
-            <button type="button" class="btn__authorization active">
+            <button
+              type="button"
+              class="btn__authorization active"
+              aria-label="Autorization"
+            >
               <svg class="icon-user" width="32" height="32">
                 <use href="./icons/icons-sprite.svg#icon-user"></use>
               </svg>
             </button>
-          </li>
-          <li class="library__button-item">
-            <button class="btn__library-watch active">Watched</button>
-          </li>
-          <li class="library__button-item">
-            <button class="btn__library-queue active">queue</button>
           </li>
         </ul>
       </div>
