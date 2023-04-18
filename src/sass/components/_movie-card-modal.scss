@@ -144,7 +144,68 @@
 .movieCardModal__btn--wrapper {
   display: flex;
   gap: 6px;
+  position:relative;
 }
+.movieCardModal__btn-nowe {
+  font-size: 12px;
+  line-height: 1.17;
+  padding: 8px 7px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 100px;
+  color: var(--base-black);
+  background-color: #9c9c9c;
+  cursor: pointer;
+  border: 1px solid var(--footer-text-color);
+  &:hover{
+    text-decoration:none;
+    }
+    &:after{
+    content: attr(tip);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:90%;
+    line-height:1.2em;
+    color: var(--base-white);
+    width:220px;
+    padding:5px 50px;
+    border-radius:6px;
+    background:var(--acent-red);
+    position:absolute;
+    top:40px;
+    left:0px;
+    display:none;
+    @include tablet {
+      width:265px;
+      top:50px;  
+    }
+    @include desktop {
+      width:320px;
+    }
+    }
+    &:before{
+    z-index:1000;
+    position:absolute;
+    content:"";
+    top:15px;
+    left:0px;
+    border-right:7px transparent solid;
+    border-left:7px transparent solid;
+    display:none;
+    }
+    &:hover:after{
+    display:block;
+    }
+    &:hover:before{
+    display:block;
+    }
+  @include tablet {
+    padding: 12px 18px;
+  }
+  @include desktop {
+    padding: 14px 32px;
+  }
+}
+
 .movieCardModal__btn {
   font-size: 12px;
   line-height: 1.17;
