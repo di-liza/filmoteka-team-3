@@ -1,4 +1,5 @@
 import { GetMovie } from './apiFetch';
+import { Notify } from 'notiflix';
 
 const getMovie = new GetMovie();
 const button = document.querySelector('.movie-collection');
@@ -7,7 +8,6 @@ button.addEventListener('click', e => {
   if (e.target.nodeName === 'BUTTON') {
     const button = e.target.closest('button');
     const { id } = button?.dataset || {};
-    console.log('id :', id);
     showTrailer(id);
   }
 });
@@ -27,7 +27,7 @@ export async function showTrailer(id) {
     key = trailer ? trailer.key : '';
     getVideo(key);
   } catch (error) {
-    console.log(error.message);
+    Notify.failure(error.message);
   }
 }
 
@@ -40,6 +40,7 @@ async function getVideo(key) {
   document.body.classList.add('stop-scrolling');
   videoModal.innerHTML = `<iframe
   class="modal-video"
+  alt="Trailer"
   src="https://www.youtube.com/embed/${key}"
   ></iframe> `;
 
