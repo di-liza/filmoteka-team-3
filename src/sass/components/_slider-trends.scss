@@ -34,21 +34,5 @@
   @include desktop {
     width: 232px !important;
     height: 348px !important;
-
-    &:hover,
-    &:focus {
-      transform: scale(0.9);
-      cursor: pointer;
-      box-shadow: 0px 0px 15pxpx rgb(195, 0, 0);
-    }
-  }
 }
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-  background: rgb(245, 204, 0) !important;
-}
-.swiper-pagination-bullet {
-  background: rgb(156, 14, 14);
-  opacity: 0.9;
 }

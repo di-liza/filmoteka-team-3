@@ -2,16 +2,12 @@ import Swiper, { Autoplay } from 'swiper';
 import 'swiper/swiper.scss';
 
 import { GetMovie } from './apiFetch';
-
-const swiperWrapper = document.querySelector('.swiper-wrapper');
-console.log('swiperWrapper:', swiperWrapper);
-const swiperRef = document.querySelector('#trends-swiper');
-
 const getMovie = new GetMovie();
 
-renderSwiper();
+const swiperId = document.querySelector('#trends-swiper');
+const swiperConatiner = document.querySelector('.swiper-wrapper');
 
-const swiper = new Swiper(swiperRef, {
+const mySlider = new Swiper(swiperId, {
   modules: [Autoplay],
   loop: true,
   grabCursor: true,
@@ -31,15 +27,19 @@ const swiper = new Swiper(swiperRef, {
 
   autoplay: {
     delay: 2500,
-    disableOnInteraction: false,
+    disableOnInteraction: true,
     pauseOnMouseEnter: true,
+  },
+  on: {
+    reachEnd: function () {
+      mySlider.autoplay.stop();
+    },
   },
 });
 
-async function renderSwiper() {
+async function makeSwiper() {
   const { results } = await getMovie.getTrandMoviesWeek();
-  console.log('results:', results);
-  swiperWrapper.innerHTML = results
+  swiperConatiner.innerHTML = results
     .map(({ id, poster_path, title }) => {
       return `<div class='swiper-slide' data-open-modal>
     <div class='content-wrap'>
@@ -54,5 +54,10 @@ async function renderSwiper() {
   </div>`;
     })
     .join('');
-  swiper.update();
+  mySlider.on('touchEnd', function () {
+    mySlider.autoplay.start();
+    mySlider.autoplay.stop();
+  });
 }
+
+makeSwiper();
