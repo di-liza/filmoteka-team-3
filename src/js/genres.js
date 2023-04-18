@@ -28,7 +28,7 @@ export function getGenres(genreIds, genres) {
       const genresArrayShort = genresArray.slice(0, 2).join(', ') + ', Other';
       return genresArrayShort;
     }
-    return genresArray.join(', ') + ', Other';
+    return genresArray.join(', ');
   } else if (genreIds.length === 0) {
     return 'Other';
   }

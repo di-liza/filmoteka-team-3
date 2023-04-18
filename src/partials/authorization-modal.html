@@ -1,6 +1,9 @@
 <div class="authorization-modal__backdrop hidden">
   <div class="authorization-modal">
-    <button class="authorization-modal__close-button">
+    <button
+      class="authorization-modal__close-button"
+      aria-label="close button for authorization modal"
+    >
       <svg class="authorization-modal__close-icon">
         <use href="./icons/icons-sprite.svg#icon-close"></use>
       </svg>
@@ -20,15 +23,18 @@
           type="password"
           placeholder="Password*"
         />
-        <button class="authorization-modal__login-button" type="submit">
+        <button class="authorization-modal__login-button active" type="submit">
           Login
         </button>
-        <button class="authorization-modal__login-form-switcher" type="button">
+        <button
+          class="authorization-modal__login-form-switcher active"
+          type="button"
+        >
           Or Sign Up
         </button>
       </form>
       <form class="authorization-modal__signup-form hidden">
-        <h3>Please sign up</h3>
+        <h3 class="authorization-modal__header">Please sign up</h3>
         <input
           class="authorization-modal__signup-input"
           name="login"
@@ -41,17 +47,20 @@
           type="password"
           placeholder="Password*"
         />
-        <button class="authorization-modal__signup-button" type="submit">
+        <button class="authorization-modal__signup-button active" type="submit">
           Sign Up
         </button>
-        <button class="authorization-modal__signup-form-switcher" type="button">
+        <button
+          class="authorization-modal__signup-form-switcher active"
+          type="button"
+        >
           Or Login
         </button>
       </form>
       <div class="authorization-modal__user-information hidden">
-        <p>Authenticated user is:</p>
+        <h3 class="authorization-modal__header">Authenticated user is:</h3>
         <p class="authorization-modal__user-email"></p>
-        <button type="button" class="authorization-modal__logoff">
+        <button type="button" class="authorization-modal__logoff active">
           Log off
         </button>
       </div>

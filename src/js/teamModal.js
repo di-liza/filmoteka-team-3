@@ -21,7 +21,6 @@ export function onClickEsc(event) {
 }
 function closeModal() {
   modalBoxEl.classList.add('hidden');
-  glide.destroy();
 }
 
 window.addEventListener('click', e => {

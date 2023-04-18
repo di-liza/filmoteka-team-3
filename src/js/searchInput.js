@@ -10,6 +10,8 @@ const negativeSearchMessage = document.querySelector('.error-message');
 const searchForm = document.querySelector('.search-form');
 const inputQuery = document.querySelector('.search-form__input');
 const droplist = document.querySelector('.movie-droplist');
+const movieCollection = document.querySelector('.movie-cards-collection');
+let isModalClosed = true;
 
 export const getMovie = new GetMovie();
 
@@ -23,18 +25,21 @@ async function getDropListMovies() {
 
   if (getMovie.query.trim() === '') {
     const message = `<p>Please, enter something for searching movies.</p>`;
-    errorMessage(message);
+    getErrorMessage(message);
+    droplist.style.display = 'none';
     return;
   }
+
   try {
     const data = await getMovie.getMoviesByName();
 
     if (data.results.length === 0) {
-      droplist.style.display = 'none';
       const message = `<p>Search result not successful. Enter the correct movie name.</p>`;
-      errorMessage(message);
+      getErrorMessage(message);
+      droplist.style.display = 'none';
       return;
     }
+
     clearErrorMessage();
     getMovie.resetPage();
     createMarkupDropList(data.results);
@@ -43,8 +48,10 @@ async function getDropListMovies() {
 
     droplist.addEventListener('click', event => {
       droplist.style.display = 'none';
+
       const movieCard = event.target.closest('li');
       const movieId = movieCard.dataset.id;
+      isModalClosed = false;
       getFoundMovies();
       if (event.target.nodeName === 'BUTTON') {
         showTrailer(movieId);
@@ -80,26 +87,35 @@ function searchMovie(event) {
 
   if (getMovie.query.trim() === '') {
     const message = `<p>Please, enter something for searching movies.</p>`;
-    errorMessage(message);
+    getErrorMessage(message);
     return;
   }
+  isModalClosed = true;
   getFoundMovies();
+  scrollToMovieCollection();
 }
 
 //Функция для вывода результата поиска в основное окно
 
 async function getFoundMovies() {
   droplist.style.display = 'none';
-
   try {
     const data = await getMovie.getMoviesByName();
     if (data.results.length === 0) {
       const message = `<p>Search result not successful. Enter the correct movie name.</p>`;
-      errorMessage(message);
+      getErrorMessage(message);
       return;
     }
+
     clearErrorMessage();
     getMovie.resetPage();
+    clearForm();
+    if (isModalClosed) {
+      Notify.success(
+        `Finded ${data.total_results} movies for "${getMovie.query}"`
+      );
+    }
+
     createMarkupCards(data.results);
     addPaginationSearching(data.total_results, data.total_pages);
   } catch (error) {
@@ -109,10 +125,18 @@ async function getFoundMovies() {
 
 //Функции для вывода и убирания сообщения об ошибке под полем ввода
 
-function errorMessage(message) {
+function getErrorMessage(message) {
   negativeSearchMessage.innerHTML = message;
 }
 
 function clearErrorMessage() {
   negativeSearchMessage.innerHTML = '';
+}
+
+function clearForm() {
+  inputQuery.value = '';
+}
+
+function scrollToMovieCollection() {
+  movieCollection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
