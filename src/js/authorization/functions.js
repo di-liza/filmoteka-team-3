@@ -220,18 +220,22 @@ function dataSync() {
     try {
       const watchedArrayRef = ref(database, `users/${uid}/watched`);
       if (watchedLocalArray && movies) {
-        const arrayOfUniqueMovies = watchedLocalArray
-          .concat(movies)
-          .filter((movie, index, array) => {
-            return (
-              index ===
-              array.findIndex(obj => {
-                return obj.id === movie.id;
-              })
-            );
-          });
-        set(watchedArrayRef, arrayOfUniqueMovies);
-        localStorage.setItem('watched', JSON.stringify(arrayOfUniqueMovies));
+        if (movies.length > watchedLocalArray.length) {
+          set(watchedArrayRef, watchedLocalArray);
+        } else {
+          const arrayOfUniqueMovies = watchedLocalArray
+            .concat(movies)
+            .filter((movie, index, array) => {
+              return (
+                index ===
+                array.findIndex(obj => {
+                  return obj.id === movie.id;
+                })
+              );
+            });
+          set(watchedArrayRef, arrayOfUniqueMovies);
+          localStorage.setItem('watched', JSON.stringify(arrayOfUniqueMovies));
+        }
       } else if (!watchedLocalArray && movies) {
         localStorage.setItem('watched', JSON.stringify(movies));
       } else if (watchedLocalArray && !movies) {
@@ -246,18 +250,22 @@ function dataSync() {
     try {
       const queueArrayRef = ref(database, `users/${uid}/queue`);
       if (queueLocalArray && movies) {
-        const arrayOfUniqueMovies = queueLocalArray
-          .concat(movies)
-          .filter((movie, index, array) => {
-            return (
-              index ===
-              array.findIndex(obj => {
-                return obj.id === movie.id;
-              })
-            );
-          });
-        set(queueArrayRef, arrayOfUniqueMovies);
-        localStorage.setItem('queue', JSON.stringify(arrayOfUniqueMovies));
+        if (movies.length > queueLocalArray.length) {
+          set(queueArrayRef, queueLocalArray);
+        } else {
+          const arrayOfUniqueMovies = queueLocalArray
+            .concat(movies)
+            .filter((movie, index, array) => {
+              return (
+                index ===
+                array.findIndex(obj => {
+                  return obj.id === movie.id;
+                })
+              );
+            });
+          set(queueArrayRef, arrayOfUniqueMovies);
+          localStorage.setItem('queue', JSON.stringify(arrayOfUniqueMovies));
+        }
       } else if (!queueLocalArray && movies) {
         localStorage.setItem('queue', JSON.stringify(movies));
       } else if (queueLocalArray && !movies) {
