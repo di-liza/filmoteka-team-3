@@ -49,7 +49,6 @@ const refs = {
 };
 
 refs.authorizationButton.addEventListener('click', authorizationModalToggle);
-refs.authorizationModal.addEventListener('click', onBackdropClick);
 refs.authorizationModalCloseButton.addEventListener('click', onCloseModal);
 refs.loginForm.addEventListener('submit', loginSubmitHandler);
 refs.signupForm.addEventListener('submit', signupSubmitHandler);
@@ -76,7 +75,6 @@ function onEscButtonPressed(event) {
 function onBackdropClick(event) {
   event.preventDefault();
   const backdrop = event.target;
-  // backdrop.classList.contains('authorization-modal__backdrop');
   if (backdrop === refs.authorizationModal) {
     onCloseModal();
   }
@@ -177,7 +175,6 @@ function loginSubmitHandler(event) {
         .then(() => {
           Notiflix.Notify.success('Авторизація успішна');
           form.reset();
-          isUserAuthenticated = true;
           userEmail = login;
           saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
