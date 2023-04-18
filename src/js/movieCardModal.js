@@ -88,6 +88,7 @@ export async function movieCardModal(result) {
       src="${poster}"
       srcset="${poster} 2x"
       alt="${title}"
+      width="500" height="750"
     />
   </div>
   <div class="movieCardModal__information">
@@ -136,7 +137,6 @@ export async function movieCardModal(result) {
 </div>`;
   const btnClose = document.querySelector('.modal-btn-cross');
   btnClose.addEventListener('click', () => closeModal());
-
 
   const LOGIN_STATE_KEY = 'loginState';
 
