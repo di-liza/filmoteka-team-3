@@ -3,7 +3,7 @@ import { Notify } from 'notiflix';
 
 import { showLoader, hideLoader } from './loader';
 import { debounce } from 'debounce';
-const hideLoaderDebounced = debounce(hideLoader, 200);
+const hideLoaderDebounced = debounce(hideLoader, 500);
 
 const getMovie = new GetMovie();
 const cardsCollection = document.querySelector('.movie-collection');
