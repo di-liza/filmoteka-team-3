@@ -75,3 +75,67 @@
     padding-top: 0;
   }
 }
+// Бьющиеся сердце
+
+.footer__icon-heart {
+    animation: beat 2s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.footer__icon-heart::before,
+.footer__icon-heart::after {
+  content: "";
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-color: inherit;
+    border-radius: 50% 50% 0 0;
+}
+
+.footer__wrapper-text::before {
+  top: -25px;
+}
+
+.footer__wrapper-text::after {
+  left: -25px;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(0.75);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(0.75);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+  
+  
+}
+@keyframes delay {
+  0% {
+    animation-delay: 0s;
+  }
+
+  100% {
+    animation-delay: 2s;
+  }
+}
+.footer__wrapper-text::before {
+  animation: delay infinite;
+}
+
+.footer__wrapper-text::after {
+  animation: delay infinite 1s;
+}
