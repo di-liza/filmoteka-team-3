@@ -8,3 +8,4 @@ import './js/pageTheme';
 // import './js/authorization/functions';
 // import './js/authorization/firebaseConfig';
 import './js/videoModal';
+import './js/teamModal';
