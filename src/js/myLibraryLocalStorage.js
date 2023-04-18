@@ -26,6 +26,7 @@ function getMoviesQueue() {
   getMovies('queue');
 }
 
+// Функція робе запит у LocalStorage та виводить фільми
 function getMovies(watchedOrQueue) {
   let isLibrary;
   if (watchedOrQueue === 'queue') {

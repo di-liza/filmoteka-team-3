@@ -12,7 +12,7 @@ export class LocalStorage {
     this.urlIMG =
       'https://fv9-3.failiem.lv/thumb_show.php?i=wvrgyazty&download_checksum=c46e3875e607d6804a842a7f189fa3497d5b4812&download_timestamp=1681764842';
     this.urlIMGforDarckMode =
-      'https://fv9-4.failiem.lv/down.php?i=qzzdwejfq&view&download_checksum=5f53deaa8d12f05184c9278e2a4f5c4bd66d1e9e&download_timestamp=1681764803';
+      'https://lh3.googleusercontent.com/u/1/drive-viewer/AAOQEORwHJ_nPbk78yncXyvFd-yOb5yQKomL1AQWhQCQ1ZUtlHDiW-N9i71VahNUXTnZpY_YE-_H2DTBF5H4lGZ4AC2Pxm3x-w=w3360-h1764';
     this.addOrRemoveFromLocalStoradgeWatched =
       this.addOrRemoveFromLocalStoradgeWatched.bind(this);
     this.addOrRemoveFromLocalStoradgeQueue =
@@ -132,7 +132,7 @@ export class LocalStorage {
           poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         }
         return `  <li class="movie-collection__item" data-id="${id}" data-selectedArray="${this.selectedArray}">
-   <img class="movie-collection__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="395px" height="574px"/>
+   <img class="movie-collection__poster" loading="lazy" src="${poster}" srcset="${poster} 2x" alt="${title}" width="395" height="574"/>
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">
      <p class="movie-collection__genre">${genresList}</p>

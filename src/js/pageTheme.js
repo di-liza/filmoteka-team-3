@@ -9,7 +9,6 @@ const libraryLocalStorage = new LocalStorage();
 
 const handleCheckbox = () => {
   turnToggle();
-
   if (document.body.classList.contains('dark')) {
     localStorage.setItem('theme', 'dark');
     cross.style.cssText =
@@ -33,7 +32,7 @@ checkbox.addEventListener('change', handleCheckbox);
 
 function turnToggle() {
   document.body.classList.toggle('dark');
-  droplist.classList.toggle('dark');
+  droplist?.classList.toggle('dark');
   slider?.classList.toggle('dark');
   footer.classList.toggle('dark');
 }
