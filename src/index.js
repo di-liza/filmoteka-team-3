@@ -14,7 +14,7 @@ import './js/videoModal';
 // import './js/watchedLocalStorage';
 
 // Для добавления
-// import './js/authorization/functions';
+import './js/authorization/functions';
 // import '';
 import './js/sliderTrends';
 // import '';
