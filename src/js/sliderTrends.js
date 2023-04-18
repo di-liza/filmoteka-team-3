@@ -1,6 +1,5 @@
-import Swiper, { Pagination, Autoplay } from 'swiper';
+import Swiper, { Autoplay } from 'swiper';
 import 'swiper/swiper.scss';
-import 'swiper/modules/pagination/pagination.scss';
 
 import { GetMovie } from './apiFetch';
 
@@ -13,7 +12,7 @@ const getMovie = new GetMovie();
 renderSwiper();
 
 const swiper = new Swiper(swiperRef, {
-  modules: [Pagination, Autoplay],
+  modules: [Autoplay],
   loop: true,
   grabCursor: true,
 
