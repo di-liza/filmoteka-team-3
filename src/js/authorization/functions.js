@@ -94,6 +94,18 @@ function isUserAuthenticatedHandler() {
   return;
 }
 
+function isUserRegisteredHandler() {
+  const isLoginState = localStorage.getItem(LOGIN_STATE_KEY);
+  if (isLoginState) {
+    const parsedData = JSON.parse(isLoginState);
+    refs.signupForm.classList.toggle('hidden');
+    refs.userInformation.classList.toggle('hidden');
+    refs.userEmailLabel.textContent = parsedData.userEmail;
+    uid = parsedData.userId;
+  }
+  return;
+}
+
 function saveLoginState(userId, userEmail) {
   const loginState = {
     userId,
@@ -130,17 +142,19 @@ function signupSubmitHandler(event) {
         registerDate: currentDate.toLocaleString(),
       })
         .then(() => {
-          Notify.success('Реєстрація успішна');
+          Notify.success('Sign up successful');
           form.reset();
+          saveLoginState(user.uid, login);
+          isUserRegisteredHandler();
+          dataSync();
           onCloseModal();
         })
         .catch(error => {
-          Notify.failure(`Помилка реєстрації ${error.message}`);
+          Notify.failure(`Sign up error: ${error.message}`);
         });
     })
     .catch(error => {
-      const errorMessage = error.message;
-      Notify.failure(`Помилка реєстрації ${errorMessage}`);
+      Notify.failure(`Sign up error: ${error.message}`);
     });
 }
 
@@ -159,7 +173,7 @@ function loginSubmitHandler(event) {
         lastLoginDate: currentDate.toLocaleString(),
       })
         .then(() => {
-          Notify.success('Авторизація успішна');
+          Notify.success('Login successful');
           form.reset();
           saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
@@ -167,12 +181,11 @@ function loginSubmitHandler(event) {
           dataSync();
         })
         .catch(error => {
-          Notify.failure(`Помилка входу ${error.message}`);
+          Notify.failure(`Login error: ${error.message}`);
         });
     })
     .catch(error => {
-      const errorMessage = error.message;
-      Notify.failure(`Помилка входу ${errorMessage}`);
+      Notify.failure(`Login error: ${error.message}`);
     });
 }
 
@@ -180,14 +193,15 @@ function loginSubmitHandler(event) {
 function logOff() {
   signOut(auth)
     .then(() => {
-      Notify.warning('Авторизацію скасовано');
+      Notify.warning('Logout successful');
       removeLoginState();
       onCloseModal();
+      localStorage.clear();
       refs.loginForm.classList.toggle('hidden');
       refs.userInformation.classList.toggle('hidden');
     })
     .catch(error => {
-      Notify.warning(`Виникли проблеми при виході: ${error.message}`);
+      Notify.warning(`Logout error: ${error.message}`);
     });
 }
 
@@ -242,7 +256,7 @@ function dataSync() {
         set(watchedArrayRef, watchedLocalArray);
       }
     } catch (error) {
-      Notify.failure(`Помилка ${error.message}`);
+      Notify.failure(`Error: ${error.message}`);
     }
   });
 
@@ -272,7 +286,7 @@ function dataSync() {
         set(queueArrayRef, queueLocalArray);
       }
     } catch (error) {
-      Notify.failure(`Помилка ${error.message}`);
+      Notify.failure(`Error: ${error.message}`);
     }
   });
 }
