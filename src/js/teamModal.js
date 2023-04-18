@@ -21,6 +21,7 @@ export function onClickEsc(event) {
 }
 function closeModal() {
   modalBoxEl.classList.add('hidden');
+  addBodyClassEl.classList.remove('stop-scrolling');
 }
 
 window.addEventListener('click', e => {
@@ -32,6 +33,7 @@ window.addEventListener('click', e => {
 export function openModal() {
   modalBoxEl.classList.remove('hidden');
   addBodyClassEl.classList.add('modal-open');
+  addBodyClassEl.classList.add('stop-scrolling');
   document.addEventListener('keydown', onClickEsc);
 
   glide.mount();
