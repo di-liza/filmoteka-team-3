@@ -145,6 +145,75 @@
   display: flex;
   gap: 6px;
 }
+.movieCardModal__btn-nowe {
+  font-size: 12px;
+  line-height: 1.17;
+  padding: 8px 7px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 100px;
+  color: #101010;
+  background-color: #bab7b7;
+  cursor: pointer;
+  border: 1px solid #232323;
+  position: relative;
+  &:hover{
+    text-decoration:none;
+    }
+    &:after{
+    content: attr(tip);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:90%;
+    line-height:1.2em;
+    color:#fff;
+    width:200px;
+    padding:5px 10px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    background:#c00d3f;
+    background:-webkit-linear-gradient(#c00d3f, #7b0a2a);
+    background:-moz-linear-gradient(#c00d3f, #7b0a2a);
+    background:-o-linear-gradient(#c00d3f, #7b0a2a);
+    background:-ms-linear-gradient(#c00d3f, #7b0a2a);
+    background:linear-gradient(#c00d3f, #7b0a2a);
+    -moz-box-shadow: 3px 3px 4px rgba(0,0,0, .65);
+    -webkit-box-shadow: 3px 3px 4px rgba(0,0,0, .65);
+    box-shadow: 3px 3px 4px rgba(0,0,0, .65);
+    position:absolute;
+    top:27px;
+    left:-10px;
+    display:none;
+    }
+    &:before{
+    z-index:1000;
+    position:absolute;
+    content:"";
+    top:15px;
+    left:0px;
+    border-right:7px transparent solid;
+    border-left:7px transparent solid;
+    display:none;
+    }
+    &:hover{
+    z-index:1000;
+    position:relative;
+    color:#8325f7;
+    }
+    &:hover:after{
+    display:block;
+    }
+    &:hover:before{
+    display:block;
+    }
+  @include tablet {
+    padding: 12px 18px;
+  }
+  @include desktop {
+    padding: 14px 32px;
+  }
+}
+
 .movieCardModal__btn {
   font-size: 12px;
   line-height: 1.17;

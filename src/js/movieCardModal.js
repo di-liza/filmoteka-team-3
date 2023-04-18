@@ -2,7 +2,6 @@ import { GetMovie } from './apiFetch';
 import { LocalStorage } from './localStorage';
 import { Notify } from 'notiflix';
 
-
 const getMovie = new GetMovie();
 const myMovieLocalStorage = new LocalStorage();
 
@@ -123,12 +122,12 @@ export async function movieCardModal(result) {
       <p class="movieCardModal__about__text">${overview}</p>
     </div>
     <div class="movieCardModal__btn--wrapper">
-      <button type="button" class="movieCardModal__btn" data=watched>
+      <button disabled type="button" class="movieCardModal__btn-nowe" data=watched tip="This is a link to somewhere cool, and the tooltip gives more info about that cool place...">
         <span data-text=watched>${myMovieLocalStorage.textButtonRemoveOrAdd(
           'watched'
         )}</span> watched 
       </button>
-      <button type="button" class="movieCardModal__btn" data=queue>
+      <button disabled type="button" class="movieCardModal__btn-nowe" data=queue tip="This is a link to somewhere cool, and the tooltip gives more info about that cool place...">
         <span data-text=queue>${myMovieLocalStorage.textButtonRemoveOrAdd(
           'queue'
         )}</span> queue
@@ -139,9 +138,29 @@ export async function movieCardModal(result) {
   const btnClose = document.querySelector('.modal-btn-cross');
   btnClose.addEventListener('click', () => closeModal());
 
+
+  const LOGIN_STATE_KEY = 'loginState';
+
   // Знаходимо кнопки ADD_WATCHED, ADD_QUEUE та додаєм слухачів
   const btnAddOrRemoveWatched = document.querySelector('[data=watched]');
   const btnAddOrRemoveQueue = document.querySelector('[data=queue]');
+
+  isUserAuthenticatedHandler();
+
+  function isUserAuthenticatedHandler() {
+    const isLoginState = localStorage.getItem(LOGIN_STATE_KEY);
+    if (isLoginState) {
+      btnAddOrRemoveQueue.classList.remove('movieCardModal__btn-nowe');
+      btnAddOrRemoveQueue.classList.add('movieCardModal__btn');
+      btnAddOrRemoveQueue.disabled = false;
+
+      btnAddOrRemoveWatched.classList.remove('movieCardModal__btn-nowe');
+      btnAddOrRemoveWatched.classList.add('movieCardModal__btn');
+      btnAddOrRemoveWatched.disabled = false;
+    }
+    return;
+  }
+
   btnAddOrRemoveWatched.addEventListener(
     'click',
     myMovieLocalStorage.addOrRemoveFromLocalStoradgeWatched
