@@ -79,19 +79,13 @@
   height: 44px;
 }
 
-.socials-list__icon {
-  color: black;
-}
-
 .socials-list__link {
   width: 100%;
   height: 100%;
   // background: tomato;
   border-radius: 50%;
   display: flex;
-}
-
-.team-member-modal__comment {
+  
 }
 
 .team-member-modal__close-btn {
@@ -111,13 +105,14 @@
 
 .glide__arrow {
   z-index: 2;
-  color: #000;
+  color: inherit;
   text-transform: uppercase;
   text-shadow: 0 0.25em 0.5em #0000001a;
   opacity: 1;
   cursor: pointer;
   background-color: #0000;
-  border: 2px solid #000000;
+  border: 2px solid;
+  border-color: inherit;
   border-radius: 4px;
   padding: 9px 12px;
   line-height: 1;
