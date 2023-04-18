@@ -161,7 +161,6 @@ function loginSubmitHandler(event) {
         .then(() => {
           Notify.success('Авторизація успішна');
           form.reset();
-          userEmail = login;
           saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
           onCloseModal();
