@@ -8,7 +8,7 @@ const footer = document.querySelector('.footer');
 
 const handleCheckbox = () => {
   document.body.classList.toggle('dark');
-  droplist.classList.toggle('dark');
+  droplist?.classList.toggle('dark');
   slider?.classList.toggle('dark');
   footer.classList.toggle('dark');
   if (document.body.classList.contains('dark')) {
@@ -22,7 +22,7 @@ const handleCheckbox = () => {
 
 if (localStorage.getItem('theme')) {
   document.body.classList.toggle('dark');
-  droplist.classList.toggle('dark');
+  droplist?.classList.toggle('dark');
   slider?.classList.toggle('dark');
   footer.classList.toggle('dark');
   checkbox.checked = true;
