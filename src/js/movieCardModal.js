@@ -122,12 +122,12 @@ export async function movieCardModal(result) {
       <p class="movieCardModal__about__text">${overview}</p>
     </div>
     <div class="movieCardModal__btn--wrapper">
-      <button disabled type="button" class="movieCardModal__btn-nowe" data=watched tip="This is a link to somewhere cool, and the tooltip gives more info about that cool place...">
+      <button disabled type="button" class="movieCardModal__btn-nowe" data=watched tip="You need to log in!">
         <span data-text=watched>${myMovieLocalStorage.textButtonRemoveOrAdd(
           'watched'
         )}</span> watched 
       </button>
-      <button disabled type="button" class="movieCardModal__btn-nowe" data=queue tip="This is a link to somewhere cool, and the tooltip gives more info about that cool place...">
+      <button disabled type="button" class="movieCardModal__btn-nowe" data=queue tip="You need to log in!">
         <span data-text=queue>${myMovieLocalStorage.textButtonRemoveOrAdd(
           'queue'
         )}</span> queue
