@@ -154,10 +154,12 @@ function signupSubmitHandler(event) {
         })
         .catch(error => {
           Notify.failure(`Sign up error: ${error.message}`);
+          hideLoader();
         });
     })
     .catch(error => {
       Notify.failure(`Sign up error: ${error.message}`);
+      hideLoader();
     });
 }
 
@@ -187,10 +189,12 @@ function loginSubmitHandler(event) {
         })
         .catch(error => {
           Notify.failure(`Login error: ${error.message}`);
+          hideLoader();
         });
     })
     .catch(error => {
       Notify.failure(`Login error: ${error.message}`);
+      hideLoader();
     });
 }
 
