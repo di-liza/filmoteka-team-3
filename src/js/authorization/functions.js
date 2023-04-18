@@ -238,12 +238,25 @@ function dataSync() {
   const queueLocalArray = JSON.parse(queueLocalData);
   readWatchedDataFromDatabase().then(movies => {
     try {
-      if (!watchedLocalArray && movies) {
-        localStorage.setItem('watched', JSON.stringify(movies));
-      }
       const watchedArrayRef = ref(database, `users/${uid}/watched`);
-      movies ? watchedLocalArray?.concat(movies) : null;
-      set(watchedArrayRef, watchedLocalArray);
+      if (watchedLocalArray && movies) {
+        const arrayOfUniqueMovies = watchedLocalArray
+          .concat(movies)
+          .filter((movie, index, array) => {
+            return (
+              index ===
+              array.findIndex(obj => {
+                return obj.id === movie.id;
+              })
+            );
+          });
+        set(watchedArrayRef, arrayOfUniqueMovies);
+        localStorage.setItem('watched', JSON.stringify(arrayOfUniqueMovies));
+      } else if (!watchedLocalArray && movies) {
+        localStorage.setItem('watched', JSON.stringify(movies));
+      } else if (watchedLocalArray && !movies) {
+        set(watchedArrayRef, watchedLocalArray);
+      }
     } catch (error) {
       Notiflix.Notify.failure(`Помилка ${error.message}`);
     }
@@ -251,12 +264,25 @@ function dataSync() {
 
   readQueueDataFromDatabase().then(movies => {
     try {
-      if (!queueLocalArray && movies) {
-        localStorage.setItem('queue', JSON.stringify(movies));
-      }
       const queueArrayRef = ref(database, `users/${uid}/queue`);
-      movies ? queueLocalArray?.concat(movies) : null;
-      set(queueArrayRef, queueLocalArray);
+      if (queueLocalArray && movies) {
+        const arrayOfUniqueMovies = queueLocalArray
+          .concat(movies)
+          .filter((movie, index, array) => {
+            return (
+              index ===
+              array.findIndex(obj => {
+                return obj.id === movie.id;
+              })
+            );
+          });
+        set(queueArrayRef, arrayOfUniqueMovies);
+        localStorage.setItem('queue', JSON.stringify(arrayOfUniqueMovies));
+      } else if (!queueLocalArray && movies) {
+        localStorage.setItem('queue', JSON.stringify(movies));
+      } else if (queueLocalArray && !movies) {
+        set(queueArrayRef, queueLocalArray);
+      }
     } catch (error) {
       Notiflix.Notify.failure(`Помилка ${error.message}`);
     }
