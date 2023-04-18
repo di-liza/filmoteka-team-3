@@ -27,12 +27,8 @@
   transition: all 200ms ease-in-out;
 
   @include tablet {
-    width: 232px !important;
-    height: 348px !important;
+    width: 223px !important;
+      height: 332px !important;
   }
 
-  @include desktop {
-    width: 232px !important;
-    height: 348px !important;
-}
 }
