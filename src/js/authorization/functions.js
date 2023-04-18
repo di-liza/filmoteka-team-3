@@ -8,6 +8,7 @@ import {
 } from 'firebase/auth';
 import { getDatabase, get, set, update, ref } from 'firebase/database';
 import { Notify } from 'notiflix';
+import { showLoader, hideLoader } from '../loader';
 
 const LOGIN_STATE_KEY = 'loginState';
 let uid = '';
@@ -128,6 +129,7 @@ const currentDate = new Date();
 
 // функція реєстрації
 function signupSubmitHandler(event) {
+  showLoader();
   event.preventDefault();
   const form = event.currentTarget;
   const login = form.elements.login.value;
@@ -148,6 +150,7 @@ function signupSubmitHandler(event) {
           isUserRegisteredHandler();
           dataSync();
           onCloseModal();
+          hideLoader();
         })
         .catch(error => {
           Notify.failure(`Sign up error: ${error.message}`);
@@ -160,6 +163,7 @@ function signupSubmitHandler(event) {
 
 // функція логіну
 function loginSubmitHandler(event) {
+  showLoader();
   event.preventDefault();
   const form = event.currentTarget;
   const login = form.elements.login.value;
@@ -179,6 +183,7 @@ function loginSubmitHandler(event) {
           isUserAuthenticatedHandler();
           onCloseModal();
           dataSync();
+          hideLoader();
         })
         .catch(error => {
           Notify.failure(`Login error: ${error.message}`);
