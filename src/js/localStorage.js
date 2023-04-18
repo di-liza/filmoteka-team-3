@@ -132,7 +132,7 @@ export class LocalStorage {
           poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         }
         return `  <li class="movie-collection__item" data-id="${id}" data-selectedArray="${this.selectedArray}">
-   <img class="movie-collection__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="395px" height="574px"/>
+   <img class="movie-collection__poster" loading="lazy" src="${poster}" srcset="${poster} 2x" alt="${title}" width="395" height="574"/>
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">
      <p class="movie-collection__genre">${genresList}</p>
