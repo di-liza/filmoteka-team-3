@@ -83,7 +83,7 @@
   border: none;
   border-bottom: 1px solid rgba(157, 164, 189, 0.4);
   background: none;
-  color: var(--base-black);
+  color: inherit;
 
   transition-property: border-color;
   transition-duration: 250ms;
