@@ -1,8 +1,4 @@
 import { getGenres } from './genres';
-const classBtnQueue = 'navigation__link--queue';
-const classBtnWatched = 'navigation__link--watched';
-const classBtnAddQueue = 'navigation__link--addQueue';
-const classBtnAddWatched = 'navigation__link--addWatched';
 
 export class LocalStorage {
   constructor() {
@@ -13,10 +9,10 @@ export class LocalStorage {
     this.numMoviesInPages = 20;
     this.movieCollection = document.querySelector('.movie-collection');
     this.results;
-    this.plug = `<li class="plug"><img class="plug_poster" src="https://lh3.googleusercontent.com/u/1/drive-viewer/AAOQEOT532M6_2C90JhOgIpZ2N-ekAOhqUMXLCHOqA0tE45Tv2ulzpiI9_kwbIUcTZjG2RO-W82dAyvkrkJGiwyXwpQGeH1i7A=w1920-h944" alt="plug" /></li>`; //pointer-events: none;
-    this.addToLocalStorage = this.addToLocalStorage.bind(this);
-    this.createMarkupOneCard = this.createMarkupOneCard.bind(this);
-    this.removeFromLocalStorage = this.removeFromLocalStorage.bind(this);
+    this.urlIMG =
+      'https://fv9-3.failiem.lv/thumb_show.php?i=wvrgyazty&download_checksum=c46e3875e607d6804a842a7f189fa3497d5b4812&download_timestamp=1681764842';
+    this.urlIMGforDarckMode =
+      'https://fv9-4.failiem.lv/down.php?i=qzzdwejfq&view&download_checksum=5f53deaa8d12f05184c9278e2a4f5c4bd66d1e9e&download_timestamp=1681764803';
     this.addOrRemoveFromLocalStoradgeWatched =
       this.addOrRemoveFromLocalStoradgeWatched.bind(this);
     this.addOrRemoveFromLocalStoradgeQueue =
@@ -27,42 +23,37 @@ export class LocalStorage {
   getMovies(watchedOrQueue) {
     const movies = localStorage.getItem(watchedOrQueue);
     if (movies) {
-      this.createMarkupOneCard(JSON.parse(movies));
+      this.createMarkupCards(JSON.parse(movies));
     } else {
       return 'Нема збережених фільмів';
     }
   }
 
+  // Визначаємо наявнисть фільмів списку watch
   isLibraryWatched() {
     return JSON.parse(localStorage.getItem('watched'))?.length > 0;
   }
 
+  // Визначаємо наявнисть фільмів списку queue
   isLibraryQueue() {
     return JSON.parse(localStorage.getItem('queue'))?.length > 0;
   }
 
+  // Визначаємо загальну наявнисть фільмів
   isLibrarys() {
-    return isLibraryQueue() || isLibraryWatched(); // "/src/my-library.html"
+    return isLibraryQueue() || isLibraryWatched();
   }
 
-  // Цей метод шукає обраний фільм у обраном масиві та вибирає видалити чи додати фільм у масив
-  addOrRemoveFromLocalStoradgeWatched(e) {
-    const watchedOrQueue = 'watched';
-    const arrMovie = JSON.parse(localStorage.getItem(watchedOrQueue));
-    if (!arrMovie) {
-      this.addToLocalStorage(watchedOrQueue);
-      return;
-    }
-    const isMovie = arrMovie.find(item => item.id === this.movie.id);
-    if (isMovie) {
-      this.removeFromLocalStorage(watchedOrQueue);
-    } else {
-      this.addToLocalStorage(watchedOrQueue);
-    }
+  // Цей метод шукає обраний фільм у масиві та вибирає видалити чи додати фільм у масив
+  addOrRemoveFromLocalStoradgeWatched() {
+    this.addOrRemoveFromLocalStoradge('watched');
   }
 
-  addOrRemoveFromLocalStoradgeQueue(e) {
-    const watchedOrQueue = 'queue';
+  addOrRemoveFromLocalStoradgeQueue() {
+    this.addOrRemoveFromLocalStoradge('queue');
+  }
+
+  addOrRemoveFromLocalStoradge(watchedOrQueue) {
     const arrMovie = JSON.parse(localStorage.getItem(watchedOrQueue));
     if (!arrMovie) {
       this.addToLocalStorage(watchedOrQueue);
@@ -93,7 +84,7 @@ export class LocalStorage {
     queueSpan.textContent = this.textRemoveBTN;
     if (this.selectedArray === watchedOrQueue) {
       this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-      this.createMarkupOneCard();
+      this.createMarkupCards();
     }
   }
 
@@ -112,10 +103,9 @@ export class LocalStorage {
       if (this.selectedArray === watchedOrQueue) {
         this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
         if (JSON.parse(localStorage.getItem(watchedOrQueue))?.length > 0) {
-          this.createMarkupOneCard();
+          this.createMarkupCards();
         } else {
-          this.movieCollection.innerHTML = this.plug;
-          this.movieCollection.style.pointerEvents = 'none';
+          this.markupPlug();
         }
       }
     }
@@ -130,10 +120,10 @@ export class LocalStorage {
     return isMovie ? this.textRemoveBTN : this.textAddBTN;
   }
 
-  createMarkupOneCard() {
+  createMarkupCards() {
     this.movieCollection.innerHTML = this.results
       .map(({ poster_path, genres, title, release_date, id }) => {
-        const genresList = getGenres(genres);
+        const genresList = getGenres(undefined, genres);
         const movieYear = release_date.slice(0, 4);
         let poster;
         if (!poster_path) {
@@ -142,7 +132,7 @@ export class LocalStorage {
           poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
         }
         return `  <li class="movie-collection__item" data-id="${id}" data-selectedArray="${this.selectedArray}">
-   <img class="movie-collection__poster" src="${poster}" alt="${title}" />
+   <img class="movie-collection__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="395px" height="574px/>
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">
      <p class="movie-collection__genre">${genresList}</p>
@@ -158,47 +148,15 @@ export class LocalStorage {
     const arr = JSON.parse(localStorage.getItem(watchedOrQueue));
     return Math.round(arr?.length ?? 0 / this.numMoviesInPages);
   }
+
+  darkModeForIMG() {
+    return localStorage.getItem('theme')
+      ? this.urlIMGforDarckMode
+      : this.urlIMG;
+  }
+
+  markupPlug() {
+    this.movieCollection.innerHTML = `<li class="plug"><img width="288" height="371" class="plug_poster" src="${this.darkModeForIMG()}" alt="plug" /></li>`;
+    this.movieCollection.style.pointerEvents = 'none';
+  }
 }
-
-// // Знаходимо кнопки WATCHED, QUEUE та додаєм слухачів
-// const btnQueue = document.querySelector(`.${classBtnQueue}`);
-// const btnWatched = document.querySelector(`.${classBtnWatched}`);
-
-// btnQueue.addEventListener('click', () => {
-//   const movies = localStorage.getMovies('queue');
-//   console.log(movies);
-// });
-
-// btnWatched.addEventListener('click', () => {
-//   const movies = localStorage.getMovies('watched');
-//   console.log(movies);
-// });
-
-// // Знаходимо кнопки ADD_WATCHED, ADD_QUEUE та додаєм слухачів
-// const btnAddQueue = document.querySelector(`.${classBtnAddQueue}`);
-// const btnAddWatched = document.querySelector(`.${classBtnAddWatched}`);
-
-// btnAddQueue.addEventListener('click', () => {
-//   const nextMovie = movie;
-//   nextMovie.id = getRandomNumber();
-//   localStorage.addToLocalStorage(nextMovie, 'queue');
-// });
-
-// btnAddWatched.addEventListener('click', () => {
-//   const nextMovie = movie;
-//   nextMovie.id = getRandomNumber();
-//   localStorage.addToLocalStorage(nextMovie, 'watched');
-// });
-
-// const btnHome = document.querySelector(`.${classBtnHome}`);
-
-// btnHome.addEventListener('click', () => {
-//   const id = 7972;
-//   const watchedOrQueue = 'queue';
-//   localStorage.removeFromLocalStorage(id, watchedOrQueue);
-// });
-
-// function getPages(watchedOrQueue) {
-//   const arr = localStorage.getItem(watchedOrQueue);
-//   return Math.round(arr.length / 20);
-// }

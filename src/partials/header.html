@@ -11,7 +11,7 @@
             name="searchQuery"
             placeholder="Movie search"
             autocomplete="off"
-            alt="Input to search for a movie by keyword"
+            aria-label="Input to search for a movie by keyword"
           />
         </label>
         <button class="search-form__button" type="submit" aria-label="Search">
@@ -44,7 +44,12 @@
       </div>
 
       <div class="toolbar">
-        <input type="checkbox" class="checkbox hidden" id="checkbox" aria-label="Change page color theme"/>
+        <input
+          type="checkbox"
+          class="checkbox hidden"
+          id="checkbox"
+          aria-label="Change page color theme"
+        />
         <label for="checkbox" class="checkbox-label">
           <svg class="icon-sun" width="32" height="32">
             <use href="./icons/dark-theme.svg#icon-sun"></use>

@@ -25,6 +25,7 @@
     "matter-js": "^0.19.0",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
+    "swiper": "^9.2.3",
     "tui-pagination": "^3.4.1"
   },
   "devDependencies": {
