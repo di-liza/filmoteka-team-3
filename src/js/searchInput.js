@@ -10,6 +10,7 @@ const negativeSearchMessage = document.querySelector('.error-message');
 const searchForm = document.querySelector('.search-form');
 const inputQuery = document.querySelector('.search-form__input');
 const droplist = document.querySelector('.movie-droplist');
+const movieCollection = document.querySelector('.movie-cards-collection');
 let isModalClosed = true;
 
 export const getMovie = new GetMovie();
@@ -22,13 +23,23 @@ searchForm?.addEventListener('input', debounce(getDropListMovies, 350));
 async function getDropListMovies() {
   getMovie.query = inputQuery.value;
 
+  if (getMovie.query.trim() === '') {
+    const message = `<p>Please, enter something for searching movies.</p>`;
+    getErrorMessage(message);
+    droplist.style.display = 'none';
+    return;
+  }
+
   try {
     const data = await getMovie.getMoviesByName();
 
     if (data.results.length === 0) {
+      const message = `<p>Search result not successful. Enter the correct movie name.</p>`;
+      getErrorMessage(message);
       droplist.style.display = 'none';
       return;
     }
+
     clearErrorMessage();
     getMovie.resetPage();
     createMarkupDropList(data.results);
@@ -81,13 +92,13 @@ function searchMovie(event) {
   }
   isModalClosed = true;
   getFoundMovies();
+  scrollToMovieCollection();
 }
 
 //Функция для вывода результата поиска в основное окно
 
 async function getFoundMovies() {
   droplist.style.display = 'none';
-
   try {
     const data = await getMovie.getMoviesByName();
     if (data.results.length === 0) {
@@ -95,6 +106,7 @@ async function getFoundMovies() {
       getErrorMessage(message);
       return;
     }
+
     clearErrorMessage();
     getMovie.resetPage();
     clearForm();
@@ -123,4 +135,8 @@ function clearErrorMessage() {
 
 function clearForm() {
   inputQuery.value = '';
+}
+
+function scrollToMovieCollection() {
+  movieCollection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
