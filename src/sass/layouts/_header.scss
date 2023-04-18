@@ -339,10 +339,11 @@
   left: 6%;
   @include tablet {
     top: 8%;
-    left: 80%;
+    left: 77%;
   }
   @include desktop {
-    left: 88%;
+    top: 6%;
+    left: 87%;
   }
 }
 
