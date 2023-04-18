@@ -178,7 +178,7 @@
 .movie-droplist {
   position: absolute;
   display: none;
-  top: -375px;
+  top: 100px;
   left: 0px;
   right: 0px;
   margin: auto;
@@ -186,7 +186,7 @@
   width: 265px;
   max-height: 500px;
   overflow-y: auto;
-  z-index: 1;
+  z-index: 10;
   border-radius: 10px;
 
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.16),
@@ -198,15 +198,15 @@
   background-color: var(--base-white);
 
   @include tablet {
-    top: -180px;
+    top: 65px;
     left: 0px;
     width: 500px;
     padding: 20px;
   }
 
   @include desktop {
-    top: -265px;
-    left: 65px;
+    top: 70px;
+    left: 30px;
     right: auto;
     margin: 0;
   }
@@ -300,4 +300,9 @@
   100% {
     transform: scale(1);
   }
+}
+
+.plug {
+  margin-left: auto;
+  margin-right: auto;
 }
