@@ -2,6 +2,7 @@ const checkbox = document.querySelector('.checkbox');
 const droplist = document.querySelector('.movie-droplist');
 const slider = document.querySelector('.glide__slides');
 const footer = document.querySelector('.footer');
+const authModal = document.querySelector('.authorization-modal');
 const cross = document.querySelector('.team-member-modal__close-btn');
 import { LocalStorage } from './localStorage';
 
@@ -35,4 +36,5 @@ function turnToggle() {
   droplist?.classList.toggle('dark');
   slider?.classList.toggle('dark');
   footer.classList.toggle('dark');
+  authModal.classList.toggle('dark');
 }
