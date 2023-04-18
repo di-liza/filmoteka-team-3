@@ -48,7 +48,7 @@ async function makeSwiper() {
         class='swiper-slide__poster'
         src='https://image.tmdb.org/t/p/w500${poster_path}'
         alt='${title}'
-        width = "500"
+        width = "227"
       />
     </div>
   </div>`;
