@@ -18,16 +18,13 @@ const swiper = new Swiper(swiperRef, {
   grabCursor: true,
 
   breakpoints: {
-    320: {
-      slidesPerView: 1,
-    },
     768: {
-      slidesPerView: 3,
-      spaceBetween: 25,
+      slidesPerView: 4,
+      spaceBetween: 15,
       centeredSlides: false,
     },
     1280: {
-      slidesPerView: 6,
+      slidesPerView: 5,
       spaceBetween: 30,
       centeredSlides: true,
     },
@@ -37,10 +34,6 @@ const swiper = new Swiper(swiperRef, {
     delay: 2500,
     disableOnInteraction: false,
     pauseOnMouseEnter: true,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
   },
 });
 
@@ -56,13 +49,11 @@ async function renderSwiper() {
         class='swiper-slide__poster'
         src='https://image.tmdb.org/t/p/w500${poster_path}'
         alt='${title}'
+        width = "500"
       />
     </div>
   </div>`;
     })
     .join('');
   swiper.update();
-  //   document
-  //     .querySelectorAll('[data-open-modal]')
-  //     .forEach(card => card.addEventListener('click', onFilmCardClick));
 }
