@@ -178,14 +178,15 @@
 .movie-droplist {
   position: absolute;
   display: none;
+  top: 100px;
   left: 0px;
   right: 0px;
   margin: auto;
-  top: 105px;
-  width: 300px;
+
+  width: 265px;
   max-height: 500px;
   overflow-y: auto;
-  z-index: 1;
+  z-index: 10;
   border-radius: 10px;
 
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.16),
@@ -197,14 +198,15 @@
   background-color: var(--base-white);
 
   @include tablet {
-    top: 70px;
+    top: 65px;
+    left: 0px;
     width: 500px;
     padding: 20px;
-    left: 0px;
   }
 
   @include desktop {
-    left: 50px;
+    top: 70px;
+    left: 30px;
     right: auto;
     margin: 0;
   }

@@ -23,6 +23,8 @@ let uid = '';
 const queueResults = [];
 const watchedResults = [];
 
+let temp;
+
 const refs = {
   authorizationButton: document.querySelector('.btn__authorization'),
   authorizationModal: document.querySelector('.authorization-modal__backdrop'),
@@ -47,7 +49,7 @@ const refs = {
 };
 
 refs.authorizationButton.addEventListener('click', authorizationModalToggle);
-// refs.authorizationModal.addEventListener('click', onBackdropClick);
+refs.authorizationModal.addEventListener('click', onBackdropClick);
 refs.authorizationModalCloseButton.addEventListener('click', onCloseModal);
 refs.loginForm.addEventListener('submit', loginSubmitHandler);
 refs.signupForm.addEventListener('submit', signupSubmitHandler);
@@ -74,7 +76,8 @@ function onEscButtonPressed(event) {
 function onBackdropClick(event) {
   event.preventDefault();
   const backdrop = event.target;
-  if (backdrop.classList.contains('authorization-modal__backdrop')) {
+  // backdrop.classList.contains('authorization-modal__backdrop');
+  if (backdrop === refs.authorizationModal) {
     onCloseModal();
   }
   refs.authorizationModal.removeEventListener('click', onBackdropClick);
@@ -179,6 +182,7 @@ function loginSubmitHandler(event) {
           saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
           onCloseModal();
+          dataSync();
         })
         .catch(error => {
           Notiflix.Notify.failure(`Помилка входу ${error.message}`);
@@ -205,6 +209,24 @@ function logOff() {
     });
 }
 
+async function readQueueDataFromDatabase() {
+  const userId = uid;
+  const dbRef = ref(database, `users/${userId}/queue`);
+  const queueSnapshot = await get(dbRef);
+  if (queueSnapshot.exists()) {
+    return queueSnapshot.val();
+  }
+}
+
+async function readWatchedDataFromDatabase() {
+  const userId = uid;
+  const dbRef = ref(database, `users/${userId}/watched`);
+  const watchedSnapshot = await get(dbRef);
+  if (watchedSnapshot.exists()) {
+    return watchedSnapshot.val();
+  }
+}
+
 if (uid !== '') {
   dataSync();
 }
@@ -214,49 +236,55 @@ function dataSync() {
   const queueLocalData = localStorage.getItem('queue');
   const watchedLocalArray = JSON.parse(watchedLocalData);
   const queueLocalArray = JSON.parse(queueLocalData);
-  // console.log(watchedLocalArray);
-  // console.log(queueLocalArray);
-  readWatchedDataFromDatabase();
-  readQueueDataFromDatabase();
-  // console.log(watchedResults);
-  // console.log(queueResults);
-
-  const combainedWatchedArray = [
-    ...new Set(watchedLocalArray?.concat(watchedResults)),
-  ];
-  const combainedQueueArray = [
-    ...new Set(queueLocalArray?.concat(queueResults)),
-  ];
-  writeDataToDataStores(combainedWatchedArray, combainedQueueArray);
-  // console.log(combainedArray);
-}
-
-async function readQueueDataFromDatabase() {
-  const userId = uid;
-  const dbRef = ref(database, `users/${userId}/queue`);
-  const queueSnapshot = await get(dbRef);
-  if (queueSnapshot.exists()) {
-    for (const movie of queueSnapshot.val()) {
-      queueResults.push(movie);
+  readWatchedDataFromDatabase().then(movies => {
+    try {
+      const watchedArrayRef = ref(database, `users/${uid}/watched`);
+      if (watchedLocalArray && movies) {
+        const arrayOfUniqueMovies = watchedLocalArray
+          .concat(movies)
+          .filter((movie, index, array) => {
+            return (
+              index ===
+              array.findIndex(obj => {
+                return obj.id === movie.id;
+              })
+            );
+          });
+        set(watchedArrayRef, arrayOfUniqueMovies);
+        localStorage.setItem('watched', JSON.stringify(arrayOfUniqueMovies));
+      } else if (!watchedLocalArray && movies) {
+        localStorage.setItem('watched', JSON.stringify(movies));
+      } else if (watchedLocalArray && !movies) {
+        set(watchedArrayRef, watchedLocalArray);
+      }
+    } catch (error) {
+      Notiflix.Notify.failure(`Помилка ${error.message}`);
     }
-  }
-}
+  });
 
-async function readWatchedDataFromDatabase() {
-  const userId = uid;
-  const dbRef = ref(database, `users/${userId}/watched`);
-  const queueSnapshot = await get(dbRef);
-  if (queueSnapshot.exists()) {
-    for (const movie of queueSnapshot.val()) {
-      watchedResults.push(movie);
+  readQueueDataFromDatabase().then(movies => {
+    try {
+      const queueArrayRef = ref(database, `users/${uid}/queue`);
+      if (queueLocalArray && movies) {
+        const arrayOfUniqueMovies = queueLocalArray
+          .concat(movies)
+          .filter((movie, index, array) => {
+            return (
+              index ===
+              array.findIndex(obj => {
+                return obj.id === movie.id;
+              })
+            );
+          });
+        set(queueArrayRef, arrayOfUniqueMovies);
+        localStorage.setItem('queue', JSON.stringify(arrayOfUniqueMovies));
+      } else if (!queueLocalArray && movies) {
+        localStorage.setItem('queue', JSON.stringify(movies));
+      } else if (queueLocalArray && !movies) {
+        set(queueArrayRef, queueLocalArray);
+      }
+    } catch (error) {
+      Notiflix.Notify.failure(`Помилка ${error.message}`);
     }
-  }
-}
-
-function writeDataToDataStores(watchedArray, queueArray) {
-  const userId = uid;
-  const watchedArrayRef = ref(database, `users/${userId}/watched`);
-  const queueArrayRef = ref(database, `users/${userId}/queue`);
-  set(watchedArrayRef, watchedArray);
-  set(queueArrayRef, queueArray);
+  });
 }

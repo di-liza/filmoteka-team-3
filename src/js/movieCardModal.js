@@ -1,5 +1,7 @@
 import { GetMovie } from './apiFetch';
 import { LocalStorage } from './localStorage';
+import { Notify } from 'notiflix';
+
 
 const getMovie = new GetMovie();
 const myMovieLocalStorage = new LocalStorage();
@@ -9,12 +11,9 @@ const sliderCards = document.querySelector('.swiper-wrapper');
 const sliderCard = document.querySelector('.swiper-slide');
 
 sliderCards?.addEventListener('click', e => {
-  console.log(e.target.nodeName);
   if (e.target.nodeName === 'IMG') {
     const perent = e.target.closest('div');
-    // console.log('perent:', perent);
     const { id } = e.target.dataset;
-    console.log('id:', id);
     myMovieLocalStorage.selectedArray = perent?.dataset.selectedarray;
     openModal(id);
   }
@@ -40,7 +39,7 @@ export async function openModal(id) {
     myMovieLocalStorage.movie = result;
     movieCardModal(result);
   } catch (error) {
-    console.log(error.stack);
+    Notify.failure(error.message);
   }
 }
 
@@ -89,6 +88,7 @@ export async function movieCardModal(result) {
     <img
       class="movieCardModal__image--el"
       src="${poster}"
+      srcset="${poster} 2x"
       alt="${title}"
     />
   </div>

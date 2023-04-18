@@ -1,3 +1,6 @@
+.team-member-modal {
+}
+
 .team-member__card {
   display: flex;
   flex-direction: column;
@@ -15,6 +18,7 @@
   box-sizing: border-box;
   // position: relative;
   position: absolute;
+  width: 600px;
 }
 .glide__slides {
   width: 100%;
@@ -23,8 +27,10 @@
   touch-action: pan-Y;
   white-space: nowrap;
   will-change: transform;
-  height: 350px;
-  background-color: #91dddd;
+  height: 400px;
+
+  background-color: #eefffbd1;
+
   flex-wrap: nowrap;
   margin: 0;
   padding: 0;
@@ -47,37 +53,78 @@
 }
 
 .team-member-modal__photo {
-  width: 120px;
-  // height: 480px;
+  width: 160px;
+  height: auto;
+  border-radius: 15px;
 }
 
 .team-member-modal__name {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .team-member-modal__position {
+  font-size: 16px;
+}
+
+.socials-list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .socials-list__item {
+  width: 44px;
+  height: 44px;
 }
 
 .socials-list__icon {
+  color: black;
 }
 
 .socials-list__link {
+  width: 100%;
+  height: 100%;
+  // background: tomato;
+  border-radius: 50%;
+  display: flex;
 }
 
 .team-member-modal__comment {
 }
 
 .team-member-modal__close-btn {
-  // position: absolute;
-  // top: 8px;
-  // right: 8px;
-  // width: 30px;
-  // height: 30px;
-  // background: #fff;
-  // border: 1px solid rgba(0, 0, 0, 0.1);
-  // border-radius: 50%;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.glide__arrow {
+  z-index: 2;
+  color: #000;
+  text-transform: uppercase;
+  text-shadow: 0 0.25em 0.5em #0000001a;
+  opacity: 1;
+  cursor: pointer;
+  background-color: #0000;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  padding: 9px 12px;
+  line-height: 1;
+  transition: opacity 0.15s, border 0.3s ease-in-out;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0.25em 0.5em #0000001a;
 }
