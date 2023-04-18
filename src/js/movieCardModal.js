@@ -2,13 +2,11 @@ import { GetMovie } from './apiFetch';
 import { LocalStorage } from './localStorage';
 import { Notify } from 'notiflix';
 
-
 const getMovie = new GetMovie();
 const myMovieLocalStorage = new LocalStorage();
 
-const button = document.querySelector('.movie-collection');
+const cardsCollection = document.querySelector('.movie-collection');
 const sliderCards = document.querySelector('.swiper-wrapper');
-const sliderCard = document.querySelector('.swiper-slide');
 
 sliderCards?.addEventListener('click', e => {
   if (e.target.nodeName === 'IMG') {
@@ -19,7 +17,7 @@ sliderCards?.addEventListener('click', e => {
   }
 });
 
-button.addEventListener('click', e => {
+cardsCollection.addEventListener('click', e => {
   if (
     e.target.nodeName === 'LI' ||
     e.target.nodeName === 'IMG' ||

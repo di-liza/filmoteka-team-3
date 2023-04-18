@@ -67,7 +67,6 @@ export class GetMovie {
   }
 
   async getMovieTrailer(movie_id) {
-    showLoader();
     try {
       const params = {
         api_key: API_KEY,
@@ -79,7 +78,6 @@ export class GetMovie {
           params,
         }
       );
-      hideLoaderDebounced();
       return response.data;
     } catch (error) {
       Notify.failure(error.message);

@@ -1,10 +1,14 @@
 import { GetMovie } from './apiFetch';
 import { Notify } from 'notiflix';
 
-const getMovie = new GetMovie();
-const button = document.querySelector('.movie-collection');
+import { showLoader, hideLoader } from './loader';
+import { debounce } from 'debounce';
+const hideLoaderDebounced = debounce(hideLoader, 200);
 
-button.addEventListener('click', e => {
+const getMovie = new GetMovie();
+const cardsCollection = document.querySelector('.movie-collection');
+
+cardsCollection.addEventListener('click', e => {
   if (e.target.nodeName === 'BUTTON') {
     const button = e.target.closest('button');
     const { id } = button?.dataset || {};
@@ -15,6 +19,7 @@ button.addEventListener('click', e => {
 let key = '';
 export async function showTrailer(id) {
   try {
+    showLoader();
     const { results } = await getMovie.getMovieTrailer(id);
     console.log(results);
     const trailer = results.find(item => {
@@ -44,6 +49,7 @@ async function getVideo(key) {
   src="https://www.youtube.com/embed/${key}"
   ></iframe> `;
 
+  hideLoaderDebounced();
   if (localStorage.getItem('theme')) {
     crossIcon.classList.add('dark');
     return videoModal.classList.add('dark');
