@@ -12,7 +12,7 @@ export class LocalStorage {
     this.urlIMG =
       'https://fv9-3.failiem.lv/thumb_show.php?i=wvrgyazty&download_checksum=c46e3875e607d6804a842a7f189fa3497d5b4812&download_timestamp=1681764842';
     this.urlIMGforDarckMode =
-      'https://fv9-4.failiem.lv/down.php?i=qzzdwejfq&view&download_checksum=5f53deaa8d12f05184c9278e2a4f5c4bd66d1e9e&download_timestamp=1681764803';
+      'https://lh3.googleusercontent.com/u/1/drive-viewer/AAOQEORwHJ_nPbk78yncXyvFd-yOb5yQKomL1AQWhQCQ1ZUtlHDiW-N9i71VahNUXTnZpY_YE-_H2DTBF5H4lGZ4AC2Pxm3x-w=w3360-h1764';
     this.addOrRemoveFromLocalStoradgeWatched =
       this.addOrRemoveFromLocalStoradgeWatched.bind(this);
     this.addOrRemoveFromLocalStoradgeQueue =
