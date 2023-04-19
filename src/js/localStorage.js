@@ -1,3 +1,4 @@
+import Pagination from 'tui-pagination';
 import { getGenres } from './genres';
 
 export class LocalStorage {
@@ -6,7 +7,7 @@ export class LocalStorage {
     this.selectedArray;
     this.textRemoveBTN = 'remove from ';
     this.textAddBTN = 'add to ';
-    this.numMoviesInPages = 20;
+    this.numMoviesInPages = 9;
     this.movieCollection = document.querySelector('.movie-collection');
     this.results;
     this.urlIMG =
@@ -19,23 +20,26 @@ export class LocalStorage {
       this.addOrRemoveFromLocalStoradgeQueue.bind(this);
   }
 
-  // // Цей метод повертає масив фільмів вказаного масива
-  // getMovies(watchedOrQueue) {
-  //   const movies = localStorage.getItem(watchedOrQueue);
-  //   if (movies) {
-  //     const total = watchedOrQueue + 'Total';
-  //     this[total] = moviesObj.length;
-  //     console.log(
-  //       'this[total] = moviesObj.length - ',
-  //       this[total],
-  //       moviesObj.length
-  //     );
-  //     const moviesObj = JSON.parse(movies);
-  //     this.createMarkupCards(moviesObj);
-  //   } else {
-  //     return 'Нема збережених фільмів';
-  //   }
-  // }
+  getMovies(watchedOrQueue) {
+    this.isLibrary = this.isLibraryWatched();
+    if (watchedOrQueue === 'queue') {
+      this.isLibrary = this.isLibraryQueue();
+    }
+    if (this.isLibrary) {
+      this.total = this.results.length;
+      this.selectedArray = watchedOrQueue;
+      if (this.total > this.numMoviesInPages) {
+        this.results = this.results.slice(0, this.numMoviesInPages);
+        this.addPagination(this.total, watchedOrQueue);
+      } else {
+        document.getElementById('pagination').innerHTML = '';
+      }
+      this.createMarkupCards();
+      this.movieCollection.style.pointerEvents = 'auto';
+    } else {
+      this.markupPlug();
+    }
+  }
 
   // Визначаємо наявнисть фільмів списку watch
   isLibraryWatched() {
@@ -154,8 +158,8 @@ export class LocalStorage {
 
   getPages(watchedOrQueue) {
     const arr = JSON.parse(localStorage.getItem(watchedOrQueue));
-    console.log('arr.length - ', arr.length, this.numMoviesInPages);
-    return Math.round(arr?.length / this.numMoviesInPages);
+    let number = arr?.length / this.numMoviesInPages;
+    return number % 1 !== 0 ? Math.ceil(number) : number;
   }
 
   darkModeForIMG() {
@@ -167,5 +171,34 @@ export class LocalStorage {
   markupPlug() {
     this.movieCollection.innerHTML = `<li class="plug"><img width="288" height="371" class="plug_poster" src="${this.darkModeForIMG()}" srcset="${this.darkModeForIMG()} 2x" alt="plug" /></li>`;
     this.movieCollection.style.pointerEvents = 'none';
+  }
+
+  addPagination(total, watchedOrQueue) {
+    const pagination = new Pagination(document.getElementById('pagination'), {
+      totalItems: 500,
+      itemsPerPage: 10,
+      visiblePages: this.getPages(watchedOrQueue),
+      centerAlign: true,
+    });
+    pagination.setTotalItems(total);
+    pagination.setItemsPerPage(this.numMoviesInPages);
+    pagination.on('afterMove', event => {
+      const currentPage = event.page;
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+      this.getMoviesFromLocalStorageForPagination(watchedOrQueue, currentPage);
+      this.createMarkupCards();
+    });
+    pagination.visiblePages = this.getPages(watchedOrQueue);
+  }
+
+  getMoviesFromLocalStorageForPagination(watchedOrQueue, n) {
+    const movies = localStorage.getItem(watchedOrQueue);
+    const moviesObj = JSON.parse(movies);
+    const endNum = n * this.numMoviesInPages;
+    const startNum = endNum - this.numMoviesInPages;
+    this.results = moviesObj.slice(startNum, endNum);
   }
 }
