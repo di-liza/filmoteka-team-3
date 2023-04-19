@@ -19,15 +19,23 @@ export class LocalStorage {
       this.addOrRemoveFromLocalStoradgeQueue.bind(this);
   }
 
-  // Цей метод повертає масив фільмів вказаного масива
-  getMovies(watchedOrQueue) {
-    const movies = localStorage.getItem(watchedOrQueue);
-    if (movies) {
-      this.createMarkupCards(JSON.parse(movies));
-    } else {
-      return 'Нема збережених фільмів';
-    }
-  }
+  // // Цей метод повертає масив фільмів вказаного масива
+  // getMovies(watchedOrQueue) {
+  //   const movies = localStorage.getItem(watchedOrQueue);
+  //   if (movies) {
+  //     const total = watchedOrQueue + 'Total';
+  //     this[total] = moviesObj.length;
+  //     console.log(
+  //       'this[total] = moviesObj.length - ',
+  //       this[total],
+  //       moviesObj.length
+  //     );
+  //     const moviesObj = JSON.parse(movies);
+  //     this.createMarkupCards(moviesObj);
+  //   } else {
+  //     return 'Нема збережених фільмів';
+  //   }
+  // }
 
   // Визначаємо наявнисть фільмів списку watch
   isLibraryWatched() {
@@ -146,7 +154,8 @@ export class LocalStorage {
 
   getPages(watchedOrQueue) {
     const arr = JSON.parse(localStorage.getItem(watchedOrQueue));
-    return Math.round(arr?.length ?? 0 / this.numMoviesInPages);
+    console.log('arr.length - ', arr.length, this.numMoviesInPages);
+    return Math.round(arr?.length / this.numMoviesInPages);
   }
 
   darkModeForIMG() {
