@@ -49,7 +49,7 @@ async function makeSwiper() {
         src='https://image.tmdb.org/t/p/w500${poster_path}'
         srcset='https://image.tmdb.org/t/p/w500${poster_path} 2x'
         alt='${title}'
-        width = "285" height="428"
+        width = "219" height="328"
       />
     </div>
   </div>`;
