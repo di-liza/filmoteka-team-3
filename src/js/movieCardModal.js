@@ -88,7 +88,7 @@ export async function movieCardModal(result) {
       src="${poster}"
       srcset="${poster} 2x"
       alt="${title}"
-      width="500" height="750"
+     
     />
   </div>
   <div class="movieCardModal__information">
