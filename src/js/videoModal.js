@@ -21,7 +21,6 @@ export async function showTrailer(id) {
   try {
     showLoader();
     const { results } = await getMovie.getMovieTrailer(id);
-    console.log(results);
     const trailer = results.find(item => {
       return item.type === 'Trailer';
     });

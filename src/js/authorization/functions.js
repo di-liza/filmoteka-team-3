@@ -71,6 +71,7 @@ function onBackdropClick(event) {
 function onCloseModal() {
   authorizationModalToggle();
   window.removeEventListener('keydown', onEscButtonPressed);
+  document.location.reload();
 }
 
 function loginFormHideSwitcher() {
@@ -192,6 +193,7 @@ function loginSubmitHandler(event) {
           onCloseModal();
           dataSync();
           hideLoader();
+          document.location.reload();
         })
         .catch(error => {
           Notify.failure(`Firebase login error.`);
@@ -248,7 +250,7 @@ if (uid !== '') {
   dataSync();
 }
 // синхронізація firebase та local storage
-function dataSync() {
+export function dataSync() {
   const watchedLocalData = localStorage.getItem('watched');
   const queueLocalData = localStorage.getItem('queue');
   const watchedLocalArray = JSON.parse(watchedLocalData);
