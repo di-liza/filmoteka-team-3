@@ -26,25 +26,15 @@ function getMoviesQueue() {
   getMovies('queue');
 }
 
-// Функція робе запит у LocalStorage та виводить фільми
+// Функція змінює стан кнопок, робе запит у LocalStorage та виводить фільми
 function getMovies(watchedOrQueue) {
-  let isLibrary;
   if (watchedOrQueue === 'queue') {
-    isLibrary = myLocalStorage.isLibraryQueue();
     buttonLib.watched.style.cssText = '';
     buttonLib.queue.style.cssText = stylePushButton;
   } else {
-    isLibrary = myLocalStorage.isLibraryWatched();
     buttonLib.queue.style.cssText = '';
     buttonLib.watched.style.cssText = stylePushButton;
   }
-  const movies = localStorage.getItem(watchedOrQueue);
-  if (isLibrary) {
-    myLocalStorage.results = JSON.parse(movies);
-    myLocalStorage.selectedArray = watchedOrQueue;
-    myLocalStorage.createMarkupCards();
-    movieCollection.style.pointerEvents = 'auto';
-  } else {
-    myLocalStorage.markupPlug();
-  }
+  myLocalStorage.results = JSON.parse(localStorage.getItem(watchedOrQueue));
+  myLocalStorage.getMovies(watchedOrQueue);
 }
