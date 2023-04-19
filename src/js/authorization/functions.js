@@ -178,7 +178,7 @@ function loginSubmitHandler(event) {
       update(ref(database, 'users/' + user.uid), {
         lastLoginDate: currentDate.toLocaleString(),
       })
-        .then(() => {
+        .then((response) => {
           Notify.success('Login successful');
           form.reset();
           saveLoginState(user.uid, login);
@@ -186,6 +186,7 @@ function loginSubmitHandler(event) {
           onCloseModal();
           dataSync();
           hideLoader();
+          console.log(response.error.message);
         })
         .catch(error => {
           Notify.failure(`Login error: ${error.message}`);
@@ -193,7 +194,8 @@ function loginSubmitHandler(event) {
         });
     })
     .catch(error => {
-      Notify.failure(`Login error: ${error.message}`);
+      Notify.failure(`Login error: ${{error}}`);
+      console.log({error});
       hideLoader();
     });
 }
