@@ -156,7 +156,7 @@ export class LocalStorage {
   }
 
   markupPlug() {
-    this.movieCollection.innerHTML = `<li class="plug"><img width="288" height="371" class="plug_poster" src="${this.darkModeForIMG()}" alt="plug" /></li>`;
+    this.movieCollection.innerHTML = `<li class="plug"><img width="288" height="371" class="plug_poster" src="${this.darkModeForIMG()}" srcset="${this.darkModeForIMG()}" alt="plug" /></li>`;
     this.movieCollection.style.pointerEvents = 'none';
   }
 }
