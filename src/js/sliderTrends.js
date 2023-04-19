@@ -47,7 +47,7 @@ async function makeSwiper() {
         data-id='${id}'
         class='swiper-slide__poster'
         src='https://image.tmdb.org/t/p/w500${poster_path}'
-        srcsethttps://image.tmdb.org/t/p/w500${poster_path} 2x'
+        srcset='https://image.tmdb.org/t/p/w500${poster_path} 2x'
         alt='${title}'
         width = "500" height="750"
       />
@@ -57,7 +57,6 @@ async function makeSwiper() {
     .join('');
   mySlider.on('touchEnd', function () {
     mySlider.autoplay.start();
-    mySlider.autoplay.stop();
   });
 }
 
