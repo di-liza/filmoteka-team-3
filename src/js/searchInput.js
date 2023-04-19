@@ -52,7 +52,6 @@ async function getDropListMovies() {
       const movieCard = event.target.closest('li');
       const movieId = movieCard.dataset.id;
       isModalClosed = false;
-      getFoundMovies();
       if (event.target.nodeName === 'BUTTON') {
         showTrailer(movieId);
       } else {
@@ -68,7 +67,7 @@ async function getDropListMovies() {
         droplist.style.display = 'none';
       }
     });
-    //Закрытие выпадающего списка поиска по клику вне списке
+    //Закрытие выпадающего списка поиска по клику вне списка
     window.addEventListener('click', event => {
       if (event.target !== droplist) {
         droplist.style.display = 'none';

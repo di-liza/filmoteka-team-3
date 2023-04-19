@@ -53,7 +53,7 @@ export function createMarkupDropList(results) {
   const sortedResults = results.sort(function (a, b) {
     return b.vote_average - a.vote_average;
   });
-  const shortResults = sortedResults.slice(0, 6);
+  const shortResults = sortedResults.slice(0, 10);
 
   droplist.innerHTML = shortResults
     .map(({ poster_path, vote_average, title, release_date, id }) => {
