@@ -201,6 +201,8 @@ function loginSubmitHandler(event) {
     .catch(error => {
       if (error.code === 'auth/invalid-email') {
         Notify.failure(`Login error: Invalid email.`);
+      } else if (error.code === 'auth/user-not-found') {
+        Notify.failure(`Login error: User not found.`);
       } else if (error.code === 'auth/wrong-password') {
         Notify.failure(`Login error: Wrong password.`);
       } else {
