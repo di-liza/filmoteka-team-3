@@ -21,7 +21,7 @@ const mySlider = new Swiper(swiperId, {
     1280: {
       slidesPerView: 5,
       spaceBetween: 30,
-      centeredSlides: true,
+      centeredSlides: false,
     },
   },
 
