@@ -144,7 +144,7 @@ function signupSubmitHandler(event) {
         registerDate: currentDate.toLocaleString(),
       })
         .then(() => {
-          Notify.success('Sign up successful');
+          Notify.success('Signup successful.');
           form.reset();
           saveLoginState(user.uid, login);
           isUserRegisteredHandler();
@@ -153,12 +153,18 @@ function signupSubmitHandler(event) {
           hideLoader();
         })
         .catch(error => {
-          Notify.failure(`Sign up error: ${error.message}`);
+          Notify.failure(`Firebase signup error.`);
           hideLoader();
         });
     })
     .catch(error => {
-      Notify.failure(`Sign up error: ${error.message}`);
+      if (error.code === 'auth/invalid-email') {
+        Notify.failure(`Signup error: Invalid email.`);
+      } else if (error.code === 'auth/weak-password') {
+        Notify.failure(`Signup error: Password is too weak.`);
+      } else {
+        Notify.failure(`Firebase signup error.`);
+      }
       hideLoader();
     });
 }
@@ -179,7 +185,7 @@ function loginSubmitHandler(event) {
         lastLoginDate: currentDate.toLocaleString(),
       })
         .then(() => {
-          Notify.success('Login successful');
+          Notify.success('Login successful.');
           form.reset();
           saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
@@ -188,12 +194,20 @@ function loginSubmitHandler(event) {
           hideLoader();
         })
         .catch(error => {
-          Notify.failure(`Login error: ${error.message}`);
+          Notify.failure(`Firebase login error.`);
           hideLoader();
         });
     })
     .catch(error => {
-      Notify.failure(`Login error: ${error.message}`);
+      if (error.code === 'auth/invalid-email') {
+        Notify.failure(`Login error: Invalid email.`);
+      } else if (error.code === 'auth/user-not-found') {
+        Notify.failure(`Login error: User not found.`);
+      } else if (error.code === 'auth/wrong-password') {
+        Notify.failure(`Login error: Wrong password.`);
+      } else {
+        Notify.failure(`Firebase login error.`);
+      }
       hideLoader();
     });
 }
@@ -202,7 +216,7 @@ function loginSubmitHandler(event) {
 function logOff() {
   signOut(auth)
     .then(() => {
-      Notify.warning('Logout successful');
+      Notify.warning('Logout successful.');
       removeLoginState();
       onCloseModal();
       localStorage.clear();
@@ -210,7 +224,7 @@ function logOff() {
       refs.userInformation.classList.toggle('hidden');
     })
     .catch(error => {
-      Notify.warning(`Logout error: ${error.message}`);
+      Notify.warning(`Firebase logout error.`);
     });
 }
 
@@ -234,7 +248,7 @@ if (uid !== '') {
   dataSync();
 }
 // синхронізація firebase та local storage
-function dataSync() {
+export function dataSync() {
   const watchedLocalData = localStorage.getItem('watched');
   const queueLocalData = localStorage.getItem('queue');
   const watchedLocalArray = JSON.parse(watchedLocalData);
