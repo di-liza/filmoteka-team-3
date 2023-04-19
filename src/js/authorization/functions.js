@@ -71,7 +71,6 @@ function onBackdropClick(event) {
 function onCloseModal() {
   authorizationModalToggle();
   window.removeEventListener('keydown', onEscButtonPressed);
-  document.location.reload();
 }
 
 function loginFormHideSwitcher() {
@@ -193,7 +192,6 @@ function loginSubmitHandler(event) {
           onCloseModal();
           dataSync();
           hideLoader();
-          document.location.reload();
         })
         .catch(error => {
           Notify.failure(`Firebase login error.`);
