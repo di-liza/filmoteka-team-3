@@ -151,6 +151,13 @@ function signupSubmitHandler(event) {
           dataSync();
           onCloseModal();
           hideLoader();
+          if (
+            window.location.href === 'http://localhost:1234/my-library.html' ||
+            window.location.href ===
+              'https://di-liza.github.io/filmoteka-team-3/my-library.html'
+          ) {
+            setTimeout(() => location.reload(), 900);
+          }
         })
         .catch(error => {
           Notify.failure(`Firebase signup error.`);
@@ -192,6 +199,13 @@ function loginSubmitHandler(event) {
           onCloseModal();
           dataSync();
           hideLoader();
+          if (
+            window.location.href === 'http://localhost:1234/my-library.html' ||
+            window.location.href ===
+              'https://di-liza.github.io/filmoteka-team-3/my-library.html'
+          ) {
+            setTimeout(() => location.reload(), 900);
+          }
         })
         .catch(error => {
           Notify.failure(`Firebase login error.`);
@@ -222,6 +236,7 @@ function logOff() {
       localStorage.clear();
       refs.loginForm.classList.toggle('hidden');
       refs.userInformation.classList.toggle('hidden');
+      setTimeout(() => location.reload(), 900);
     })
     .catch(error => {
       Notify.warning(`Firebase logout error.`);
