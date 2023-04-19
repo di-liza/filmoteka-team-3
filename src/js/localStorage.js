@@ -37,6 +37,9 @@ export class LocalStorage {
       this.createMarkupCards();
       this.movieCollection.style.pointerEvents = 'auto';
     } else {
+      try {
+        document.getElementById('pagination').innerHTML = '';
+      } catch {}
       this.markupPlug();
     }
   }
@@ -96,7 +99,8 @@ export class LocalStorage {
     queueSpan.textContent = this.textRemoveBTN;
     if (this.selectedArray === watchedOrQueue) {
       this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
-      this.createMarkupCards();
+      this.getMovies(watchedOrQueue);
+      // this.createMarkupCards();
     }
   }
 
@@ -115,8 +119,12 @@ export class LocalStorage {
       if (this.selectedArray === watchedOrQueue) {
         this.results = JSON.parse(localStorage.getItem(watchedOrQueue));
         if (JSON.parse(localStorage.getItem(watchedOrQueue))?.length > 0) {
-          this.createMarkupCards();
+          this.getMovies(watchedOrQueue);
+          // this.createMarkupCards();
         } else {
+          try {
+            document.getElementById('pagination').innerHTML = '';
+          } catch {}
           this.markupPlug();
         }
       }
