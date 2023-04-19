@@ -34,7 +34,7 @@ export function createMarkupCards(results) {
         poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
       }
       return `  <li class="movie-collection__item" data-id="${id}">
-   <img class="movie-collection__poster" loading="lazy" src="${poster}" srcset="${poster} 2x" alt="${title}" width="500" height="750"/>
+   <img class="movie-collection__poster" loading="lazy" src="${poster}" srcset="${poster} 2x" alt="${title} width="336" height="455"/>
    <h2 class="movie-collection__title">${title}</h2>
    <div class="movie-collection__discription">
      <p class="movie-collection__genre">${genresList}</p>
@@ -65,7 +65,7 @@ export function createMarkupDropList(results) {
         poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
       }
       return `  <li class="movie-droplist__item" data-id="${id}"">
-     <img class="movie-droplist__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="335" height="455"/>
+     <img class="movie-droplist__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="100" height="70"/>
      <div class="movie-droplist__wrap">
      <h2 class="movie-droplist__title">${title}</h2>
      <div class="movie-droplist__discription">
