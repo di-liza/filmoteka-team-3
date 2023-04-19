@@ -65,7 +65,7 @@ export function createMarkupDropList(results) {
         poster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
       }
       return `  <li class="movie-droplist__item" data-id="${id}"">
-     <img class="movie-droplist__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="70px" height="100px"/>
+     <img class="movie-droplist__poster" src="${poster}" srcset="${poster} 2x" alt="${title}" width="335" height="455"/>
      <div class="movie-droplist__wrap">
      <h2 class="movie-droplist__title">${title}</h2>
      <div class="movie-droplist__discription">
