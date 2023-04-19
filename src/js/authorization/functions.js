@@ -144,7 +144,7 @@ function signupSubmitHandler(event) {
         registerDate: currentDate.toLocaleString(),
       })
         .then(() => {
-          Notify.success('Sign up successful');
+          Notify.success('Signup successful.');
           form.reset();
           saveLoginState(user.uid, login);
           isUserRegisteredHandler();
@@ -153,12 +153,18 @@ function signupSubmitHandler(event) {
           hideLoader();
         })
         .catch(error => {
-          Notify.failure(`Sign up error: ${error.message}`);
+          Notify.failure(`Firebase signup error.`);
           hideLoader();
         });
     })
     .catch(error => {
-      Notify.failure(`Sign up error: ${error.message}`);
+      if (error.code === 'auth/invalid-email') {
+        Notify.failure(`Signup error: Invalid email.`);
+      } else if (error.code === 'auth/weak-password') {
+        Notify.failure(`Signup error: Password is too weak.`);
+      } else {
+        Notify.failure(`Firebase signup error.`);
+      }
       hideLoader();
     });
 }
@@ -178,24 +184,28 @@ function loginSubmitHandler(event) {
       update(ref(database, 'users/' + user.uid), {
         lastLoginDate: currentDate.toLocaleString(),
       })
-        .then((response) => {
-          Notify.success('Login successful');
+        .then(() => {
+          Notify.success('Login successful.');
           form.reset();
           saveLoginState(user.uid, login);
           isUserAuthenticatedHandler();
           onCloseModal();
           dataSync();
           hideLoader();
-          console.log(response.error.message);
         })
         .catch(error => {
-          Notify.failure(`Login error: ${error.message}`);
+          Notify.failure(`Firebase login error.`);
           hideLoader();
         });
     })
     .catch(error => {
-      Notify.failure(`Login error: ${{error}}`);
-      console.log({error});
+      if (error.code === 'auth/invalid-email') {
+        Notify.failure(`Login error: Invalid email.`);
+      } else if (error.code === 'auth/wrong-password') {
+        Notify.failure(`Login error: Wrong password.`);
+      } else {
+        Notify.failure(`Firebase login error.`);
+      }
       hideLoader();
     });
 }
@@ -204,7 +214,7 @@ function loginSubmitHandler(event) {
 function logOff() {
   signOut(auth)
     .then(() => {
-      Notify.warning('Logout successful');
+      Notify.warning('Logout successful.');
       removeLoginState();
       onCloseModal();
       localStorage.clear();
@@ -212,7 +222,7 @@ function logOff() {
       refs.userInformation.classList.toggle('hidden');
     })
     .catch(error => {
-      Notify.warning(`Logout error: ${error.message}`);
+      Notify.warning(`Firebase logout error.`);
     });
 }
 
